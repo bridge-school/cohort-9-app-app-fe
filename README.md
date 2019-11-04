@@ -5,7 +5,7 @@
 - [ ]  No hard coded strings: the app should be able to be translated into a different language
 - [ ]  Have loading and error states
 - [ ]  Should have unit tests for action creators, reducers and utility functions (front-end only)
-- [ ] Should fulfill criteria under Groups A & B of this accessibility checklist: https://accessibility.18f.gov/checklist/ (edited) 
+- [ ] Should fulfill criteria under Groups A & B of this accessibility checklist: https://accessibility.18f.gov/checklist/
 
 ## Project Workflow
 
