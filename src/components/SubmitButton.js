@@ -1,7 +1,26 @@
 import React from 'react';
+import styled from "styled-components";
 
 const SubmitButton = () => {
-  return <input type="submit" value="Create Application Group" />;
+  return <Button type="submit" value="Create Application Group" />;
 }
+
+const Button = styled.input`
+  width: 350px;
+  padding: 15px 40px;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #fff;
+  border: 1px solid #08c39d;
+  border-radius: 8px;
+  background-color: #08c39d;
+  transition: all 0.3s ease-in;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  }
+`;
 
 export default SubmitButton;
