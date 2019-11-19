@@ -1,22 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import './Header.css';
 
 const Header = ({ isAdmin }) => {
   return (
-    <nav>
-      <ul>
-        <li>
+    <nav className="nav">
+      <div>
+        <div>
           <Link to="/">Home</Link>
-        </li>
-        <li>
+        </div>
+        <div>
           Cohort Application
-        </li>
+        </div>
         { isAdmin && 
-          <li>
+          <div>
             Admin view
-          </li>
+          </div>
         }
-      </ul>
+      </div>
     </nav>
   )
 }
