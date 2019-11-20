@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import { request } from "./backend-request";
 import Dashboard from "./components/Dashboard"
 
 function App() {
   useEffect(() => {
-    const fetchData = async () => {
-      return await request("health");
+    const fetchData = async () => { 
+      const res = await request("applications")
+      const data = await res.json();
+      console.log(data)
+      return res;      
     };
     fetchData();
   });
