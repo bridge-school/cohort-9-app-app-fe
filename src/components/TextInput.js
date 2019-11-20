@@ -1,20 +1,20 @@
-import React from 'react';
+import React from "react";
 
 import {
   InputField,
   InputLabel
-} from './TextInputStyled';
+} from "./TextInputStyled";
 
 
-const TextInput = ({ value, handleChange }) => {
+const TextInput = (props) => {
   return (
     <div>
       <InputLabel>
         Cohort Name:
         <InputField 
           type="text" 
-          value={value} 
-          onChange={handleChange}
+          value={props.value} 
+          onChange={props.handleChange}
           maxLength="64"
         />
       </InputLabel>

@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { Button } from './SubmitButtonStyled';
+import { Button } from "./SubmitButtonStyled";
 
 const SubmitButton = () => {
   return <Button type="submit" value="Create Application Group" />;

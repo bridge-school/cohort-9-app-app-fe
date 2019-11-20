@@ -1,39 +1,39 @@
-import React, { useState } from 'react';
+import React from "react";
+import { connect } from "react-redux";
+import { setCohortName, setCohortType } from "../redux/actions/adminFormActions";
 
-import TextInput from './TextInput';
-import Select from './Select';
-import SubmitButton from './SubmitButton';
+import TextInput from "./TextInput";
+import Select from "./Select";
+import SubmitButton from "./SubmitButton";
 
-const AdminForm = () => {
-  const [cohortName, setCohortName] = useState(null);
-  const [cohortType, setCohortType] = useState(null);
+const AdminForm = (props) => {
 
   const handleCohortNameChange = e => {
-    setCohortName(e.target.value);
+    props.setCohortName(e.target.value);
   };
 
   const handleCohortTypeChange = (e) => {
-    setCohortType(e.target.value);
+    props.setCohortType(e.target.value);
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`Submitting`);
+    alert("Submitting");
     // on submit we need to save the form in DB
   }
 
   const selectOptions = [
-    { value: "frontend", displayedName: 'Fronend' },
-    { value: "backend", displayedName: 'Backend' },
-    { value: "productDesign", displayedName: 'Product Design' }
+    { value: "frontend", displayedName: "Fronend" },
+    { value: "backend", displayedName: "Backend" },
+    { value: "productDesign", displayedName: "Product Design" }
   ];
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <TextInput value={cohortName} handleChange={handleCohortNameChange} />
+        <TextInput value={props.cohortName} handleChange={handleCohortNameChange} />
         <Select
-          value={cohortType}
+          value={props.cohortType}
           handleChange={handleCohortTypeChange}
           options={selectOptions}
         />
@@ -43,4 +43,18 @@ const AdminForm = () => {
   );
 }
 
-export default AdminForm;
+const mapStateToProps = state => {
+  return {
+    cohortName: state.cohortInfo.adminFormReducer,
+    cohortType: state.cohortInfo.adminFormReducer
+  };
+};
+
+const mapDispatchToProps = (dispatch, getState) => {
+  return {
+    setCohortName: name => dispatch(setCohortName(name)),
+    setCohortType: type => dispatch(setCohortType(type)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdminForm);

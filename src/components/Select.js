@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
 import {
   SelectDropdown,
   SelectLabel
-} from './SelectStyled';
+} from "./SelectStyled";
 
 const Select = ({ value, handleChange, options }) => {
   return (

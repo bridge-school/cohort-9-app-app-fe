@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import AdminForm from '../components/AdminForm';
-import PageTitle from '../components/PageTitle';
+import AdminForm from "../components/AdminForm";
+import PageTitle from "../components/PageTitle";
 import { ApplicationContainer } from "./CohortApplicationStyled";
 
 const CohortApplication = () => {
