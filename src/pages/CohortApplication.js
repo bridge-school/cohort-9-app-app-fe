@@ -1,21 +1,16 @@
 import React from 'react';
-import styled from "styled-components";
 
-import AdminApplicationForm from '../components/AdminApplicationForm';
+import AdminForm from '../components/AdminForm';
 import PageTitle from '../components/PageTitle';
+import { ApplicationContainer } from "./CohortApplicationStyled";
 
 const CohortApplication = () => {
   return(
     <ApplicationContainer>
       <PageTitle>Create Cohort Application Form</PageTitle>
-      <AdminApplicationForm />
+      <AdminForm />
     </ApplicationContainer>
   );
 }
-
-const ApplicationContainer = styled.div`
-  width: 80%;
-  margin: 0 auto;
-`;
 
 export default CohortApplication;

@@ -4,7 +4,7 @@ import TextInput from './TextInput';
 import Select from './Select';
 import SubmitButton from './SubmitButton';
 
-const AdminApplicationForm = () => {
+const AdminForm = () => {
   const [cohortName, setCohortName] = useState(null);
   const [cohortType, setCohortType] = useState(null);
 
@@ -43,4 +43,4 @@ const AdminApplicationForm = () => {
   );
 }
 
-export default AdminApplicationForm;
+export default AdminForm;
