@@ -24,6 +24,7 @@ const DatePickerContainer = ({
         <DatePicker
           selected={datesOpen}
           onChange={date => setDates(date, "datesOpen")}
+          //minimum date should be today date so user cannot select any day from previous
           minDate={new Date()}
         />
       </DatePickerLabelStyled>
@@ -32,6 +33,7 @@ const DatePickerContainer = ({
         <DatePicker
           selected={datesClose}
           onChange={date => setDates(date, "datesClose")}
+          //Minimum date should be one day after close date at least
           minDate={addDays(datesOpen, 1)}
         />
       </DatePickerLabelStyled>
@@ -40,6 +42,7 @@ const DatePickerContainer = ({
         <DatePicker
           selected={datesOfResponse}
           onChange={date => setDates(date, "datesOfResponse")}
+          //Minimum date should be one day after date of response at least
           minDate={addDays(datesClose, 1)}
         />
       </DatePickerLabelStyled>
@@ -48,9 +51,9 @@ const DatePickerContainer = ({
 };
 
 const mapStateToProps = state => ({
-  datesOpen: state.dates.datesOpen,
-  datesClose: state.dates.datesClose,
-  datesOfResponse: state.dates.datesOfResponse
+  dateOpen: state.dates.dateOpen,
+  dateClose: state.dates.dateClose,
+  dateOfResponse: state.dates.dateOfResponse
 });
 
 const mapDispatchToProps = dispatch => ({
