@@ -1,6 +1,7 @@
 import React from 'react';
 import AppListItem from "./AppListItem.js"
 import {AppListStyled} from "./AppListStyled"
+
 const AppsList = ({allApps}) => {
     if (allApps["allApps"] !== undefined) {
         const apps = allApps["allApps"];

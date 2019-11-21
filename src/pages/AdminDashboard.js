@@ -15,7 +15,9 @@ export const AdminDashboard = () => {
     const fetchData = async () => { 
       const res = await request("applications")
       const data = await res.json();
+      console.log(data)
       setAllApps(data)
+
       return res;      
     };
     fetchData();
