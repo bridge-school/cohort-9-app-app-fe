@@ -1,17 +1,19 @@
-export const SET_COHORT_NAME = "SET_COHORT_NAME";
-export const SET_COHORT_TYPE = "SET_COHORT_TYPE";
+export const ACTION_TYPES = {
+  SET_COHORT_NAME: "SET_COHORT_NAME",
+  SET_COHORT_TYPE: "SET_COHORT_TYPE"
+}
 
 //Action creators
 export const setCohortName = cohortName => {
   return {
-    type: SET_COHORT_NAME,
+    type: ACTION_TYPES.SET_COHORT_NAME,
     payload: cohortName
   };
 };
 
 export const setCohortType = cohortType => {
   return {
-    type: SET_COHORT_TYPE,
+    type: ACTION_TYPES.SET_COHORT_TYPE,
     payload: cohortType
   };
 };
