@@ -1,6 +1,10 @@
 import { combineReducers } from "redux";
-import datesReducer from "./datesReducer";
+// import datesReducer from "./datesReducer";
+import {fetchAppsReducer} from "./fetchApps.reducer";
+
 const rootReducer = combineReducers({
-  dates: datesReducer
+  // dates: datesReducer,
+  allApps: fetchAppsReducer,
 });
+
 export default rootReducer;
