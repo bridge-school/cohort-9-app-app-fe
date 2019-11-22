@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import DatePicker from "react-datepicker";
-import { setDatesThunk } from "../redux/actions/dateActions";
+import { setDates } from "../redux/actions/dateActions";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-datepicker/dist/react-datepicker-cssmodules.css";
 import { addDays } from "date-fns";
@@ -56,9 +56,9 @@ const mapStateToProps = state => ({
   dateOfResponse: state.dates.dateOfResponse
 });
 
-const mapDispatchToProps = dispatch => ({
-  setDates: (dates, dateField) => dispatch(setDatesThunk(dates, dateField))
-});
+const mapDispatchToProps = {
+  setDates
+};
 
 export default connect(
   mapStateToProps,
