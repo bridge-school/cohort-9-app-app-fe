@@ -1,31 +1,38 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import CommonLayout from "./components/CommonLayout";
 import "./App.css";
-import { request } from "./backend-request";
 
 function App() {
-  useEffect(() => {
-    const fetchData = async () => {
-      return await request("health");
-    };
-    fetchData();
-  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/student/cohorts">
+          <CommonLayout>
+            <div>
+              Cohorts Student
+            </div>
+          </CommonLayout>
+        </Route>
+        <Route exact path="/admin/cohorts">
+          <CommonLayout isAdmin>
+            <div>
+              Cohorts Admin
+            </div>
+          </CommonLayout>
+        </Route>
+        <Route exact path="/">
+          <CommonLayout>
+            <div>
+              <Link to="/admin/cohorts">Admin</Link>
+            </div>
+            <div>
+              <Link to="/student/cohorts">Student</Link>
+            </div>
+          </CommonLayout>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
