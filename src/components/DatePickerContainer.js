@@ -12,9 +12,9 @@ import {
 } from "./DatePickerContainerStyled";
 
 const DatePickerContainer = ({
-  datesOpen,
-  datesClose,
-  datesOfResponse,
+  dateOpen,
+  dateClose,
+  dateOfResponse,
   setDates
 }) => {
   return (
@@ -22,8 +22,8 @@ const DatePickerContainer = ({
       <DatePickerLabelStyled>
         <span> Date Open </span>
         <DatePicker
-          selected={datesOpen}
-          onChange={date => setDates(date, "datesOpen")}
+          selected={dateOpen}
+          onChange={date => setDates(date, "dateOpen")}
           //minimum date should be today date so user cannot select any day from previous
           minDate={new Date()}
         />
@@ -31,19 +31,19 @@ const DatePickerContainer = ({
       <DatePickerLabelStyled>
         <span> Date Closed </span>
         <DatePicker
-          selected={datesClose}
-          onChange={date => setDates(date, "datesClose")}
+          selected={dateClose}
+          onChange={date => setDates(date, "dateClose")}
           //Minimum date should be one day after close date at least
-          minDate={addDays(datesOpen, 1)}
+          minDate={addDays(dateOpen, 1)}
         />
       </DatePickerLabelStyled>
       <DatePickerLabelStyled>
         <span> Date of Response </span>
         <DatePicker
-          selected={datesOfResponse}
-          onChange={date => setDates(date, "datesOfResponse")}
+          selected={dateOfResponse}
+          onChange={date => setDates(date, "dateOfResponse")}
           //Minimum date should be one day after date of response at least
-          minDate={addDays(datesClose, 1)}
+          minDate={addDays(dateClose, 1)}
         />
       </DatePickerLabelStyled>
     </DatePickerContainerStyled>
