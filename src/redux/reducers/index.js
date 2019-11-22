@@ -4,7 +4,9 @@ import {fetchAppsReducer} from "./fetchApps.reducer";
 
 const rootReducer = combineReducers({
   // dates: datesReducer,
-  allApps: fetchAppsReducer,
+  apps: fetchAppsReducer,
 });
+
+
 
 export default rootReducer;

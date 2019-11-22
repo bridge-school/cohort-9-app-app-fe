@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./App.css";
 import { request } from "./backend-request";
-import { AdminDashboard } from "./pages/AdminDashboard"
+import AdminDashboard from "./pages/AdminDashboard"
 
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
       return res;      
     };
     fetchData();
-  });
+  },[]);
   return (
     <div className="App">
       <AdminDashboard />

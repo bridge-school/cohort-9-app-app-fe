@@ -2,7 +2,7 @@ const SET_APPS = "SET_APPS"
 const SET_IS_LOADING = "SET_IS_LOADING"
 
 export const INITIAL_STATE = {
-  allApps: [],
+  apps: [],
   isLoading: true
 };
     
@@ -17,22 +17,10 @@ export const fetchAppsReducer = (state = INITIAL_STATE, action = {}) => {
     case SET_APPS:
       return {
         ...state,
-        allApps: action.payload
+        apps: action.payload
       };
     default: {
       return state;
     }
   }
 };
-
-//   useEffect(() => {
-//     const fetchData = async () => { 
-//       const res = await request("applications")
-//       const data = await res.json();
-//       console.log(data)
-//       return res;      
-//     };
-//     fetchData();
-//   });
-
-

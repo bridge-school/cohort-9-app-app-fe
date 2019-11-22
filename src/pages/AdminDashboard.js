@@ -1,40 +1,28 @@
 import React, {useState, useEffect} from 'react';
 import { connect } from "react-redux";
-import { fetchAllApps, allApps, isLoading } from "../redux/actions/fetchApps.actions.js";
-import AppsList from "../components/AppsList.js"
-import { request } from "../backend-request";
+import { fetchAllApps } from "../redux/actions/fetchApps.actions.js";
+// import AppsList from "../components/AppsList.js"
 
-// export const AdminDashboard = ({isLoading, allApps, fetchAllApps}) => {
-export const AdminDashboard = () => {
-  const [allApps, setAllApps] = useState([])
-  // useEffect(() => {
-  //   fetchAllApps();
-  //       console.log(allApps)
-  //     }, [fetchAllApps]);
+const AdminDashboard = ({isLoading, apps, getAllApps}) => {
   useEffect(() => {
-    const fetchData = async () => { 
-      const res = await request("applications")
-      const data = await res.json();
-      console.log(data)
-      setAllApps(data)
+    getAllApps();
+    console.log(apps)
+  }, [getAllApps]);
 
-      return res;      
-    };
-    fetchData();
-  }, [])
-  console.log(allApps)
+
   return (
-      <AppsList allApps={allApps} />
+    <h1>hi</h1>
+      // <AppsList allApps={allApps} />
   )
 }
 
-// const mapStateToProps = state => ({
-//     isLoading: state.isLoading,
-//     allApps: state.allApps,
-//   })
+const mapStateToProps = state => ({
+    isLoading: state.isLoading,
+    apps: state.apps,
+})
 
-//   const mapDispatchToProps = dispatch => ({
-//     fetchAllApps: () => dispatch(fetchAllApps()),
-//   })
+const mapDispatchToProps = dispatch => ({
+  getAllApps: () => dispatch(fetchAllApps()),
+})
   
-// export default connect(mapStateToProps, mapDispatchToProps)(AdminDashboard);
+export default connect(mapStateToProps, mapDispatchToProps)(AdminDashboard);

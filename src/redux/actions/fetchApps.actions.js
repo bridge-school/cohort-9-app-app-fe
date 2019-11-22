@@ -3,10 +3,11 @@ import { request } from "../../backend-request";
 const SET_APPS = "SET_APPS"
 const SET_IS_LOADING = "SET_IS_LOADING"    
 
-export const setAllApps = (allApps = []) => ({
+export const setApps = (apps = []) => ({
   type: SET_APPS,
-  payload: allApps
+  payload: apps
 });
+
 
 export const setIsLoadingAllApps = (isLoading = false) => ({
   type: SET_IS_LOADING,
@@ -14,13 +15,10 @@ export const setIsLoadingAllApps = (isLoading = false) => ({
 });
 
 // fetchAllAppsThunk
-export const fetchAllApps = () => dispatch => {
-  return async () => { 
+export const fetchAllApps = () => async dispatch => {
     const res = await request("applications")
-    const allApps = await res.json();
+    const apps = await res.json();
+    await dispatch(setApps(apps));
     await dispatch(setIsLoadingAllApps(false));
-    await dispatch(setAllApps(allApps));
-  } 
 };
-    
-    
+
