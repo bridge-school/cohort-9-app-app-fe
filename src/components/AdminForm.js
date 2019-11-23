@@ -1,26 +1,29 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setCohortName, setCohortType } from "../redux/actions/adminFormActions";
+import {
+  setCohortName,
+  setCohortType
+} from "../redux/actions/adminFormActions";
 
 import TextInput from "./TextInput";
 import Select from "./Select";
 import SubmitButton from "./SubmitButton";
 
-const AdminForm = (props) => {
-
+const AdminForm = props => {
   const handleCohortNameChange = e => {
     props.setCohortName(e.target.value);
   };
 
-  const handleCohortTypeChange = (e) => {
+  const handleCohortTypeChange = e => {
     props.setCohortType(e.target.value);
-  }
+  };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     alert("Submitting");
+    console.log(props);
     // on submit we need to save the form in DB
-  }
+  };
 
   const selectOptions = [
     { value: "frontend", displayedName: "Fronend" },
@@ -31,7 +34,10 @@ const AdminForm = (props) => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <TextInput value={props.cohortName} handleChange={handleCohortNameChange} />
+        <TextInput
+          value={props.cohortName}
+          handleChange={handleCohortNameChange}
+        />
         <Select
           value={props.cohortType}
           handleChange={handleCohortTypeChange}
@@ -41,7 +47,7 @@ const AdminForm = (props) => {
       </form>
     </div>
   );
-}
+};
 
 const mapStateToProps = state => {
   return {
@@ -53,7 +59,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch, getState) => {
   return {
     setCohortName: name => dispatch(setCohortName(name)),
-    setCohortType: type => dispatch(setCohortType(type)),
+    setCohortType: type => dispatch(setCohortType(type))
   };
 };
 
