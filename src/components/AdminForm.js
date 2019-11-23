@@ -41,11 +41,18 @@ const AdminForm = props => {
       <form
         onSubmit={values =>
           new Promise((resolve, reject) => {
+            const fakeData = {
+              cohortType: "dsogol",
+              cohortName: "cohort01",
+              link: "/"
+            };
+            console.log("inside form");
             fetch("/api/applications", {
               method: "post",
-              body: JSON.stringify(values)
+              body: JSON.stringify(fakeData)
             })
               .then(res => res.json())
+              .then(res => console.log(res))
               .then(res => {
                 if (res.hasOwnProperty("errors")) {
                   reject(res.errors);
@@ -65,7 +72,8 @@ const AdminForm = props => {
           handleChange={handleCohortTypeChange}
           options={selectOptions}
         />
-        <SubmitButton />
+        <button type="submit">button</button>
+        {/* <SubmitButton /> */}
       </form>
     </div>
   );
