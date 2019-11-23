@@ -20,6 +20,9 @@ function App() {
               Cohorts Admin
               <DatePickerContainer></DatePickerContainer>
             </div>
+          <div className="Datepicker">
+          <DatePickerContainer></DatePickerContainer>
+          </div>
           </CommonLayout>
         </Route>
         <Route exact path="/">
