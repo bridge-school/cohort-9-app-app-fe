@@ -18,12 +18,17 @@ const AdminForm = props => {
     props.setCohortType(e.target.value);
   };
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    alert("Submitting");
-    console.log(props);
-    // on submit we need to save the form in DB
-  };
+  // const handleSubmit = e => {
+  //   // e.preventDefault();
+  //   // // alert("Submitting");
+  //   // console.log(props);
+  //   // // on submit we need to save the form in DB
+  //   // const data = new FormData(e.target);
+  //   // fetch("http://localhost:8081/Applications", {
+  //   //   method: "POST",
+  //   //   body: data
+  //   // });
+  // };
 
   const selectOptions = [
     { value: "frontend", displayedName: "Fronend" },
@@ -33,7 +38,24 @@ const AdminForm = props => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form
+        onSubmit={values =>
+          new Promise((resolve, reject) => {
+            fetch("/api/applications", {
+              method: "post",
+              body: JSON.stringify(values)
+            })
+              .then(res => res.json())
+              .then(res => {
+                if (res.hasOwnProperty("errors")) {
+                  reject(res.errors);
+                } else {
+                  resolve(res.data);
+                }
+              });
+          })
+        }
+      >
         <TextInput
           value={props.cohortName}
           handleChange={handleCohortNameChange}
@@ -51,16 +73,14 @@ const AdminForm = props => {
 
 const mapStateToProps = state => {
   return {
-    cohortName: state.cohortInfo.adminFormReducer,
-    cohortType: state.cohortInfo.adminFormReducer
+    cohortName: state.cohortInfo.cohortName,
+    cohortType: state.cohortInfo.cohortType
   };
 };
 
-const mapDispatchToProps = (dispatch, getState) => {
-  return {
-    setCohortName: name => dispatch(setCohortName(name)),
-    setCohortType: type => dispatch(setCohortType(type))
-  };
+const mapDispatchToProps = {
+  setCohortName,
+  setCohortType
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminForm);
