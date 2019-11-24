@@ -1,26 +1,29 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setCohortName, setCohortType } from "../redux/actions/adminFormActions";
+import {
+  setCohortName,
+  setCohortType
+} from "../redux/actions/adminFormActions";
 
 import TextInput from "./TextInput";
 import Select from "./Select";
 import DatePickerContainer from "./DatePickerContainer";
 import SubmitButton from "./SubmitButton";
 
-const AdminForm = (props) => {
+const AdminForm = props => {
   const handleCohortNameChange = e => {
     props.setCohortName(e.target.value);
   };
 
-  const handleCohortTypeChange = (e) => {
+  const handleCohortTypeChange = e => {
     props.setCohortType(e.target.value);
-  }
+  };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     alert("Submitting");
     // on submit we need to save the form in DB
-  }
+  };
 
   const selectOptions = [
     { value: "frontend", displayedName: "Frontend" },
@@ -47,7 +50,7 @@ const AdminForm = (props) => {
       </form>
     </div>
   );
-}
+};
 
 const mapStateToProps = state => {
   return {
