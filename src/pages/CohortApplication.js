@@ -1,10 +1,15 @@
-import React from 'react';
+import React from "react";
+
+import AdminForm from "../components/AdminForm";
+import PageTitle from "../components/PageTitle";
+import { ApplicationContainer } from "./CohortApplicationStyled";
 
 const CohortApplication = () => {
   return(
-    <div>
-      Cohort Application
-    </div>
+    <ApplicationContainer>
+      <PageTitle>Create Cohort Application Form</PageTitle>
+      <AdminForm />
+    </ApplicationContainer>
   );
 }
 

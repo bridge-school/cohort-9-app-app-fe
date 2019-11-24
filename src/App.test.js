@@ -1,9 +1,17 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ShallowRenderer from 'react-test-renderer/shallow';
 import App from './App';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+
+describe('App', () => {
+  test('Should render properly', () => {
+    const renderer = new ShallowRenderer();
+    const element = renderer.render(
+      <Provider store={store}>
+        <App />
+      </Provider>);
+    expect(element).toMatchSnapshot();
+  });
 });
