@@ -9,11 +9,6 @@ const Header = ({ isAdmin }) => {
         <div>
           <Link to="/">Home</Link>
         </div>
-        <div>
-          <Link to="/cohort-application">
-            Cohort Application
-          </Link>
-        </div>
         { isAdmin && 
           <div>
             Admin view

@@ -2,9 +2,9 @@ import React from "react";
 
 import { Title } from "./PageTitleStyled";
 
-const PageTitle = (props) => {
+const PageTitle = ({ children }) => {
   return (
-    <Title>{props.children}</Title>
+    <Title>{children}</Title>
   );
 }
 

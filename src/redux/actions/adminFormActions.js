@@ -3,7 +3,7 @@ export const ACTION_TYPES = {
   SET_COHORT_TYPE: "SET_COHORT_TYPE"
 }
 
-//Action creators
+// Action creator to set cohort name
 export const setCohortName = cohortName => {
   return {
     type: ACTION_TYPES.SET_COHORT_NAME,
@@ -11,6 +11,7 @@ export const setCohortName = cohortName => {
   };
 };
 
+// Action creator to set cohort type
 export const setCohortType = cohortType => {
   return {
     type: ACTION_TYPES.SET_COHORT_TYPE,

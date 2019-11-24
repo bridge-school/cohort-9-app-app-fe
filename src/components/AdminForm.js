@@ -4,10 +4,10 @@ import { setCohortName, setCohortType } from "../redux/actions/adminFormActions"
 
 import TextInput from "./TextInput";
 import Select from "./Select";
+import DatePickerContainer from "./DatePickerContainer";
 import SubmitButton from "./SubmitButton";
 
 const AdminForm = (props) => {
-
   const handleCohortNameChange = e => {
     props.setCohortName(e.target.value);
   };
@@ -23,7 +23,7 @@ const AdminForm = (props) => {
   }
 
   const selectOptions = [
-    { value: "frontend", displayedName: "Fronend" },
+    { value: "frontend", displayedName: "Frontend" },
     { value: "backend", displayedName: "Backend" },
     { value: "productDesign", displayedName: "Product Design" }
   ];
@@ -31,12 +31,18 @@ const AdminForm = (props) => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <TextInput value={props.cohortName} handleChange={handleCohortNameChange} />
+        <TextInput
+          value={props.cohortName}
+          handleChange={handleCohortNameChange}
+        />
         <Select
           value={props.cohortType}
           handleChange={handleCohortTypeChange}
           options={selectOptions}
         />
+
+        <DatePickerContainer />
+
         <SubmitButton />
       </form>
     </div>
@@ -45,12 +51,12 @@ const AdminForm = (props) => {
 
 const mapStateToProps = state => {
   return {
-    cohortName: state.cohortInfo.adminFormReducer,
-    cohortType: state.cohortInfo.adminFormReducer
+    cohortName: state.cohortInfo.cohortName,
+    cohortType: state.cohortInfo.cohortType
   };
 };
 
-const mapDispatchToProps = (dispatch, getState) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     setCohortName: name => dispatch(setCohortName(name)),
     setCohortType: type => dispatch(setCohortType(type)),
