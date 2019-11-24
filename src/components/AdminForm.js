@@ -48,9 +48,12 @@ const AdminForm = props => {
               link: "/"
             };
             console.log("inside form");
-            fetch("/api/applications", {
+            fetch("/applications", {
               method: "post",
-              body: JSON.stringify(fakeData)
+              body: JSON.stringify(fakeData),
+              headers: {
+                "Content-Type": "application/json"
+              }
             })
               .then(res => res.json())
               .then(res => console.log(res))
@@ -73,8 +76,8 @@ const AdminForm = props => {
           handleChange={handleCohortTypeChange}
           options={selectOptions}
         />
-        <button type="submit">button</button>
-        {/* <SubmitButton /> */}
+        {/* <button type="submit">button</button> */}
+        <SubmitButton />
       </form>
     </div>
   );
