@@ -16,7 +16,7 @@ export const Button = styled.input`
   border-radius: 8px;
   background-color: #08c39d;
   transition: all 0.3s ease-in;
-  margin-top: 140px;
+  margin-top: 60px;
   
   &:hover {
     cursor: pointer;
