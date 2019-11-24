@@ -7,7 +7,6 @@ import {
 
 import TextInput from "./TextInput";
 import Select from "./Select";
-import DatePickerContainer from "./DatePickerContainer";
 import SubmitButton from "./SubmitButton";
 
 const AdminForm = props => {
@@ -20,15 +19,11 @@ const AdminForm = props => {
   };
 
   // const handleSubmit = e => {
-  //   // e.preventDefault();
-  //   // // alert("Submitting");
-  //   // console.log(props);
-  //   // // on submit we need to save the form in DB
-  //   // const data = new FormData(e.target);
-  //   // fetch("http://localhost:8081/Applications", {
-  //   //   method: "POST",
-  //   //   body: data
-  //   // });
+  //   e.preventDefault();
+  //   // alert("Submitting");
+  //   console.log(props);
+
+  //   // on submit we need to save the form in DB
   // };
 
   const selectOptions = [
@@ -43,7 +38,7 @@ const AdminForm = props => {
         onSubmit={values =>
           new Promise((resolve, reject) => {
             const fakeData = {
-              cohortType: "dsogol",
+              cohortType: "yyyyyyjjjj",
               cohortName: "cohort01",
               link: "/"
             };
@@ -66,6 +61,7 @@ const AdminForm = props => {
               });
           })
         }
+        // onSubmit={handleSubmit}
       >
         <TextInput
           value={props.cohortName}
