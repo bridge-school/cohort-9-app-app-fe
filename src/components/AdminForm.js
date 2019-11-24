@@ -56,11 +56,9 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setCohortName: name => dispatch(setCohortName(name)),
-    setCohortType: type => dispatch(setCohortType(type)),
-  };
+const mapDispatchToProps = {
+  setCohortName,
+  setCohortType
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminForm);
