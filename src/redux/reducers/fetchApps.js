@@ -1,5 +1,4 @@
-const SET_APPS = "SET_APPS"
-const SET_IS_LOADING = "SET_IS_LOADING"
+import { ACTION_TYPES } from "../actions/fetchApps";
 
 export const INITIAL_STATE = {
   apps: {
@@ -11,12 +10,12 @@ export const INITIAL_STATE = {
 // TODO: Write the reducer cases for API list
 export const fetchAppsReducer = (state = INITIAL_STATE, action = {}) => {
   switch (action.type) {
-    case SET_IS_LOADING:
+    case ACTION_TYPES.SET_IS_LOADING:
       return {
         ...state,
         isLoading: action.payload
       };
-    case SET_APPS:
+    case ACTION_TYPES.SET_APPS:
       return {
         ...state,
         apps: action.payload

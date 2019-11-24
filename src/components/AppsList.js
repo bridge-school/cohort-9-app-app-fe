@@ -5,7 +5,6 @@ import {AppListStyled} from "./AppListStyled"
 const AppsList = ({apps}) => { 
     return (
         <>
-        <h1>Cohort Application Forms</h1>
         <AppListStyled> 
             {apps.map(li => {
                 const {id, cohortName, cohortType, link} = li

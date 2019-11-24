@@ -1,16 +1,18 @@
 import { request } from "../../backend-request";
 
-const SET_APPS = "SET_APPS"
-const SET_IS_LOADING = "SET_IS_LOADING"    
+export const ACTION_TYPES = {
+  SET_APPS: "SET_APPS",
+  SET_IS_LOADING:"SET_IS_LOADING"    
+}
 
 export const setApps = (apps = []) => ({
-  type: SET_APPS,
+  type: ACTION_TYPES.SET_APPS,
   payload: apps
 });
 
 
 export const setIsLoadingAllApps = (isLoading = false) => ({
-  type: SET_IS_LOADING,
+  type: ACTION_TYPES.SET_IS_LOADING,
   payload: isLoading
 });
 
