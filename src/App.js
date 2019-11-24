@@ -16,7 +16,6 @@ function App() {
         </Route>
         <Route exact path="/admin/cohorts">
           <CommonLayout isAdmin>
-            {/* <CohortApplication /> */}
             <AdminDashboard />
           </CommonLayout>
         </Route>
