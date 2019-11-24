@@ -3,29 +3,26 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import CommonLayout from "./components/CommonLayout";
 import "./App.css";
 
-import CohortApplication from './pages/CohortApplication';
+import AdminDashboard from "./pages/AdminDashboard";
+import CohortApplication from "./pages/CohortApplication";
 
 function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/cohort-application">
-          <CommonLayout>
-              <CohortApplication />
-          </CommonLayout>
-        </Route>
         <Route exact path="/student/cohorts">
           <CommonLayout>
-            <div>
-              Cohorts Student
-            </div>
+            <div>Cohorts Student</div>
           </CommonLayout>
         </Route>
         <Route exact path="/admin/cohorts">
           <CommonLayout isAdmin>
-            <div>
-              Cohorts Admin
-            </div>
+            <AdminDashboard />
+          </CommonLayout>
+        </Route>
+        <Route exact path="/admin/cohorts/application">
+          <CommonLayout>
+            <CohortApplication />
           </CommonLayout>
         </Route>
         <Route exact path="/">

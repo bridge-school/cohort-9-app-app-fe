@@ -7,6 +7,7 @@ import {
 
 import TextInput from "./TextInput";
 import Select from "./Select";
+import DatePickerContainer from "./DatePickerContainer";
 import SubmitButton from "./SubmitButton";
 
 const AdminForm = props => {
@@ -31,7 +32,7 @@ const AdminForm = props => {
   // };
 
   const selectOptions = [
-    { value: "frontend", displayedName: "Fronend" },
+    { value: "frontend", displayedName: "Frontend" },
     { value: "backend", displayedName: "Backend" },
     { value: "productDesign", displayedName: "Product Design" }
   ];

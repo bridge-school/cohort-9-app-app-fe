@@ -1,9 +1,13 @@
 import React from "react";
 
-import { Button } from "./SubmitButtonStyled";
+import { Button, ButtonContainer } from "./SubmitButtonStyled";
 
 const SubmitButton = () => {
-  return <Button type="submit" value="Create Application Group" />;
+  return (
+    <ButtonContainer>
+      <Button type="submit" value="Create Application Group" />
+    </ButtonContainer>
+  );
 }
 
 export default SubmitButton;

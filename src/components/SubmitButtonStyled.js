@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 export const Button = styled.input`
   width: 350px;
   padding: 15px 40px;
@@ -11,7 +16,8 @@ export const Button = styled.input`
   border-radius: 8px;
   background-color: #08c39d;
   transition: all 0.3s ease-in;
-
+  margin-top: 60px;
+  
   &:hover {
     cursor: pointer;
     opacity: 0.8;
