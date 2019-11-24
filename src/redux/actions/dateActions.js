@@ -7,3 +7,8 @@ export const setDates = (date, dateField) => ({
   type: ACTION_TYPES.SET_DATES,
   payload: { date: date, dateField: dateField }
 });
+
+//creating Thunk here
+export const setDatesThunk = (date, dateField) => dispatch => {
+  return dispatch(setDates(date, dateField));
+};

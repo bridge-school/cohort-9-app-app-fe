@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import CommonLayout from "./components/CommonLayout";
 import "./App.css";
 import { request } from "./backend-request";
-import DatePickerContainer from "./components/DatePickerContainer";
+
+import CohortApplication from './pages/CohortApplication';
 
 function App() {
   return (
@@ -11,19 +12,12 @@ function App() {
       <Switch>
         <Route exact path="/student/cohorts">
           <CommonLayout>
-            <div>
-              Cohorts Student
-            </div>
+            <div>Cohorts Student</div>
           </CommonLayout>
         </Route>
         <Route exact path="/admin/cohorts">
           <CommonLayout isAdmin>
-            <div>
-              Cohorts Admin
-            </div>
-          <div className="Datepicker">
-          <DatePickerContainer></DatePickerContainer>
-          </div>
+            <CohortApplication />
           </CommonLayout>
         </Route>
         <Route exact path="/">

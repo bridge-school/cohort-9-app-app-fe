@@ -1,9 +1,8 @@
-import React from "react";
 import styled from "styled-components";
 
 export const DatePickerContainerStyled = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 `;
 export const DatePickerLabelStyled = styled.div`
   display: flex;
