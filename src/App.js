@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import CommonLayout from "./components/CommonLayout";
 import "./App.css";
 import { request } from "./backend-request";
-import DatePickerContainer from "./components/DatePickerContainer";
+
+import CohortApplication from "./pages/CohortApplication";
 
 function App() {
   return (
@@ -20,9 +21,9 @@ function App() {
               Cohorts Admin
               <DatePickerContainer></DatePickerContainer>
             </div>
-          <div className="Datepicker">
-          <DatePickerContainer></DatePickerContainer>
-          </div>
+            <div className="Datepicker">
+              <DatePickerContainer></DatePickerContainer>
+            </div>
           </CommonLayout>
         </Route>
         <Route exact path="/">
