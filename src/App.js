@@ -2,8 +2,8 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import CommonLayout from "./components/CommonLayout";
 import "./App.css";
-import { request } from "./backend-request";
 
+import AdminDashboard from "./pages/AdminDashboard";
 import CohortApplication from "./pages/CohortApplication";
 
 function App() {
@@ -17,10 +17,12 @@ function App() {
         </Route>
         <Route exact path="/admin/cohorts">
           <CommonLayout isAdmin>
-            <div>
-              Cohorts Admin
-              <DatePickerContainer></DatePickerContainer>
-            </div>
+            <AdminDashboard />
+          </CommonLayout>
+        </Route>
+        <Route exact path="/admin/cohorts/application">
+          <CommonLayout>
+            <CohortApplication />
           </CommonLayout>
         </Route>
         <Route exact path="/">
