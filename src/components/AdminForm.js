@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+
 import {
   setCohortName,
   setCohortType
@@ -14,6 +15,29 @@ const AdminForm = props => {
     props.setCohortName(e.target.value);
   };
 
+  const handleSubmit = async e => {
+    e.preventDefault();
+    // alert("Submitting");
+    console.log(props);
+    const data = {
+      cohortName: props.cohortName,
+      cohortType: props.cohortType,
+      link: "/"
+    };
+    console.log(data);
+
+    try {
+      const res = await fetch("/applications", {
+        method: "post",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const handleCohortTypeChange = e => {
     props.setCohortType(e.target.value);
   };
@@ -22,46 +46,60 @@ const AdminForm = props => {
   //   e.preventDefault();
   //   // alert("Submitting");
   //   console.log(props);
+  //   const data = {
+  //     cohortName: props.cohortName,
+  //     cohortType: props.cohortType,
+  //     link: "/"
+  //   };
+  //   console.log(data);
+  //   // const data = new FormData(e.target);
 
+  //   fetch("/applications", {
+  //     method: "POST",
+  //     body: JSON.stringify(data),
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     }
+  //   });
   //   // on submit we need to save the form in DB
   // };
 
   const selectOptions = [
-    { value: "frontend", displayedName: "Frontend" },
-    { value: "backend", displayedName: "Backend" },
-    { value: "productDesign", displayedName: "Product Design" }
+    { value: "Frontend Development", displayedName: "Frontend Development" },
+    { value: "Backend Development", displayedName: "Backend Development" },
+    { value: "Product Design", displayedName: "Product Design" }
   ];
 
   return (
     <div>
       <form
-        onSubmit={values =>
-          new Promise((resolve, reject) => {
-            const fakeData = {
-              cohortType: "yyyyyyjjjj",
-              cohortName: "cohort01",
-              link: "/"
-            };
-            console.log("inside form");
-            fetch("/applications", {
-              method: "post",
-              body: JSON.stringify(fakeData),
-              headers: {
-                "Content-Type": "application/json"
-              }
-            })
-              .then(res => res.json())
-              .then(res => console.log(res))
-              .then(res => {
-                if (res.hasOwnProperty("errors")) {
-                  reject(res.errors);
-                } else {
-                  resolve(res.data);
-                }
-              });
-          })
-        }
-        // onSubmit={handleSubmit}
+        // onSubmit={props =>
+        //   new Promise((resolve, reject) => {
+        //     // const fakeData = {
+        //     //   cohortType: "yyyyyyjjjj",
+        //     //   cohortName: "cohort01",
+        //     //   link: "/"
+        //     // };
+        //     console.log("inside form");
+        //     console.log(props);
+        //     fetch("/applications", {
+        //       method: "post",
+        //       body: JSON.stringify(props),
+        //       headers: {
+        //         "Content-Type": "application/json"
+        //       }
+        //     })
+        //       .then(res => res.json())
+        //       .then(res => {
+        //         if (res.hasOwnProperty("errors")) {
+        //           reject(res.errors);
+        //         } else {
+        //           resolve(res.data);
+        //         }
+        //       });
+        //   })
+        // }
+        onSubmit={handleSubmit}
       >
         <TextInput
           value={props.cohortName}
