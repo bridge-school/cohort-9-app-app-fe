@@ -1,10 +1,9 @@
-import { 
-  ACTION_TYPES
-} from "../actions/adminFormActions";
+import { ACTION_TYPES } from "../actions/adminFormActions";
 
 export const initialState = {
   cohortName: "",
   cohortType: "",
+  isSubmitted: false
 };
 
 const adminFormReducer = (state = initialState, action) => {
@@ -20,8 +19,13 @@ const adminFormReducer = (state = initialState, action) => {
         ...state,
         cohortType: action.payload
       };
+    case ACTION_TYPES.SET_FORM_DETAILS:
+      return {
+        ...state,
+        isSubmitted: true
+      };
     default:
       return state;
   }
-}; 
+};
 export default adminFormReducer;

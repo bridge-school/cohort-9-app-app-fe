@@ -1,9 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
+import { push } from "react-router-redux";
 
 import {
   setCohortName,
-  setCohortType
+  setCohortType,
+  setFormDetails
 } from "../redux/actions/adminFormActions";
 
 import TextInput from "./TextInput";
@@ -36,8 +38,10 @@ const AdminForm = props => {
         }
       });
       const apiResponse = await res.json();
-      // if (apiResponse.hasOwnProperty("errors")) {
-      //   reject(apiResponse.errors);
+      if (!apiResponse.hasOwnProperty("errors")) {
+        props.setFormDetails(props.cohortName, props.cohortType);
+        props.history.push("/admin/cohorts");
+      }
       // } else {
       //   resolve(apiResponse.data);
       // }
@@ -134,7 +138,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   setCohortName,
-  setCohortType
+  setCohortType,
+  setFormDetails
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminForm);
