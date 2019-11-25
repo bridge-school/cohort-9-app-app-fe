@@ -27,3 +27,20 @@ export const setFormDetails = (cohortName, cohortType) => {
     payload: { cohortName: cohortName, cohortType: cohortType }
   };
 };
+
+//creating Thunk to post the details of the form to firebase by dispatchin setFormDetails action creator
+const postFormDetailsThunk = (cohortName, cohortType) => async dispatch => {
+  const cohortData = {
+    cohortName: cohortName,
+    cohortType: cohortType
+  };
+  const res = await fetch("/applications", {
+    method: "post",
+    body: JSON.stringify(cohortData),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+  const apiResponse = await res.json();
+  await dispatch(setFormDetails(cohortName, cohortType));
+};
