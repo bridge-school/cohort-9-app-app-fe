@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { push } from "react-router-redux";
+// import { push } from "react-router-redux";
 
 import {
   setCohortName,
@@ -40,7 +40,7 @@ const AdminForm = props => {
       const apiResponse = await res.json();
       if (!apiResponse.hasOwnProperty("errors")) {
         props.setFormDetails(props.cohortName, props.cohortType);
-        props.history.push("/admin/cohorts");
+        // props.history.push("/admin/cohorts");
       }
       // } else {
       //   resolve(apiResponse.data);
@@ -121,7 +121,6 @@ const AdminForm = props => {
           handleChange={handleCohortTypeChange}
           options={selectOptions}
         />
-        {/* <button type="submit">button</button> */}
         <DatePickerContainer />
         <SubmitButton />
       </form>
@@ -132,7 +131,9 @@ const AdminForm = props => {
 const mapStateToProps = state => {
   return {
     cohortName: state.cohortInfo.cohortName,
-    cohortType: state.cohortInfo.cohortType
+    cohortType: state.cohortInfo.cohortType,
+    isSubmitted: state.cohortInfo.isSubmitted,
+    cohortObject: state.cohortInfo.cohortObject
   };
 };
 
