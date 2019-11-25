@@ -9,6 +9,7 @@ import {
 import TextInput from "./TextInput";
 import Select from "./Select";
 import SubmitButton from "./SubmitButton";
+import DatePickerContainer from "./DatePickerContainer";
 
 const AdminForm = props => {
   const handleCohortNameChange = e => {
@@ -19,21 +20,27 @@ const AdminForm = props => {
     e.preventDefault();
     // alert("Submitting");
     console.log(props);
-    const data = {
+    const cohortData = {
       cohortName: props.cohortName,
       cohortType: props.cohortType,
       link: "/"
     };
-    console.log(data);
+    console.log(cohortData);
 
     try {
       const res = await fetch("/applications", {
         method: "post",
-        body: JSON.stringify(data),
+        body: JSON.stringify(cohortData),
         headers: {
           "Content-Type": "application/json"
         }
       });
+      const apiResponse = await res.json();
+      // if (apiResponse.hasOwnProperty("errors")) {
+      //   reject(apiResponse.errors);
+      // } else {
+      //   resolve(apiResponse.data);
+      // }
     } catch (error) {
       console.log(error);
     }
@@ -111,6 +118,7 @@ const AdminForm = props => {
           options={selectOptions}
         />
         {/* <button type="submit">button</button> */}
+        <DatePickerContainer />
         <SubmitButton />
       </form>
     </div>
