@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-// import { push } from "react-router-redux";
+import { Redirect } from "react-router-dom";
 
 import {
   setCohortName,
   setCohortType,
-  setFormDetails
+  postFormDetailsThunk
 } from "../redux/actions/adminFormActions";
 
 import TextInput from "./TextInput";
@@ -14,66 +14,46 @@ import SubmitButton from "./SubmitButton";
 import DatePickerContainer from "./DatePickerContainer";
 
 const AdminForm = props => {
+  const [isDuplicate, setDuplicate] = useState(false);
+
   const handleCohortNameChange = e => {
     props.setCohortName(e.target.value);
   };
 
-  const handleSubmit = async e => {
-    e.preventDefault();
-    // alert("Submitting");
-    console.log(props);
-    const cohortData = {
-      cohortName: props.cohortName,
-      cohortType: props.cohortType,
-      link: "/"
-    };
-    console.log(cohortData);
+  /**
+   * Check if the cohort name and type already exists in databases
+   * If that already exists then the returned length will be greater than 0
+   */
+  const isCohortDuplicate = () => {
+    const { cohortName, cohortType, existingCohorts } = props;
+    return existingCohorts
+      .filter(cohort => cohort.cohortType === cohortType)
+      .filter(
+        cohort => cohort.cohortName.toLowerCase() === cohortName.toLowerCase()
+      ).length;
+  };
 
-    try {
-      const res = await fetch("/applications", {
-        method: "post",
-        body: JSON.stringify(cohortData),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      });
-      const apiResponse = await res.json();
-      if (!apiResponse.hasOwnProperty("errors")) {
-        props.setFormDetails(props.cohortName, props.cohortType);
-        // props.history.push("/admin/cohorts");
-      }
-      // } else {
-      //   resolve(apiResponse.data);
-      // }
-    } catch (error) {
-      console.log(error);
+  const handleSubmit = e => {
+    e.preventDefault();
+    const { cohortName, cohortType, existingCohorts } = props;
+    const isCohortDuplicateValue = isCohortDuplicate();
+    //if that recotrd doesnt exist in database then add it to database
+    if (isCohortDuplicateValue === 0) {
+      const cohortData = {
+        cohortName,
+        cohortType,
+        link: "/"
+      };
+      //calls the thunk here to "POST" to database
+      props.postFormDetailsThunk(cohortData);
+    } else {
+      setDuplicate(true);
     }
   };
+
   const handleCohortTypeChange = e => {
     props.setCohortType(e.target.value);
   };
-
-  // const handleSubmit = e => {
-  //   e.preventDefault();
-  //   // alert("Submitting");
-  //   console.log(props);
-  //   const data = {
-  //     cohortName: props.cohortName,
-  //     cohortType: props.cohortType,
-  //     link: "/"
-  //   };
-  //   console.log(data);
-  //   // const data = new FormData(e.target);
-
-  //   fetch("/applications", {
-  //     method: "POST",
-  //     body: JSON.stringify(data),
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     }
-  //   });
-  //   // on submit we need to save the form in DB
-  // };
 
   const selectOptions = [
     { value: "Frontend Development", displayedName: "Frontend Development" },
@@ -81,37 +61,14 @@ const AdminForm = props => {
     { value: "Product Design", displayedName: "Product Design" }
   ];
 
+  //If we add the record to database then isSubmitted and error state will be changed and we redirect to previous page
+  if (props.isSubmitted && props.error === "") {
+    return <Redirect to="/admin/cohorts/" />;
+  }
+
   return (
     <div>
-      <form
-        // onSubmit={props =>
-        //   new Promise((resolve, reject) => {
-        //     // const fakeData = {
-        //     //   cohortType: "yyyyyyjjjj",
-        //     //   cohortName: "cohort01",
-        //     //   link: "/"
-        //     // };
-        //     console.log("inside form");
-        //     console.log(props);
-        //     fetch("/applications", {
-        //       method: "post",
-        //       body: JSON.stringify(props),
-        //       headers: {
-        //         "Content-Type": "application/json"
-        //       }
-        //     })
-        //       .then(res => res.json())
-        //       .then(res => {
-        //         if (res.hasOwnProperty("errors")) {
-        //           reject(res.errors);
-        //         } else {
-        //           resolve(res.data);
-        //         }
-        //       });
-        //   })
-        // }
-        onSubmit={handleSubmit}
-      >
+      <form onSubmit={handleSubmit}>
         <TextInput
           value={props.cohortName}
           handleChange={handleCohortNameChange}
@@ -124,6 +81,9 @@ const AdminForm = props => {
         <DatePickerContainer />
         <SubmitButton />
       </form>
+      {isDuplicate && (
+        <p>{`This Cohort Name already exists for ${props.cohortType}`}</p>
+      )}
     </div>
   );
 };
@@ -132,15 +92,16 @@ const mapStateToProps = state => {
   return {
     cohortName: state.cohortInfo.cohortName,
     cohortType: state.cohortInfo.cohortType,
+    existingCohorts: state.apps.apps.cohort_apps,
     isSubmitted: state.cohortInfo.isSubmitted,
-    cohortObject: state.cohortInfo.cohortObject
+    error: state.cohortInfo.error
   };
 };
 
-const mapDispatchToProps = {
-  setCohortName,
-  setCohortType,
-  setFormDetails
-};
+const mapDispatchToProps = dispatch => ({
+  setCohortName: cohortName => dispatch(setCohortName(cohortName)),
+  setCohortType: cohortType => dispatch(setCohortType(cohortType)),
+  postFormDetailsThunk: cohortData => dispatch(postFormDetailsThunk(cohortData))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminForm);

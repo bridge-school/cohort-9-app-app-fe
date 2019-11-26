@@ -1,7 +1,8 @@
 export const ACTION_TYPES = {
   SET_COHORT_NAME: "SET_COHORT_NAME",
   SET_COHORT_TYPE: "SET_COHORT_TYPE",
-  SET_FORM_DETAILS: "SET_FORM_DETAILS"
+  SET_POST_SUCCESS: "SET_POST_SUCCESS",
+  SET_POST_ERROR: "SET_POST_ERROR"
 };
 
 // Action creator to set cohort name
@@ -20,20 +21,23 @@ export const setCohortType = cohortType => {
   };
 };
 
-// Action creator to set form details in firebase
-export const setFormDetails = (cohortName, cohortType) => {
+// Action creator to set successful
+export const setPostSuccess = () => {
   return {
-    type: ACTION_TYPES.SET_FORM_DETAILS,
-    payload: { cohortName: cohortName, cohortType: cohortType }
+    type: ACTION_TYPES.SET_POST_SUCCESS
   };
 };
 
-//creating Thunk to post the details of the form to firebase by dispatchin setFormDetails action creator
-const postFormDetailsThunk = (cohortName, cohortType) => async dispatch => {
-  const cohortData = {
-    cohortName: cohortName,
-    cohortType: cohortType
+// Action creator to set error state
+export const setPostError = error => {
+  return {
+    type: ACTION_TYPES.SET_POST_ERROR,
+    payload: error
   };
+};
+
+//creating Thunk to post the details of the form to firebase
+export const postFormDetailsThunk = cohortData => async dispatch => {
   const res = await fetch("/applications", {
     method: "post",
     body: JSON.stringify(cohortData),
@@ -41,6 +45,10 @@ const postFormDetailsThunk = (cohortName, cohortType) => async dispatch => {
       "Content-Type": "application/json"
     }
   });
-  const apiResponse = await res.json();
-  await dispatch(setFormDetails(cohortName, cohortType));
+  console.log(res);
+  if (res.status === 201) {
+    dispatch(setPostSuccess());
+  } else {
+    dispatch(setPostError(res.error));
+  }
 };

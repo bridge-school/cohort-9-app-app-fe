@@ -4,7 +4,7 @@ export const initialState = {
   cohortName: "",
   cohortType: "",
   isSubmitted: false,
-  cohortObject: { cohortName: "", cohortType: "", link: "/" }
+  error: ""
 };
 
 const adminFormReducer = (state = initialState, action) => {
@@ -20,11 +20,17 @@ const adminFormReducer = (state = initialState, action) => {
         ...state,
         cohortType: action.payload
       };
-    case ACTION_TYPES.SET_FORM_DETAILS:
+    case ACTION_TYPES.SET_POST_SUCCESS:
       return {
         ...state,
         isSubmitted: true,
-        cohortObject: action.payload
+        error: ""
+      };
+    case ACTION_TYPES.SET_POST_ERROR:
+      return {
+        ...state,
+        isSubmitted: false,
+        error: action.payload
       };
     default:
       return state;
