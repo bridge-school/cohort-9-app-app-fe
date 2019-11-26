@@ -4,6 +4,7 @@ import CommonLayout from "./components/CommonLayout";
 import "./App.css";
 import AdminDashboard from "./pages/AdminDashboard"
 import CohortApplication from './pages/CohortApplication';
+import Confirmation from "./pages/Confirmation"
 
 function App() {
   return (
@@ -22,6 +23,11 @@ function App() {
         <Route exact path="/admin/cohorts/application">
           <CommonLayout>  
             <CohortApplication />
+          </CommonLayout>
+        </Route>
+        <Route exact path="/student/confirmation">
+          <CommonLayout>  
+            <Confirmation />
           </CommonLayout>
         </Route>
         <Route exact path="/">
