@@ -2,7 +2,9 @@ export const ACTION_TYPES = {
   SET_COHORT_NAME: "SET_COHORT_NAME",
   SET_COHORT_TYPE: "SET_COHORT_TYPE",
   SET_POST_SUCCESS: "SET_POST_SUCCESS",
-  SET_POST_ERROR: "SET_POST_ERROR"
+  SET_POST_ERROR: "SET_POST_ERROR",
+  SET_RESET_APP: "SET_RESET_APP",
+  RESET_IS_SUBMITTED: "RESET_IS_SUBMITTED"
 };
 
 // Action creator to set cohort name
@@ -33,6 +35,19 @@ export const setPostError = error => {
   return {
     type: ACTION_TYPES.SET_POST_ERROR,
     payload: error
+  };
+};
+
+// Action creator to reset the state
+export const setResetApp = () => {
+  return {
+    type: ACTION_TYPES.SET_RESET_APP
+  };
+};
+
+export const resetIsSubmitted = () => {
+  return {
+    type: ACTION_TYPES.RESET_IS_SUBMITTED
   };
 };
 

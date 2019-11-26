@@ -5,7 +5,9 @@ import { Redirect } from "react-router-dom";
 import {
   setCohortName,
   setCohortType,
-  postFormDetailsThunk
+  postFormDetailsThunk,
+  setResetApp,
+  resetIsSubmitted
 } from "../redux/actions/adminFormActions";
 
 import TextInput from "./TextInput";
@@ -15,6 +17,7 @@ import DatePickerContainer from "./DatePickerContainer";
 
 const AdminForm = props => {
   const [isDuplicate, setDuplicate] = useState(false);
+  console.log(props);
 
   const handleCohortNameChange = e => {
     props.setCohortName(e.target.value);
@@ -63,7 +66,8 @@ const AdminForm = props => {
 
   //If we add the record to database then isSubmitted and error state will be changed and we redirect to previous page
   if (props.isSubmitted && props.error === "") {
-    return <Redirect to="/admin/cohorts/" />;
+    props.resetIsSubmitted();
+    return <Redirect to="/admin/cohorts" />;
   }
 
   return (
@@ -101,7 +105,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   setCohortName: cohortName => dispatch(setCohortName(cohortName)),
   setCohortType: cohortType => dispatch(setCohortType(cohortType)),
-  postFormDetailsThunk: cohortData => dispatch(postFormDetailsThunk(cohortData))
+  postFormDetailsThunk: cohortData =>
+    dispatch(postFormDetailsThunk(cohortData)),
+  setResetApp: () => dispatch(setResetApp()),
+  resetIsSubmitted: () => dispatch(resetIsSubmitted())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminForm);

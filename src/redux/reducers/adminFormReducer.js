@@ -32,6 +32,15 @@ const adminFormReducer = (state = initialState, action) => {
         isSubmitted: false,
         error: action.payload
       };
+    case ACTION_TYPES.SET_RESET_APP:
+      return {
+        ...state
+      };
+    case ACTION_TYPES.RESET_IS_SUBMITTED:
+      return {
+        ...state,
+        isSubmitted: false
+      };
     default:
       return state;
   }
