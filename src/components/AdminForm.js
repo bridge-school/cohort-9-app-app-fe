@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
@@ -18,6 +18,9 @@ import DatePickerContainer from "./DatePickerContainer";
 const AdminForm = props => {
   const [isDuplicate, setDuplicate] = useState(false);
   console.log(props);
+  useEffect(() => {
+    props.setResetApp();
+  });
 
   const handleCohortNameChange = e => {
     props.setCohortName(e.target.value);
