@@ -4,6 +4,7 @@ import CommonLayout from "./components/CommonLayout";
 import "./App.css";
 import AdminDashboard from "./pages/AdminDashboard"
 import CohortApplication from './pages/CohortApplication';
+import StudentApplication from "./pages/StudentAppication";
 
 function App() {
   return (
@@ -12,6 +13,13 @@ function App() {
         <Route exact path="/student/cohorts">
           <CommonLayout>
             <div>Cohorts Student</div>
+            <Link to="/student/application">Cohort Application</Link>
+          </CommonLayout>
+        </Route>
+        <Route exact path="/student/application">
+          <CommonLayout>
+            <div>Cohort Application</div>
+            <StudentApplication />
           </CommonLayout>
         </Route>
         <Route exact path="/admin/cohorts">
@@ -20,7 +28,7 @@ function App() {
           </CommonLayout>
         </Route>
         <Route exact path="/admin/cohorts/application">
-          <CommonLayout>  
+          <CommonLayout>
             <CohortApplication />
           </CommonLayout>
         </Route>

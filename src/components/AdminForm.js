@@ -43,7 +43,7 @@ const AdminForm = (props) => {
 
         <DatePickerContainer />
 
-        <SubmitButton />
+        <SubmitButton>Create Application Group</SubmitButton>
       </form>
     </div>
   );
