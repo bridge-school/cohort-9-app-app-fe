@@ -5,7 +5,7 @@ import SubmitButton from "../components/SubmitButton";
 const StudentApplication = () => {
   return (
     <div>
-      <SubmitButton>Apply for Bridge</SubmitButton>
+      <SubmitButton onSubmit="">Apply for Bridge</SubmitButton>
     </div>
   );
 };
