@@ -4,6 +4,7 @@ const Question = ({
   question,
   index,
   onInputChange,
+  onInputArrayChange,
   onSelectChange,
   onCheckboxChange,
   onDelete
@@ -11,8 +12,10 @@ const Question = ({
   return (
     <>
       <div>
-        <p>{`Question #${index}`}</p>
+        <label for={`q${question.id}__name`}>{`Question #${index}`}</label>
         <input
+          id={`q${question.id}__name`}
+          type="text"
           value={question.name}
           onChange={(e) => {
             const value = e.target.value;
@@ -21,23 +24,41 @@ const Question = ({
         />
       </div>
       <div>
-        <p>{`Question #${index} Type`}</p>
+        <label for={`q${question.id}__type`}>{`Question #${index} Type`}</label>
         <select
+          id={`q${question.id}__type`}
           onChange={(e) =>{
             const value = e.target.value;
             onSelectChange(question.id, value);
           }}
           value={question.type}
         >
-          <option value="A">A</option>
-          <option value="B">B</option>
-          <option value="C">C</option>
+          <option value="short-answer">Short Answer</option>
+          <option value="paragraph">Paragraph</option>
+          <option value="checkboxes">Checkboxes</option>
+          <option value="dropdown">Dropdown</option>
         </select>
-
       </div>
+      {question.type === "checkboxes" || question.type === "dropdown" ? 
+        <div>
+          <label for={`q${question.id}__array`}></label>
+          <input
+            id={`q${question.id}__array`}
+            type="text"
+            value={question.array ? question.array : "[]"}
+            placeholder="array"
+            onChange={(e) => {
+              const value = e.target.value;
+              onInputArrayChange(question.id, value);
+            }}
+          />
+        </div>
+        : null
+      }
       <div>
-        <p>Is Required</p>
+        <label for={`q${question.id}__req`}>Is Required</label>
         <input 
+          id={`q${question.id}__req`}
           defaultChecked={question.required}
           onChange={() => {
             onCheckboxChange(question.id);

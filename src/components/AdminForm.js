@@ -9,6 +9,8 @@ import TextInput from "./TextInput";
 import Select from "./Select";
 import DatePickerContainer from "./DatePickerContainer";
 import SubmitButton from "./SubmitButton";
+import Questions from './Questions/Questions';
+
 
 const AdminForm = props => {
   const handleCohortNameChange = e => {
@@ -45,7 +47,7 @@ const AdminForm = props => {
         />
 
         <DatePickerContainer />
-
+        <Questions />
         <SubmitButton />
       </form>
     </div>

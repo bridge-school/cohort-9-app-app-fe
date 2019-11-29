@@ -27,6 +27,12 @@ const Questions = () => {
                 updatedQuestions[index].type = type;
                 setQuestions(updatedQuestions);
               }}
+              onInputArrayChange={(id, array) => {
+                const index = questions.findIndex(question => question.id === id);
+                const updatedQuestions = questions.slice();
+                updatedQuestions[index].array = array;
+                setQuestions(updatedQuestions);
+              }}
               onCheckboxChange={(id) => {
                 const index = questions.findIndex(question => question.id === id);
                 const updatedQuestions = questions.slice();
