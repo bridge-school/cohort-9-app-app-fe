@@ -20,7 +20,7 @@ const AdminForm = props => {
   console.log(props);
   useEffect(() => {
     props.setResetApp();
-  });
+  }, []);
 
   const handleCohortNameChange = e => {
     props.setCohortName(e.target.value);
