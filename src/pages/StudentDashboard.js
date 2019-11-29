@@ -13,7 +13,7 @@ const StudentDashboard = ({isLoading, apps, getAllApps}) => {
     <>
     <h1>Apply</h1>
     {apps.apps.cohort_apps &&
-        <AppsList apps={apps.apps.cohort_apps}/>
+        console.log(apps.apps.cohort_apps)
     }
     </>
   )
