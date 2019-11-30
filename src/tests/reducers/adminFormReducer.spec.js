@@ -4,7 +4,9 @@ import adminFormReducer from "../../redux/reducers/adminFormReducer";
 describe("Reducer", () => {
   const defaultState = {
     cohortName: "",
-    cohortType: ""
+    cohortType: "",
+    isSubmitted: false,
+    error: ""
   };
   it("returns initial state", () => {
     expect(adminFormReducer(undefined, {})).toEqual(defaultState);
@@ -16,7 +18,9 @@ describe("Reducer", () => {
     };
     const expectedState = {
       cohortName: "Cohort 9",
-      cohortType: ""
+      cohortType: "",
+      isSubmitted: false,
+      error: ""
     };
     expect(adminFormReducer(undefined, action)).toEqual(expectedState);
   });
@@ -27,10 +31,10 @@ describe("Reducer", () => {
     };
     const expectedState = {
       cohortName: "",
-      cohortType: "frontend"
+      cohortType: "frontend",
+      isSubmitted: false,
+      error: ""
     };
     expect(adminFormReducer(undefined, action)).toEqual(expectedState);
   });
 });
-
-
