@@ -14,7 +14,7 @@ import TextInput from "./TextInput";
 import Select from "./Select";
 import SubmitButton from "./SubmitButton";
 import DatePickerContainer from "./DatePickerContainer";
-import Questions from './Questions/Questions';
+import Questions from "./Questions/Questions";
 
 const AdminForm = props => {
   const [isDuplicate, setDuplicate] = useState(false);
@@ -38,9 +38,6 @@ const AdminForm = props => {
       .filter(
         cohort => cohort.cohortName.toLowerCase() === cohortName.toLowerCase()
       ).length;
-  };
-  const handleCohortTypeChange = e => {
-    props.setCohortType(e.target.value);
   };
 
   const handleSubmit = e => {
