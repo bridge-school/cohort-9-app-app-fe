@@ -7,7 +7,7 @@ export const initialState = {
   error: ""
 };
 
-const adminFormReducer = (state = initialState, action) => {
+const adminFormReducer = (state = initialState, action = {}) => {
   switch (action.type) {
     //based on the action type updating the paylod
     case ACTION_TYPES.SET_COHORT_NAME:

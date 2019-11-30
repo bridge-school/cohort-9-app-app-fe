@@ -38,6 +38,9 @@ const AdminForm = props => {
         cohort => cohort.cohortName.toLowerCase() === cohortName.toLowerCase()
       ).length;
   };
+  const handleCohortTypeChange = e => {
+    props.setCohortType(e.target.value);
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
