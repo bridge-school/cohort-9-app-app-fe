@@ -34,7 +34,7 @@ const adminFormReducer = (state = initialState, action = {}) => {
       };
     case ACTION_TYPES.SET_RESET_APP:
       return {
-        initialState
+        ...initialState
       };
     case ACTION_TYPES.RESET_IS_SUBMITTED:
       return {
