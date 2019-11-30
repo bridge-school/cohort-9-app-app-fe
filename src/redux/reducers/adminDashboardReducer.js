@@ -1,4 +1,4 @@
-import { ACTION_TYPES } from "../actions/fetchApps";
+import { ACTION_TYPES } from "../actions/adminDashboardActions";
 
 export const INITIAL_STATE = {
   apps: {
@@ -8,7 +8,7 @@ export const INITIAL_STATE = {
 };
 
 // TODO: Write the reducer cases for API list
-export const fetchAppsReducer = (state = INITIAL_STATE, action = {}) => {
+export const adminDashboardReducer = (state = INITIAL_STATE, action = {}) => {
   switch (action.type) {
     case ACTION_TYPES.SET_IS_LOADING:
       return {
