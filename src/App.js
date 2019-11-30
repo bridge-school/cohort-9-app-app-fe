@@ -1,10 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import CommonLayout from "./components/CommonLayout";
+import CommonLayout from "./components/CommonLayout/CommonLayout";
 import "./App.css";
-import AdminDashboard from "./pages/AdminDashboard"
-import CohortApplication from './pages/CohortApplication';
+
+import AdminDashboard from "./pages/AdminDashboard";
+import CohortApplication from "./pages/CohortApplication";
+import StudentDashboard from "./pages/StudentDashboard";
 import StudentApplication from "./pages/StudentAppication";
+import Confirmation from "./pages/StudentConfirmation";
 
 function App() {
   return (
@@ -20,6 +23,7 @@ function App() {
           <CommonLayout>
             <div>Cohort Application</div>
             <StudentApplication />
+            <StudentDashboard />
           </CommonLayout>
         </Route>
         <Route exact path="/admin/cohorts">
@@ -30,6 +34,11 @@ function App() {
         <Route exact path="/admin/cohorts/application">
           <CommonLayout>
             <CohortApplication />
+          </CommonLayout>
+        </Route>
+        <Route exact path="/student/confirmation">
+          <CommonLayout>
+            <Confirmation />
           </CommonLayout>
         </Route>
         <Route exact path="/">
