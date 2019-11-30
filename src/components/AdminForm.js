@@ -14,6 +14,7 @@ import TextInput from "./TextInput";
 import Select from "./Select";
 import SubmitButton from "./SubmitButton";
 import DatePickerContainer from "./DatePickerContainer";
+import Questions from './Questions/Questions';
 
 const AdminForm = props => {
   const [isDuplicate, setDuplicate] = useState(false);
@@ -89,6 +90,7 @@ const AdminForm = props => {
           options={selectOptions}
         />
         <DatePickerContainer />
+        <Questions />
         <SubmitButton />
       </form>
       {isDuplicate && (
