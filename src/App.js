@@ -1,10 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import CommonLayout from "./components/CommonLayout";
+import CommonLayout from "./components/CommonLayout/CommonLayout";
 import "./App.css";
-import AdminDashboard from "./pages/AdminDashboard"
-import CohortApplication from './pages/CohortApplication';
-import Confirmation from "./pages/Confirmation"
+
+import AdminDashboard from "./pages/AdminDashboard";
+import CohortApplication from "./pages/CohortApplication";
+import StudentDashboard from "./pages/StudentDashboard"
+import Confirmation from "./pages/StudentConfirmation"
 
 function App() {
   return (
@@ -12,7 +14,7 @@ function App() {
       <Switch>
         <Route exact path="/student/cohorts">
           <CommonLayout>
-            <div>Cohorts Student</div>
+            <StudentDashboard />
           </CommonLayout>
         </Route>
         <Route exact path="/admin/cohorts">
@@ -21,7 +23,7 @@ function App() {
           </CommonLayout>
         </Route>
         <Route exact path="/admin/cohorts/application">
-          <CommonLayout>  
+          <CommonLayout>
             <CohortApplication />
           </CommonLayout>
         </Route>

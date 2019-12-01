@@ -2,18 +2,17 @@ import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchAllApps } from "../redux/actions/adminDashboardActions";
-import AppsList from "../components/AppsList.js";
+// import AppsList from "../components/AppsList.js"
 
-const AdminDashboard = ({ isLoading, apps, getAllApps }) => {
+const StudentDashboard = ({ isLoading, apps, getAllApps }) => {
   useEffect(() => {
     getAllApps();
   }, [getAllApps]);
 
   return (
     <>
-      <h1>Cohort Application Forms</h1>
-      <Link to="/admin/cohorts/application">Create Application Group</Link>
-      {apps.apps.cohort_apps && <AppsList apps={apps.apps.cohort_apps} />}
+      <h1>Apply</h1>
+      {apps.apps.cohort_apps && console.log(apps.apps.cohort_apps)}
     </>
   );
 };
@@ -24,4 +23,4 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getAllApps: () => dispatch(fetchAllApps())
 });
-export default connect(mapStateToProps, mapDispatchToProps)(AdminDashboard);
+export default connect(mapStateToProps, mapDispatchToProps)(StudentDashboard);
