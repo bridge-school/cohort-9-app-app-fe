@@ -4,6 +4,7 @@ import { AppListStyled } from "./AppListStyled";
 import moment from "moment";
 
 const StudentsAppsList = ({ apps }) => {
+  // Added filter function to filter cohorts which their close date is less than current date
   const getFilteredCohort = ({ apps }) => {
     return apps.filter(app => {
       const dateClose = moment(app.dateClose, "YYYY-MM-DDTHH:mm:ss.SSSZ");
