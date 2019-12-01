@@ -1,14 +1,14 @@
 import { combineReducers } from "redux";
 import datesReducer from "./datesReducer";
-import {fetchAppsReducer} from "./fetchApps";
 import adminFormReducer from "./adminFormReducer";
 import studentFormReducer from "./studentFormReducer";
+import allCohortAppsReducer from "./allCohortAppsReducer";
 
 const rootReducer = combineReducers({
   dates: datesReducer,
   cohortInfo: adminFormReducer,
-  apps: fetchAppsReducer,
-  studentForm: studentFormReducer
+  studentForm: studentFormReducer,
+  apps: allCohortAppsReducer
 });
 
 export default rootReducer;

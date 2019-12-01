@@ -1,37 +1,90 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
+
 import {
   setCohortName,
-  setCohortType
+  setCohortType,
+  postFormDetailsThunk,
+  setResetApp,
+  resetIsSubmitted
 } from "../redux/actions/adminFormActions";
+import { resetDates } from "../redux/actions/dateActions";
 
 import TextInput from "./TextInput";
 import Select from "./Select";
-import DatePickerContainer from "./DatePickerContainer";
 import SubmitButton from "./SubmitButton";
-import Questions from './Questions/Questions';
-
+import DatePickerContainer from "./DatePickerContainer";
+import Questions from "./Questions/Questions";
 
 const AdminForm = props => {
+  const [isDuplicate, setDuplicate] = useState(false);
+  console.log(props);
+  useEffect(() => {
+    props.setResetApp();
+    props.resetDates();
+  }, []);
+
   const handleCohortNameChange = e => {
     props.setCohortName(e.target.value);
+  };
+
+  /**
+   * Check if the cohort name and type already exists in databases
+   * If that already exists then the returned length will be greater than 0
+   */
+  const isCohortDuplicate = () => {
+    const { cohortName, cohortType, existingCohorts } = props;
+    return existingCohorts
+      .filter(cohort => cohort.cohortType === cohortType)
+      .filter(
+        cohort => cohort.cohortName.toLowerCase() === cohortName.toLowerCase()
+      ).length;
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const {
+      cohortName,
+      cohortType,
+      dateOpen,
+      dateClose,
+      dateOfResponse
+    } = props;
+
+    const isCohortDuplicateValue = isCohortDuplicate();
+    //if that recotrd doesnt exist in database then add it to database
+    if (isCohortDuplicateValue === 0) {
+      const cohortData = {
+        cohortName,
+        cohortType,
+        link: "/",
+        dateOpen,
+        dateClose,
+        dateOfResponse
+      };
+      //calls the thunk here to "POST" to database
+      props.postFormDetailsThunk(cohortData);
+    } else {
+      setDuplicate(true);
+    }
   };
 
   const handleCohortTypeChange = e => {
     props.setCohortType(e.target.value);
   };
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    alert("Submitting");
-    // on submit we need to save the form in DB
-  };
-
   const selectOptions = [
-    { value: "frontend", displayedName: "Frontend" },
-    { value: "backend", displayedName: "Backend" },
-    { value: "productDesign", displayedName: "Product Design" }
+    { value: "Frontend Development", displayedName: "Frontend Development" },
+    { value: "Backend Development", displayedName: "Backend Development" },
+    { value: "Product Design", displayedName: "Product Design" }
   ];
+
+  //If we add the record to database then isSubmitted and error state will be changed and we redirect to previous page
+  if (props.isSubmitted && props.error === "") {
+    props.resetIsSubmitted();
+    return <Redirect to="/admin/cohorts" />;
+  }
 
   return (
     <div>
@@ -49,6 +102,9 @@ const AdminForm = props => {
         <Questions />
         <SubmitButton>Create Application Group</SubmitButton>
       </form>
+      {isDuplicate && (
+        <p>{`This Cohort Name already exists for ${props.cohortType}`}</p>
+      )}
     </div>
   );
 };
@@ -56,13 +112,24 @@ const AdminForm = props => {
 const mapStateToProps = state => {
   return {
     cohortName: state.cohortInfo.cohortName,
-    cohortType: state.cohortInfo.cohortType
+    cohortType: state.cohortInfo.cohortType,
+    existingCohorts: state.apps.apps.cohort_apps,
+    isSubmitted: state.cohortInfo.isSubmitted,
+    error: state.cohortInfo.error,
+    dateOpen: state.dates.dateOpen,
+    dateClose: state.dates.dateClose,
+    dateOfResponse: state.dates.dateOfResponse
   };
 };
 
-const mapDispatchToProps = {
-  setCohortName,
-  setCohortType
-};
+const mapDispatchToProps = dispatch => ({
+  setCohortName: cohortName => dispatch(setCohortName(cohortName)),
+  setCohortType: cohortType => dispatch(setCohortType(cohortType)),
+  postFormDetailsThunk: cohortData =>
+    dispatch(postFormDetailsThunk(cohortData)),
+  setResetApp: () => dispatch(setResetApp()),
+  resetIsSubmitted: () => dispatch(resetIsSubmitted()),
+  resetDates: () => dispatch(resetDates())
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminForm);

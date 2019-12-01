@@ -14,6 +14,11 @@ const datesReducer = (state = INITIAL_STATE, action = {}) => {
         //payload is an object
         [action.payload.dateField]: action.payload.date
       };
+    //if reste dates is called then return the original state
+    case ACTION_TYPES.RESET_DATES:
+      return {
+        ...INITIAL_STATE
+      };
     default:
       return state;
   }

@@ -1,5 +1,6 @@
 export const ACTION_TYPES = {
-  SET_DATES: "SET_DATES"
+  SET_DATES: "SET_DATES",
+  RESET_DATES: "RESET_DATES"
 };
 
 //Action creator to set the date
@@ -8,7 +9,7 @@ export const setDates = (date, dateField) => ({
   payload: { date: date, dateField: dateField }
 });
 
-//creating Thunk here
-export const setDatesThunk = (date, dateField) => dispatch => {
-  return dispatch(setDates(date, dateField));
-};
+//Action creator to reset the date
+export const resetDates = () => ({
+  type: ACTION_TYPES.RESET_DATES
+});
