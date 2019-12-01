@@ -1,13 +1,38 @@
 import React from "react";
+import { connect } from "react-redux";
+// import { Redirect } from "react-router-dom";
 
+import { postStudentFormDetails } from "../redux/actions/studentFormActions";
 import SubmitButton from "../components/SubmitButton";
 
-const StudentApplication = () => {
+const StudentApplication = (props) => {
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const exampleFormData = {
+      firstName: "Bob",
+      lastName: "Pipa"
+    };
+
+    props.postStudentFormDetails(exampleFormData);
+
+  };
+
   return (
     <div>
-      <SubmitButton>Apply for Bridge</SubmitButton>
+      <form onSubmit={handleSubmit}>
+        <p>Student form fields will go here...</p>
+        <SubmitButton>Apply for Bridge</SubmitButton>
+      </form>
     </div>
   );
 };
 
-export default StudentApplication;
+const mapDispatchToProps = {
+  postStudentFormDetails,
+  // postStudentFormDetails: data =>
+  //   dispatch(postStudentFormDetails(data)),
+};
+
+export default connect(null, mapDispatchToProps)(StudentApplication);
