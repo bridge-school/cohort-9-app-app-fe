@@ -1,8 +1,8 @@
 import React from 'react';
 
-const AppListItem = ({key, cohortName, cohortType, link}) => {
+const AppListItem = ({id, cohortName, cohortType, link}) => {
     return (
-       <li key={key}>
+       <li key={id} >
            <p>{cohortName}</p>
            <a href={link}>
                {cohortType}
