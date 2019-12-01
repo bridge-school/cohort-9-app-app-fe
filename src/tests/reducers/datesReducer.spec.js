@@ -13,7 +13,7 @@ describe("Reducer", () => {
     expect(datesReducer(undefined, {})).toEqual(defaultState);
   });
   it("returns updated dateOpen state", () => {
-    const action = {gat
+    const action = {
       type: ACTION_TYPES.SET_DATES,
       payload: { date: "11/19/2019", dateField: "dateOpen" }
     };
