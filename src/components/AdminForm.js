@@ -9,6 +9,7 @@ import {
   setResetApp,
   resetIsSubmitted
 } from "../redux/actions/adminFormActions";
+import { resetDates } from "../redux/actions/dateActions";
 
 import TextInput from "./TextInput";
 import Select from "./Select";
@@ -21,6 +22,7 @@ const AdminForm = props => {
   console.log(props);
   useEffect(() => {
     props.setResetApp();
+    props.resetDates();
   }, []);
 
   const handleCohortNameChange = e => {
@@ -42,14 +44,24 @@ const AdminForm = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const { cohortName, cohortType, existingCohorts } = props;
+    const {
+      cohortName,
+      cohortType,
+      dateOpen,
+      dateClose,
+      dateOfResponse
+    } = props;
+
     const isCohortDuplicateValue = isCohortDuplicate();
     //if that recotrd doesnt exist in database then add it to database
     if (isCohortDuplicateValue === 0) {
       const cohortData = {
         cohortName,
         cohortType,
-        link: "/"
+        link: "/",
+        dateOpen,
+        dateClose,
+        dateOfResponse
       };
       //calls the thunk here to "POST" to database
       props.postFormDetailsThunk(cohortData);
@@ -103,7 +115,10 @@ const mapStateToProps = state => {
     cohortType: state.cohortInfo.cohortType,
     existingCohorts: state.apps.apps.cohort_apps,
     isSubmitted: state.cohortInfo.isSubmitted,
-    error: state.cohortInfo.error
+    error: state.cohortInfo.error,
+    dateOpen: state.dates.dateOpen,
+    dateClose: state.dates.dateClose,
+    dateOfResponse: state.dates.dateOfResponse
   };
 };
 
@@ -113,7 +128,8 @@ const mapDispatchToProps = dispatch => ({
   postFormDetailsThunk: cohortData =>
     dispatch(postFormDetailsThunk(cohortData)),
   setResetApp: () => dispatch(setResetApp()),
-  resetIsSubmitted: () => dispatch(resetIsSubmitted())
+  resetIsSubmitted: () => dispatch(resetIsSubmitted()),
+  resetDates: () => dispatch(resetDates())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminForm);

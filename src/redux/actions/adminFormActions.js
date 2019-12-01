@@ -60,7 +60,7 @@ export const postFormDetailsThunk = cohortData => async dispatch => {
       "Content-Type": "application/json"
     }
   });
-  console.log(res);
+
   if (res.status === 201) {
     dispatch(setPostSuccess());
   } else {
