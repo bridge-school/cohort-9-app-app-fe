@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchAllApps } from "../redux/actions/adminDashboardActions";
-// import AppsList from "../components/AppsList.js"
+import StudentsAppsList from "../components/StudentAppsList";
 
 const StudentDashboard = ({ isLoading, apps, getAllApps }) => {
   useEffect(() => {
@@ -12,7 +12,9 @@ const StudentDashboard = ({ isLoading, apps, getAllApps }) => {
   return (
     <>
       <h1>Apply</h1>
-      {apps.apps.cohort_apps && console.log(apps.apps.cohort_apps)}
+      {apps.apps.cohort_apps && (
+        <StudentsAppsList apps={apps.apps.cohort_apps} />
+      )}
     </>
   );
 };
