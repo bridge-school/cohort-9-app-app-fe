@@ -8,7 +8,7 @@ export const INITIAL_STATE = {
 };
 
 // TODO: Write the reducer cases for API list
-export const allCohortAppsReducer = (state = INITIAL_STATE, action = {}) => {
+const allCohortAppsReducer = (state = INITIAL_STATE, action = {}) => {
   switch (action.type) {
     case ACTION_TYPES.SET_IS_LOADING:
       return {
@@ -25,3 +25,5 @@ export const allCohortAppsReducer = (state = INITIAL_STATE, action = {}) => {
     }
   }
 };
+
+export default allCohortAppsReducer;

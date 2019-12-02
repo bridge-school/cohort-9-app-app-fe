@@ -100,7 +100,7 @@ const AdminForm = props => {
         />
         <DatePickerContainer />
         <Questions />
-        <SubmitButton />
+        <SubmitButton>Create Application Group</SubmitButton>
       </form>
       {isDuplicate && (
         <p>{`This Cohort Name already exists for ${props.cohortType}`}</p>

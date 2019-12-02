@@ -5,8 +5,9 @@ import "./App.css";
 
 import AdminDashboard from "./pages/AdminDashboard";
 import CohortApplication from "./pages/CohortApplication";
-import StudentDashboard from "./pages/StudentDashboard"
-import Confirmation from "./pages/StudentConfirmation"
+import StudentDashboard from "./pages/StudentDashboard";
+import StudentApplication from "./pages/StudentAppication";
+import Confirmation from "./pages/StudentConfirmation";
 
 function App() {
   return (
@@ -14,6 +15,14 @@ function App() {
       <Switch>
         <Route exact path="/student/cohorts">
           <CommonLayout>
+            <div>Cohorts Student</div>
+            <Link to="/student/application">Cohort Application</Link>
+          </CommonLayout>
+        </Route>
+        <Route exact path="/student/application">
+          <CommonLayout>
+            <div>Cohort Application</div>
+            <StudentApplication />
             <StudentDashboard />
           </CommonLayout>
         </Route>
@@ -28,7 +37,7 @@ function App() {
           </CommonLayout>
         </Route>
         <Route exact path="/student/confirmation">
-          <CommonLayout>  
+          <CommonLayout>
             <Confirmation />
           </CommonLayout>
         </Route>
