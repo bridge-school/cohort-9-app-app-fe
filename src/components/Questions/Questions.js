@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import Question from './Question';
+import React, { useState } from "react";
+import Question from "./Question";
 
 const Questions = () => {
-  const [ questions, setQuestions ] = useState([
-    { id: 1, name: '', type: '', required: false },
+  const [questions, setQuestions] = useState([
+    { id: 1, name: "", type: "", required: false }
   ]);
   const addNewQuestion = e => {
     e.preventDefault()
@@ -61,7 +61,7 @@ const Questions = () => {
         })}
       <button onClick={addNewQuestion}>Add new question</button>
     </div>
-  )
-}
+  );
+};
 
 export default Questions;

@@ -18,13 +18,13 @@ const StudentsAppsList = ({ apps }) => {
     <>
       <AppListStyled>
         {getFilteredCohort({ apps }).map(li => {
-          const { id, cohortName, cohortType, link } = li;
+          const { id, cohortName, cohortType } = li;
           return (
             <AppListItem
               key={id}
               cohortName={cohortName}
               cohortType={cohortType}
-              link={link}
+              link="/student/application"
             />
           );
         })}
