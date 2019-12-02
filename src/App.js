@@ -9,21 +9,19 @@ import StudentDashboard from "./pages/StudentDashboard";
 import StudentApplication from "./pages/StudentApplication";
 import Confirmation from "./pages/StudentConfirmation";
 
+
 function App() {
   return (
     <Router>
       <Switch>
         <Route exact path="/student/cohorts">
           <CommonLayout>
-            <div>Cohorts Student</div>
-            <Link to="/student/application">Cohort Application</Link>
+            <StudentDashboard />
           </CommonLayout>
         </Route>
         <Route exact path="/student/application">
           <CommonLayout>
-            <div>Cohort Application</div>
-            <StudentApplication />
-            <StudentDashboard />
+            <StudentApplication />           
           </CommonLayout>
         </Route>
         <Route exact path="/admin/cohorts">

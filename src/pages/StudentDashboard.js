@@ -15,6 +15,7 @@ const StudentDashboard = ({ isLoading, apps, getAllApps }) => {
       {apps.apps.cohort_apps && (
         <StudentsAppsList apps={apps.apps.cohort_apps} />
       )}
+     
     </>
   );
 };
