@@ -3,33 +3,37 @@ import React from "react";
 const Question = ({
   question,
   index,
-  onInputChange,
-  onInputArrayChange,
-  onSelectChange,
-  onCheckboxChange,
+  onPromptChange,
+  onOptionsChange,
+  onTypeChange,
+  onIsRequiredChange,
   onDelete
 }) => {
+  const qNumber = index + 1;
+
   return (
     <>
       <div>
-        <label for={`q${question.id}__name`}>{`Question #${index}`}</label>
+        <label for={`q${question.id}__name`}>{`Question #${qNumber}`}</label>
         <input
           id={`q${question.id}__name`}
           type="text"
           value={question.name}
           onChange={e => {
             const value = e.target.value;
-            onInputChange(question.id, value);
+            onPromptChange(question.id, value);
           }}
         />
       </div>
       <div>
-        <label for={`q${question.id}__type`}>{`Question #${index} Type`}</label>
+        <label
+          for={`q${question.id}__type`}
+        >{`Question #${qNumber} Type`}</label>
         <select
           id={`q${question.id}__type`}
           onChange={e => {
             const value = e.target.value;
-            onSelectChange(question.id, value);
+            onTypeChange(question.id, value);
           }}
           value={question.type}
         >
@@ -49,7 +53,7 @@ const Question = ({
             placeholder="array"
             onChange={e => {
               const value = e.target.value;
-              onInputArrayChange(question.id, value);
+              onOptionsChange(question.id, value);
             }}
           />
         </div>
@@ -60,7 +64,7 @@ const Question = ({
           id={`q${question.id}__req`}
           defaultChecked={question.required}
           onChange={() => {
-            onCheckboxChange(question.id);
+            onIsRequiredChange(question.id);
           }}
           type="checkbox"
         />
