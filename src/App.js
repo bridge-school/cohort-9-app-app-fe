@@ -6,7 +6,7 @@ import "./App.css";
 import AdminDashboard from "./pages/AdminDashboard";
 import CohortApplication from "./pages/CohortApplication";
 import StudentDashboard from "./pages/StudentDashboard";
-import StudentApplication from "./pages/StudentAppication";
+import StudentApplication from "./pages/StudentApplication";
 import Confirmation from "./pages/StudentConfirmation";
 
 function App() {
