@@ -60,8 +60,7 @@ export const resetIsSubmitted = () => {
 // Action creator for when a new question is generated
 export const addNewQuestion = () => {
   return {
-    type: ACTION_TYPES.ADD_NEW_QUESTION,
-    // payload: id,
+    type: ACTION_TYPES.ADD_NEW_QUESTION
   };
 };
 

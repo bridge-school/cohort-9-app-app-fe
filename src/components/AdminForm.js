@@ -19,7 +19,6 @@ import Questions from "./Questions/Questions";
 
 const AdminForm = props => {
   const [isDuplicate, setDuplicate] = useState(false);
-  console.log(props);
   useEffect(() => {
     props.setResetApp();
     props.resetDates();
@@ -28,7 +27,6 @@ const AdminForm = props => {
   const handleCohortNameChange = e => {
     props.setCohortName(e.target.value);
   };
-
   /**
    * Check if the cohort name and type already exists in databases
    * If that already exists then the returned length will be greater than 0

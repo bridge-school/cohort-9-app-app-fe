@@ -30,13 +30,14 @@ const Questions = (props) => {
 
   const handleQuestionOptionsChange = (index, optionsString) => {
     let optionsArray = [];
+    // input comes in as a string, we convert it 
+    // into an array for storing in redux for easier future use
     if (optionsString) {
       optionsArray = optionsString
         .split(",")
         // remove whitespace around the option (if any)
         .map(option => option.trim());
     }
-
     props.setQuestionOptions(index, optionsArray);
   };
 
@@ -52,8 +53,6 @@ const Questions = (props) => {
     <div>
       <h1>Application Questions</h1>
       {questionsData.map((question, i) => {
-          console.log(question);
-
           return (
             <Question
               key={`question_${question.timestampForKey}`}

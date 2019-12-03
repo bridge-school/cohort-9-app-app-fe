@@ -10,7 +10,6 @@ const Question = ({
   onDelete
 }) => {
   const qNumber = index + 1;
-
   const optionsString = question.options.join(",");
 
   return (
@@ -53,7 +52,6 @@ const Question = ({
             <input
               id={`q${index}__options`}
               type="text"
-              // value={question.array.length > 0 ? optionsString : ""}
               value={optionsString}
               placeholder="array"
               onChange={e => {

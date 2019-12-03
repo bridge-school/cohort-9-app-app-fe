@@ -60,7 +60,7 @@ const adminFormReducer = (state = initialState, action = {}) => {
             options: [],
             // this is only done once on creation
             // to escape bugs on rerendering
-            timestampForKey: timestamp,
+            timestampForKey: timestamp
           }
         ]
       };
@@ -70,7 +70,6 @@ const adminFormReducer = (state = initialState, action = {}) => {
       // spread operator is used to create a copy of array
       // to avoid mutating the data in state
       const dataForPrompt = [...state.questionsData];
-
       // modify the prompt of the question
       // at particular index of the 'questionsData' array
       dataForPrompt[action.payload.index] = {
@@ -95,12 +94,10 @@ const adminFormReducer = (state = initialState, action = {}) => {
     case ACTION_TYPES.TOGGLE_QUESTION_REQUIRED:
       const dataForRequired = [...state.questionsData];
       const qToggled = dataForRequired[action.payload.index];
-
       dataForRequired[action.payload.index] = {
         ...qToggled,
         isRequired: !qToggled.isRequired
       };
-
       return {
         ...state,
         questionsData: dataForRequired
@@ -118,12 +115,10 @@ const adminFormReducer = (state = initialState, action = {}) => {
       };
     case ACTION_TYPES.DELETE_QUESTION:
       const deleteIndex = action.payload.index;
-
       const dataForDelete = [
         ...state.questionsData.slice(0, deleteIndex),
         ...state.questionsData.slice(deleteIndex + 1)
       ];
-
       return {
         ...state,
         questionsData: dataForDelete
