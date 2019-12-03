@@ -1,7 +1,8 @@
 import React from "react";
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
-import AppListItem from "../../components/AppListItem";
+import AppListItem from "../../components/AppListItem.js";
+
 
 let container = null;
 beforeEach(() => {

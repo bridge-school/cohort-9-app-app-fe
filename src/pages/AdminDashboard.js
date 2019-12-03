@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Button, Grid, Header } from 'semantic-ui-react'
 import { connect } from "react-redux";
-import { fetchAllApps } from "../redux/actions/adminDashboardActions";
+import { fetchAllApps } from "../redux/actions/allCohortAppsActions";
 import AppsList from "../components/AppsList.js";
 
 const AdminDashboard = ({ isLoading, apps, getAllApps }) => {
@@ -11,8 +12,17 @@ const AdminDashboard = ({ isLoading, apps, getAllApps }) => {
 
   return (
     <>
-      <h1>Cohort Application Forms</h1>
-      <Link to="/admin/cohorts/application">Create Application Group</Link>
+      <Grid columns={2}>
+        <Grid.Row>
+          <Grid.Column>
+          <Header as='h1'>Cohort Application Forms</Header>
+          </Grid.Column>
+        
+          <Grid.Column textAlign='right'>
+            <Button size='large' color='teal' as={Link} to="/admin/cohorts/application">Create Application Group</Button>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
       {apps.apps.cohort_apps && <AppsList apps={apps.apps.cohort_apps} />}
     </>
   );

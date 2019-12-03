@@ -5,8 +5,10 @@ import "./App.css";
 
 import AdminDashboard from "./pages/AdminDashboard";
 import CohortApplication from "./pages/CohortApplication";
-import StudentDashboard from "./pages/StudentDashboard"
-import Confirmation from "./pages/StudentConfirmation"
+import StudentDashboard from "./pages/StudentDashboard";
+import StudentApplication from "./pages/StudentApplication";
+import Confirmation from "./pages/StudentConfirmation";
+
 
 function App() {
   return (
@@ -15,6 +17,11 @@ function App() {
         <Route exact path="/student/cohorts">
           <CommonLayout>
             <StudentDashboard />
+          </CommonLayout>
+        </Route>
+        <Route exact path="/student/application">
+          <CommonLayout>
+            <StudentApplication />           
           </CommonLayout>
         </Route>
         <Route exact path="/admin/cohorts">
@@ -28,7 +35,7 @@ function App() {
           </CommonLayout>
         </Route>
         <Route exact path="/student/confirmation">
-          <CommonLayout>  
+          <CommonLayout>
             <Confirmation />
           </CommonLayout>
         </Route>

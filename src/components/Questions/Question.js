@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const Question = ({
   question,
@@ -17,7 +17,7 @@ const Question = ({
           id={`q${question.id}__name`}
           type="text"
           value={question.name}
-          onChange={(e) => {
+          onChange={e => {
             const value = e.target.value;
             onInputChange(question.id, value);
           }}
@@ -27,7 +27,7 @@ const Question = ({
         <label for={`q${question.id}__type`}>{`Question #${index} Type`}</label>
         <select
           id={`q${question.id}__type`}
-          onChange={(e) =>{
+          onChange={e => {
             const value = e.target.value;
             onSelectChange(question.id, value);
           }}
@@ -39,7 +39,7 @@ const Question = ({
           <option value="dropdown">Dropdown</option>
         </select>
       </div>
-      {question.type === "checkboxes" || question.type === "dropdown" ? 
+      {question.type === "checkboxes" || question.type === "dropdown" ? (
         <div>
           <label for={`q${question.id}__array`}></label>
           <input
@@ -47,17 +47,16 @@ const Question = ({
             type="text"
             value={question.array ? question.array : "[]"}
             placeholder="array"
-            onChange={(e) => {
+            onChange={e => {
               const value = e.target.value;
               onInputArrayChange(question.id, value);
             }}
           />
         </div>
-        : null
-      }
+      ) : null}
       <div>
         <label for={`q${question.id}__req`}>Is Required</label>
-        <input 
+        <input
           id={`q${question.id}__req`}
           defaultChecked={question.required}
           onChange={() => {
@@ -67,12 +66,16 @@ const Question = ({
         />
       </div>
       <div>
-        <button onClick={() => {
-          onDelete(question.id);
-        }}>Delete</button>
+        <button
+          onClick={() => {
+            onDelete(question.id);
+          }}
+        >
+          Delete
+        </button>
       </div>
     </>
-  )
-}
+  );
+};
 
 export default Question;

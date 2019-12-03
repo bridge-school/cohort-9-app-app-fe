@@ -2,10 +2,10 @@ import React from "react";
 
 import { Button, ButtonContainer } from "./SubmitButtonStyled";
 
-const SubmitButton = () => {
+const SubmitButton = ({ children }) => {
   return (
     <ButtonContainer>
-      <Button type="submit" value="Create Application Group" />
+      <Button type="submit" value={children} />
     </ButtonContainer>
   );
 }

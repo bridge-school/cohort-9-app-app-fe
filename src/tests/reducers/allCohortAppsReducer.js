@@ -1,9 +1,9 @@
-import {adminDashboardReducer} from "../../redux/reducers/adminDashboardReducer"
-import {ACTION_TYPES} from "../../redux/actions/adminDashboardActions"
+import allCohortAppsReducer from "../../redux/reducers/allCohortAppsReducer"
+import {ACTION_TYPES} from "../../redux/actions/allCohortAppsActions"
 
 const {SET_APPS, SET_IS_LOADING} = ACTION_TYPES;
 
-const reducer = adminDashboardReducer;
+const reducer = allCohortAppsReducer;
 const INITIAL_STATE = {
     apps: {
       cohort_apps: []
