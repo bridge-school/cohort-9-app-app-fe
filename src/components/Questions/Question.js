@@ -3,72 +3,82 @@ import React from "react";
 const Question = ({
   question,
   index,
-  onInputChange,
-  onInputArrayChange,
-  onSelectChange,
-  onCheckboxChange,
+  onPromptChange,
+  onOptionsChange,
+  onTypeChange,
+  onIsRequiredChange,
   onDelete
 }) => {
+  const qNumber = index + 1;
+  const optionsString = question.options.join(",");
+
   return (
     <>
       <div>
-        <label for={`q${question.id}__name`}>{`Question #${index}`}</label>
-        <input
-          id={`q${question.id}__name`}
-          type="text"
-          value={question.name}
-          onChange={e => {
-            const value = e.target.value;
-            onInputChange(question.id, value);
-          }}
-        />
+        <label htmlFor={`q${index}__name`}>
+          {`Question #${qNumber}`}
+          <input
+            id={`q${index}__name`}
+            type="text"
+            value={question.name}
+            onChange={e => {
+              const value = e.target.value;
+              onPromptChange(index, value);
+            }}
+          />
+        </label>
       </div>
       <div>
-        <label for={`q${question.id}__type`}>{`Question #${index} Type`}</label>
-        <select
-          id={`q${question.id}__type`}
-          onChange={e => {
-            const value = e.target.value;
-            onSelectChange(question.id, value);
-          }}
-          value={question.type}
-        >
-          <option value="short-answer">Short Answer</option>
-          <option value="paragraph">Paragraph</option>
-          <option value="checkboxes">Checkboxes</option>
-          <option value="dropdown">Dropdown</option>
-        </select>
+        <label htmlFor={`q${index}__type`}>
+          {`Question #${qNumber} Type`}
+          <select
+            id={`q${index}__type`}
+            onChange={e => {
+              const value = e.target.value;
+              onTypeChange(index, value);
+            }}
+            value={question.type}
+          >
+            <option value="short-answer">Short Answer</option>
+            <option value="paragraph">Paragraph</option>
+            <option value="checkboxes">Checkboxes</option>
+            <option value="dropdown">Dropdown</option>
+          </select>
+        </label>
       </div>
       {question.type === "checkboxes" || question.type === "dropdown" ? (
         <div>
-          <label for={`q${question.id}__array`}></label>
-          <input
-            id={`q${question.id}__array`}
-            type="text"
-            value={question.array ? question.array : "[]"}
-            placeholder="array"
-            onChange={e => {
-              const value = e.target.value;
-              onInputArrayChange(question.id, value);
-            }}
-          />
+          <label htmlFor={`q${index}__options`}>
+            <input
+              id={`q${index}__options`}
+              type="text"
+              value={optionsString}
+              placeholder="array"
+              onChange={e => {
+                const value = e.target.value;
+                onOptionsChange(index, value);
+              }}
+            />
+          </label>
         </div>
       ) : null}
       <div>
-        <label for={`q${question.id}__req`}>Is Required</label>
-        <input
-          id={`q${question.id}__req`}
-          defaultChecked={question.required}
-          onChange={() => {
-            onCheckboxChange(question.id);
-          }}
-          type="checkbox"
-        />
+        <label htmlFor={`q${index}__req`}>
+          Is Required
+          <input
+            id={`q${index}__req`}
+            defaultChecked={question.required}
+            onChange={() => {
+              onIsRequiredChange(index);
+            }}
+            type="checkbox"
+          />
+        </label>
       </div>
       <div>
         <button
           onClick={() => {
-            onDelete(question.id);
+            onDelete(index);
           }}
         >
           Delete

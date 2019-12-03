@@ -19,7 +19,6 @@ import Questions from "./Questions/Questions";
 
 const AdminForm = props => {
   const [isDuplicate, setDuplicate] = useState(false);
-  console.log(props);
   useEffect(() => {
     props.setResetApp();
     props.resetDates();
@@ -28,7 +27,6 @@ const AdminForm = props => {
   const handleCohortNameChange = e => {
     props.setCohortName(e.target.value);
   };
-
   /**
    * Check if the cohort name and type already exists in databases
    * If that already exists then the returned length will be greater than 0
@@ -61,7 +59,8 @@ const AdminForm = props => {
         link: "/",
         dateOpen,
         dateClose,
-        dateOfResponse
+        dateOfResponse,
+        questions: props.questionsData,
       };
       //calls the thunk here to "POST" to database
       props.postFormDetailsThunk(cohortData);
@@ -99,7 +98,9 @@ const AdminForm = props => {
           options={selectOptions}
         />
         <DatePickerContainer />
+
         <Questions />
+
         <SubmitButton>Create Application Group</SubmitButton>
       </form>
       {isDuplicate && (
@@ -118,7 +119,8 @@ const mapStateToProps = state => {
     error: state.cohortInfo.error,
     dateOpen: state.dates.dateOpen,
     dateClose: state.dates.dateClose,
-    dateOfResponse: state.dates.dateOfResponse
+    dateOfResponse: state.dates.dateOfResponse,
+    questionsData: state.cohortInfo.questionsData,
   };
 };
 

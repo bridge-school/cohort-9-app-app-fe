@@ -5,7 +5,7 @@ import { Button, Grid, Table } from 'semantic-ui-react'
 
 const AppsList = ({apps}) => { 
     return (
-        <AppListStyled>
+      <AppListStyled>
             {apps.map(li => {
                 const {id, cohortName, cohortType, link} = li
                 return (
@@ -17,8 +17,7 @@ const AppsList = ({apps}) => {
                  />
                 )
             })}  
-      </AppListStyled>
-
+        </AppListStyled>
     )
 }
    

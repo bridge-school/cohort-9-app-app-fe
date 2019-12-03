@@ -6,7 +6,8 @@ describe("Reducer", () => {
     cohortName: "",
     cohortType: "",
     isSubmitted: false,
-    error: ""
+    error: "",
+    questionsData: []
   };
   it("returns initial state", () => {
     expect(adminFormReducer(undefined, {})).toEqual(defaultState);
@@ -20,7 +21,8 @@ describe("Reducer", () => {
       cohortName: "Cohort 9",
       cohortType: "",
       isSubmitted: false,
-      error: ""
+      error: "",
+      questionsData: []
     };
     expect(adminFormReducer(undefined, action)).toEqual(expectedState);
   });
@@ -33,7 +35,8 @@ describe("Reducer", () => {
       cohortName: "",
       cohortType: "frontend",
       isSubmitted: false,
-      error: ""
+      error: "",
+      questionsData: []
     };
     expect(adminFormReducer(undefined, action)).toEqual(expectedState);
   });
