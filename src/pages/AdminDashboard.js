@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { Button, Grid, Header } from 'semantic-ui-react'
+import { Button, Grid, Header } from 'semantic-ui-react';
 import { connect } from "react-redux";
+
 import { fetchAllApps } from "../redux/actions/allCohortAppsActions";
 import AppsList from "../components/AppsList.js";
 
