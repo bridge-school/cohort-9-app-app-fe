@@ -44,6 +44,9 @@ const adminFormReducer = (state = initialState, action = {}) => {
       };
     // Reducer case for when a new question is generated
     case ACTION_TYPES.ADD_NEW_QUESTION:
+      const now = new Date();
+      const timestamp = now.getTime();
+
       return {
         ...state,
         questionsData: [
@@ -51,10 +54,13 @@ const adminFormReducer = (state = initialState, action = {}) => {
           // created questions
           ...state.questionsData,
           {
-            propmt: "",
+            prompt: "",
             type: "short-answer",
             isRequired: false,
-            optionsString: ""
+            options: [],
+            // this is only done once on creation
+            // to escape bugs on rerendering
+            timestampForKey: timestamp,
           }
         ]
       };
@@ -63,7 +69,7 @@ const adminFormReducer = (state = initialState, action = {}) => {
       // take the current state of questionsData in state
       // spread operator is used to create a copy of array
       // to avoid mutating the data in state
-      let dataForPrompt = [...state.questionsData];
+      const dataForPrompt = [...state.questionsData];
 
       // modify the prompt of the question
       // at particular index of the 'questionsData' array
@@ -75,8 +81,8 @@ const adminFormReducer = (state = initialState, action = {}) => {
         ...state,
         questionsData: dataForPrompt
       };
-    case ACTION_TYPES.QUESTION_TYPE:
-      let dataForType = [...state.questionsData];
+    case ACTION_TYPES.SET_QUESTION_TYPE:
+      const dataForType = [...state.questionsData];
 
       dataForType[action.payload.index] = {
         ...dataForType[action.payload.index],
@@ -86,36 +92,38 @@ const adminFormReducer = (state = initialState, action = {}) => {
         ...state,
         questionsData: dataForType
       };
-    case ACTION_TYPES.SET_QUESTION_REQUIRED:
-      let dataForRequired = [...state.questionsData];
+    case ACTION_TYPES.TOGGLE_QUESTION_REQUIRED:
+      const dataForRequired = [...state.questionsData];
+      const qToggled = dataForRequired[action.payload.index];
 
       dataForRequired[action.payload.index] = {
-        ...dataForRequired[action.payload.index],
-        isRequired: action.payload.isRequired
+        ...qToggled,
+        isRequired: !qToggled.isRequired
       };
+
       return {
         ...state,
         questionsData: dataForRequired
       };
     case ACTION_TYPES.SET_QUESTION_OPTIONS:
-      let dataForOptions = [...state.questionsData];
+      const dataForOptions = [...state.questionsData];
 
       dataForOptions[action.payload.index] = {
         ...dataForOptions[action.payload.index],
-        optionsString: action.payload.questionOptions
+        options: action.payload.questionOptions
       };
       return {
         ...state,
         questionsData: dataForOptions
       };
     case ACTION_TYPES.DELETE_QUESTION:
-      // let dataForDelete = [...state.questionsData];
-      let deleteIndex = action.payload.index;
+      const deleteIndex = action.payload.index;
 
-      let dataForDelete = [
+      const dataForDelete = [
         ...state.questionsData.slice(0, deleteIndex),
         ...state.questionsData.slice(deleteIndex + 1)
       ];
+
       return {
         ...state,
         questionsData: dataForDelete

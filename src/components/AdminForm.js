@@ -61,7 +61,8 @@ const AdminForm = props => {
         link: "/",
         dateOpen,
         dateClose,
-        dateOfResponse
+        dateOfResponse,
+        questions: props.questionsData,
       };
       //calls the thunk here to "POST" to database
       props.postFormDetailsThunk(cohortData);
@@ -99,7 +100,9 @@ const AdminForm = props => {
           options={selectOptions}
         />
         <DatePickerContainer />
+
         <Questions />
+
         <SubmitButton>Create Application Group</SubmitButton>
       </form>
       {isDuplicate && (
@@ -118,7 +121,8 @@ const mapStateToProps = state => {
     error: state.cohortInfo.error,
     dateOpen: state.dates.dateOpen,
     dateClose: state.dates.dateClose,
-    dateOfResponse: state.dates.dateOfResponse
+    dateOfResponse: state.dates.dateOfResponse,
+    questionsData: state.cohortInfo.questionsData,
   };
 };
 

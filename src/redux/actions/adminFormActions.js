@@ -8,8 +8,8 @@ export const ACTION_TYPES = {
   ADD_NEW_QUESTION: "ADD_NEW_QUESTION",
   SET_QUESTION_PROMPT: "SET_QUESTION_PROMPT",
   SET_QUESTION_TYPE: "SET_QUESTION_TYPE",
-  SET_QUESTION_REQUIRED: "SET_QUESTION_REQUIRED",
-  QUESTION_OPTIONS: "QUESTION_OPTIONS",
+  TOGGLE_QUESTION_REQUIRED: "TOGGLE_QUESTION_REQUIRED",
+  SET_QUESTION_OPTIONS: "SET_QUESTION_OPTIONS",
   DELETE_QUESTION: "DELETE_QUESTION"
 };
 
@@ -60,17 +60,18 @@ export const resetIsSubmitted = () => {
 // Action creator for when a new question is generated
 export const addNewQuestion = () => {
   return {
-    type: ACTION_TYPES.ADD_NEW_QUESTION
+    type: ACTION_TYPES.ADD_NEW_QUESTION,
+    // payload: id,
   };
 };
 
 // Action creators for Question fields
-export const setQuestionPrompt = (questionIndex, propmtText) => {
+export const setQuestionPrompt = (questionIndex, promptText) => {
   return {
     type: ACTION_TYPES.SET_QUESTION_PROMPT,
     payload: {
       index: questionIndex,
-      questionPrompt: propmtText
+      questionPrompt: promptText
     }
   };
 };
@@ -85,22 +86,21 @@ export const setQuestionType = (questionIndex, questionType) => {
   };
 };
 
-export const setQuestionRequired = (questionIndex, isRequired) => {
+export const toggleQuestionRequired = (questionIndex) => {
   return {
-    type: ACTION_TYPES.SET_QUESTION_REQUIRED,
+    type: ACTION_TYPES.TOGGLE_QUESTION_REQUIRED,
     payload: {
-      index: questionIndex,
-      isRequired
+      index: questionIndex
     }
   };
 };
 
-export const setQuestionOptions = (questionIndex, optionsString) => {
+export const setQuestionOptions = (questionIndex, options) => {
   return {
     type: ACTION_TYPES.SET_QUESTION_OPTIONS,
     payload: {
       index: questionIndex,
-      questionOptions: optionsString
+      questionOptions: options
     }
   };
 };
@@ -114,7 +114,7 @@ export const deleteQuestion = (questionIndex) => {
   };
 };
 
-//creating Thunk to post the details of the form to firebase
+// creating Thunk to post the details of the form to firebase
 export const postFormDetailsThunk = cohortData => async dispatch => {
   const res = await fetch("/applications", {
     method: "post",

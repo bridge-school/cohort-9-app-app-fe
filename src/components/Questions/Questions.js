@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 
 import Question from "./Question";
@@ -7,76 +7,56 @@ import {
   deleteQuestion,
   setQuestionPrompt, 
   setQuestionType, 
-  setQuestionRequired, 
+  toggleQuestionRequired, 
   setQuestionOptions, 
 } from "../../redux/actions/adminFormActions";
 
 const Questions = (props) => {
-  const [questions, setQuestions] = useState([
-    { id: 1, name: "", type: "", required: false }
-  ]);
+  // destructure props create a constant with questionsData
+  const { questionsData } = props;
+
   const addNewQuestion = e => {
-    e.preventDefault()
-    const nextId = questions[questions.length - 1].id + 1;
-    const newQuestion = { id: nextId, name: '', type: '', required: false };
+    e.preventDefault();
     props.addNewQuestion();
-
-    setQuestions([
-      ...questions,
-      newQuestion
-    ])
-  }
-  const handleQuestionPromptChange = (id, name) => {
-    const index = questions.findIndex(question => question.id === id);
-    // we have index, we have value (name)
-    // we can run a redux action to update questions data
-    const updatedQuestions = questions.slice();
-    updatedQuestions[index].name = name;
-    props.setQuestionPrompt(index, name);
-
-    setQuestions(updatedQuestions);
-  }
-
-  // this should be named handleQuestionTypeChange
-
-  const handleQuestionTypeChange = (id, type) => {
-    const index = questions.findIndex(question => question.id === id);
-    const updatedQuestions = questions.slice();
-    updatedQuestions[index].type = type;
-    props.setQuestionType();
-
-    setQuestions(updatedQuestions);
-  }
-  const handleQuestionOptionsChange = (id, array) => {
-    const index = questions.findIndex(question => question.id === id);
-    const updatedQuestions = questions.slice();
-    updatedQuestions[index].array = array;
-
-    setQuestions(updatedQuestions);
-  }
-  const handleIsRequiredChange = id => {
-    const index = questions.findIndex(question => question.id === id);
-    const updatedQuestions = questions.slice();
-    updatedQuestions[index].required = !questions[index].required;
-    props.setQuestionRequired();
-
-    setQuestions(updatedQuestions);
   };
-  const handleDelete = (id) => {
-    props.deleteQuestion();
 
-    setQuestions([
-      ...questions.filter(question => question.id !== id)
-    ])
-  }
+  const handleQuestionPromptChange = (index, name) => {
+    props.setQuestionPrompt(index, name);
+  };
+
+  const handleQuestionTypeChange = (index, type) => {
+    props.setQuestionType(index, type);
+  };
+
+  const handleQuestionOptionsChange = (index, optionsString) => {
+    let optionsArray = [];
+    if (optionsString) {
+      optionsArray = optionsString
+        .split(",")
+        // remove whitespace around the option (if any)
+        .map(option => option.trim());
+    }
+
+    props.setQuestionOptions(index, optionsArray);
+  };
+
+  const handleIsRequiredChange = index => {
+    props.toggleQuestionRequired(index);
+  };
+
+  const handleDelete = index => {
+    props.deleteQuestion(index);
+  };
   
   return(
     <div>
       <h1>Application Questions</h1>
-      {questions.map((question, i) => {
+      {questionsData.map((question, i) => {
+          console.log(question);
+
           return (
             <Question
-              key={question.id}
+              key={`question_${question.timestampForKey}`}
               index={i}
               question={question}
               onPromptChange={handleQuestionPromptChange}
@@ -100,14 +80,14 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   addNewQuestion: () => dispatch(addNewQuestion()),
-  setQuestionPrompt: (questionIndex, propmtText) => {
-    dispatch(setQuestionPrompt(questionIndex, propmtText));
+  setQuestionPrompt: (questionIndex, promptText) => {
+    dispatch(setQuestionPrompt(questionIndex, promptText));
   },
-  setQuestionType: (questionIndex, optionsString) => {
-    dispatch(setQuestionType(questionIndex, optionsString));
+  setQuestionType: (questionIndex, options) => {
+    dispatch(setQuestionType(questionIndex, options));
   },
-  setQuestionRequired: (questionIndex, isRequired) => {
-    dispatch(setQuestionRequired(questionIndex, isRequired));
+  toggleQuestionRequired: (questionIndex) => {
+    dispatch(toggleQuestionRequired(questionIndex));
   },
   setQuestionOptions: (questionIndex, optionsString) => {
     dispatch(setQuestionOptions(questionIndex, optionsString));
