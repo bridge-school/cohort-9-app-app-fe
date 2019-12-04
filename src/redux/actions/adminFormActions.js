@@ -4,7 +4,13 @@ export const ACTION_TYPES = {
   SET_POST_SUCCESS: "SET_POST_SUCCESS",
   SET_POST_ERROR: "SET_POST_ERROR",
   SET_RESET_APP: "SET_RESET_APP",
-  RESET_IS_SUBMITTED: "RESET_IS_SUBMITTED"
+  RESET_IS_SUBMITTED: "RESET_IS_SUBMITTED",
+  ADD_NEW_QUESTION: "ADD_NEW_QUESTION",
+  SET_QUESTION_PROMPT: "SET_QUESTION_PROMPT",
+  SET_QUESTION_TYPE: "SET_QUESTION_TYPE",
+  TOGGLE_QUESTION_REQUIRED: "TOGGLE_QUESTION_REQUIRED",
+  SET_QUESTION_OPTIONS: "SET_QUESTION_OPTIONS",
+  DELETE_QUESTION: "DELETE_QUESTION"
 };
 
 // Action creator to set cohort name
@@ -51,7 +57,63 @@ export const resetIsSubmitted = () => {
   };
 };
 
-//creating Thunk to post the details of the form to firebase
+// Action creator for when a new question is generated
+export const addNewQuestion = () => {
+  return {
+    type: ACTION_TYPES.ADD_NEW_QUESTION
+  };
+};
+
+// Action creators for Question fields
+export const setQuestionPrompt = (questionIndex, promptText) => {
+  return {
+    type: ACTION_TYPES.SET_QUESTION_PROMPT,
+    payload: {
+      index: questionIndex,
+      questionPrompt: promptText
+    }
+  };
+};
+
+export const setQuestionType = (questionIndex, questionType) => {
+  return {
+    type: ACTION_TYPES.SET_QUESTION_TYPE,
+    payload: {
+      index: questionIndex,
+      questionType
+    }
+  };
+};
+
+export const toggleQuestionRequired = (questionIndex) => {
+  return {
+    type: ACTION_TYPES.TOGGLE_QUESTION_REQUIRED,
+    payload: {
+      index: questionIndex
+    }
+  };
+};
+
+export const setQuestionOptions = (questionIndex, options) => {
+  return {
+    type: ACTION_TYPES.SET_QUESTION_OPTIONS,
+    payload: {
+      index: questionIndex,
+      questionOptions: options
+    }
+  };
+};
+
+export const deleteQuestion = (questionIndex) => {
+  return {
+    type: ACTION_TYPES.DELETE_QUESTION,
+    payload: {
+      index: questionIndex
+    }
+  };
+};
+
+// creating Thunk to post the details of the form to firebase
 export const postFormDetailsThunk = cohortData => async dispatch => {
   const res = await fetch("/applications", {
     method: "post",
