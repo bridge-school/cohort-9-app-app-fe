@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { Button, Checkbox, Form } from "semantic-ui-react";
 
 import {
   setCohortName,
@@ -87,7 +88,7 @@ const AdminForm = props => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} >
         <TextInput
           value={props.cohortName}
           handleChange={handleCohortNameChange}
@@ -102,7 +103,7 @@ const AdminForm = props => {
         <Questions />
 
         <SubmitButton>Create Application Group</SubmitButton>
-      </form>
+      </Form>
       {isDuplicate && (
         <p>{`This Cohort Name already exists for ${props.cohortType}`}</p>
       )}

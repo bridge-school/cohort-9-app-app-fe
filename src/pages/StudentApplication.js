@@ -2,8 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 
+import StudentForm from '../components/StudentForm';
 import { postStudentFormDetails } from "../redux/actions/studentFormActions";
-import SubmitButton from "../components/SubmitButton";
+// import SubmitButton from "../components/SubmitButton";
 
 const StudentApplication = (props) => {
   const history = useHistory();
@@ -29,10 +30,10 @@ const StudentApplication = (props) => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <p>Student form fields will go here...</p>
-        <SubmitButton>Apply for Bridge</SubmitButton>
-      </form>
+      <StudentForm onSubmit={handleSubmit}>
+        {/* <p>Student form fields will go here...</p> */}
+        {/* <SubmitButton>Apply for Bridge</SubmitButton> */}
+      </StudentForm>
     </div>
   );
 };

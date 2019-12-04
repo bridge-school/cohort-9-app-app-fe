@@ -1,24 +1,19 @@
 import React from "react";
-
-import {
-  InputField,
-  InputLabel
-} from "./TextInputStyled";
-
+import { Form } from "semantic-ui-react";
 
 const TextInput = (props) => {
   return (
-    <div>
-      <InputLabel>
+    <Form.Field>
+      <label>
         Cohort Name:
-        <InputField 
+        <input 
           type="text" 
           value={props.value} 
           onChange={props.handleChange}
           maxLength="64"
         />
-      </InputLabel>
-    </div>
+      </label>
+    </Form.Field>
   );
 }
 

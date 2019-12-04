@@ -1,8 +1,8 @@
 import React from "react";
+import styled from "styled-components";
 
 import AdminForm from "../components/AdminForm";
 import PageTitle from "../components/PageTitle";
-import { ApplicationContainer } from "./CohortApplicationStyled";
 
 const CohortApplication = () => {
   return(
@@ -12,5 +12,10 @@ const CohortApplication = () => {
     </ApplicationContainer>
   );
 }
+
+export const ApplicationContainer = styled.div`
+  width: 60%;
+  margin: 0 auto;
+`;
 
 export default CohortApplication;

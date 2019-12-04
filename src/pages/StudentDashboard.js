@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchAllApps } from "../redux/actions/allCohortAppsActions";
 import StudentsAppsList from "../components/StudentAppsList";
-import {Header } from 'semantic-ui-react'
+import { Header } from 'semantic-ui-react';
  
 
 const StudentDashboard = ({ isLoading, apps, getAllApps }) => {
