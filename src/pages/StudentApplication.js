@@ -30,6 +30,7 @@ const StudentApplication = (props) => {
 
   return (
     <div>
+      <h1>Apply For Bridge</h1>
       <StudentForm onSubmit={handleSubmit}>
         {/* <p>Student form fields will go here...</p> */}
         {/* <SubmitButton>Apply for Bridge</SubmitButton> */}

@@ -14,7 +14,7 @@ const ButtonContainer = styled.div`
   justify-content: center;
 `;
 
-export const Button = styled.input`
+const Button = styled.input`
   width: 350px;
   padding: 15px 40px;
   font-size: 18px;
