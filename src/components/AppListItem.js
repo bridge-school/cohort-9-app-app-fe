@@ -6,12 +6,18 @@ const AppListItem = ({key, cohortName, cohortType, link}) => {
     
     return (
         cohortName && (
-            <Segment as="li" clearing padded key={key}>
-                <Header as='h2' floated='left'>{cohortName}</Header>
-                <Button  floated='right' as="Link" href={link} color={cohortType==="Backend Development" ? "blue" : cohortType==="Frontend Development" ? "pink" : "teal"}>
-                    {cohortType}
-                </Button>
-            </Segment>
+            <li key={id}>
+                <Link to={link}>
+                    <Segment clearing padded data_test="appListItem_Segment">
+                        <Header as='h2' floated='left'>{cohortName}</Header>
+                        <Button data_test="appListItem_Button" 
+                                floated='right' 
+                                color={cohortType==="Backend Development" ? "blue" : cohortType==="Frontend Development" ? "pink" : "teal"}>
+                            {cohortType}
+                        </Button>
+                    </Segment> 
+                </Link>
+            </li>        
         )
     )
 }
