@@ -38,7 +38,7 @@ describe("Applications List Item", () => {
                     </MemoryRouter>, container)
             })
             expect(container.querySelector('[data_test="appListItem_Segment"]')).toBeTruthy()
-            expect(container.querySelector('[data_test="appListItem_Segment"]').nodeName).toBe('LI')
+            expect(container.querySelector('[data_test="appListItem_Segment"]').nodeName).toBe('DIV')
             expect(container.querySelector('h2').textContent).toBe(mockCohortName);
             expect(container.querySelector('[data_test="appListItem_Button"]').textContent).toBe('');
         });
