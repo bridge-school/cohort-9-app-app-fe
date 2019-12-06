@@ -2,8 +2,9 @@ import React from 'react';
 import { Button, Segment, Header} from 'semantic-ui-react'
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
+
 const AppListItem = ({id, cohortName, cohortType, link}) => {
-    
+
     return (
         cohortName && (
             <li key={id}>

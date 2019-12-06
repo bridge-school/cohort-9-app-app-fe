@@ -24,7 +24,7 @@ const StudentsAppsList = ({ apps }) => {
               id={id}
               cohortName={cohortName}
               cohortType={cohortType}
-              link="/student/application"
+              link={`/student/application/${id}`}
             />
           );
         })}
