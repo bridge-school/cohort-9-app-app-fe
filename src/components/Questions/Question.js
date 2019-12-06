@@ -10,7 +10,7 @@ const Question = ({
   onDelete
 }) => {
   const qNumber = index + 1;
-  const optionsString = question.options.join(",");
+  const optionsString = question.options.join(", ");
 
   return (
     <>
