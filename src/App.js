@@ -19,7 +19,7 @@ function App() {
             <StudentDashboard />
           </CommonLayout>
         </Route>
-        <Route exact path="/student/application">
+        <Route path="/student/application/:id">
           <CommonLayout>
             <StudentApplication />           
           </CommonLayout>

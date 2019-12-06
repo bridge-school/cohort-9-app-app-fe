@@ -1,11 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 import { postStudentFormDetails } from "../redux/actions/studentFormActions";
 import SubmitButton from "../components/SubmitButton";
 
-const StudentApplication = (props) => {
+const StudentApplication = ({apps, postStudentFormDetails }) => {
+  const cohortId = useParams().id
+  const formData = apps.apps.cohort_apps.filter(app => app.id === cohortId)
+  console.log(formData)
   const history = useHistory();
 
   const handleSubmit = (e) => {
@@ -18,7 +21,7 @@ const StudentApplication = (props) => {
       lastName: "Pipa"
     };
 
-    props.postStudentFormDetails(exampleFormData)
+    postStudentFormDetails(exampleFormData)
       .then(() => {
         // on stccess of form submission re-direct 
         // to confirmation page
@@ -41,4 +44,8 @@ const mapDispatchToProps = {
   postStudentFormDetails
 };
 
-export default connect(null, mapDispatchToProps)(StudentApplication);
+const mapStateToProps = state => ({
+  apps: state.apps
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(StudentApplication);
