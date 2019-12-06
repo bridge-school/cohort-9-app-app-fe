@@ -3,12 +3,12 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import CommonLayout from "./components/CommonLayout/CommonLayout";
 import "./App.css";
 
+import Home from "./pages/Home";
 import AdminDashboard from "./pages/AdminDashboard";
-import CohortApplication from "./pages/CohortApplication";
+import AdminForm from "./pages/AdminForm";
 import StudentDashboard from "./pages/StudentDashboard";
 import StudentApplication from "./pages/StudentApplication";
 import Confirmation from "./pages/StudentConfirmation";
-
 
 function App() {
   return (
@@ -31,7 +31,7 @@ function App() {
         </Route>
         <Route exact path="/admin/cohorts/application">
           <CommonLayout>
-            <CohortApplication />
+            <AdminForm />
           </CommonLayout>
         </Route>
         <Route exact path="/student/confirmation">
@@ -41,12 +41,7 @@ function App() {
         </Route>
         <Route exact path="/">
           <CommonLayout>
-            <div>
-              <Link to="/admin/cohorts">Admin</Link>
-            </div>
-            <div>
-              <Link to="/student/cohorts">Student</Link>
-            </div>
+            <Home />
           </CommonLayout>
         </Route>
       </Switch>

@@ -1,13 +1,17 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
+import {Header} from 'semantic-ui-react'
 
 import { postStudentFormDetails } from "../redux/actions/studentFormActions";
 import SubmitButton from "../components/SubmitButton";
 
 const StudentApplication = (props) => {
   const history = useHistory();
-
+  const pageTitle="Apply For Bridge"
+  useEffect(() => {
+    document.title = pageTitle
+  }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -29,6 +33,7 @@ const StudentApplication = (props) => {
 
   return (
     <div>
+      <Header as='h1'>{pageTitle}</Header>
       <form onSubmit={handleSubmit}>
         <p>Student form fields will go here...</p>
         <SubmitButton>Apply for Bridge</SubmitButton>

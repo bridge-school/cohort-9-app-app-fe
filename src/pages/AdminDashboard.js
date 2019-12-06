@@ -7,16 +7,17 @@ import { fetchAllApps } from "../redux/actions/allCohortAppsActions";
 import AppsList from "../components/AppsList.js";
 
 const AdminDashboard = ({ isLoading, apps, getAllApps }) => {
+  const pageTitle = "Cohort Application Forms"
   useEffect(() => {
     getAllApps();
+    document.title= pageTitle
   }, [getAllApps]);
-
   return (
     <>
       <Grid columns={2}>
         <Grid.Row>
           <Grid.Column>
-          <Header as='h1'>Cohort Application Forms</Header>
+          <Header as='h1'>{pageTitle}</Header>
           </Grid.Column>
         
           <Grid.Column textAlign='right'>
