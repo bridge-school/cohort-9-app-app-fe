@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { connect } from "react-redux";
+import {Header} from 'semantic-ui-react'
 import { useHistory, useParams } from "react-router-dom";
 
 import { postStudentFormDetails } from "../redux/actions/studentFormActions";
@@ -10,7 +11,10 @@ const StudentApplication = ({apps, postStudentFormDetails }) => {
   const formData = apps.apps.cohort_apps.filter(app => app.id === cohortId)
   console.log(formData)
   const history = useHistory();
-
+  const pageTitle="Apply For Bridge"
+  useEffect(() => {
+    document.title = pageTitle
+  }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -32,6 +36,7 @@ const StudentApplication = ({apps, postStudentFormDetails }) => {
 
   return (
     <div>
+      <Header as='h1'>{pageTitle}</Header>
       <form onSubmit={handleSubmit}>
         <p>Student form fields will go here...</p>
         <SubmitButton>Apply for Bridge</SubmitButton>

@@ -22,7 +22,6 @@ const StudentsAppsList = ({ apps }) => {
           return (
             <AppListItem
               id={id}
-              key={id}
               cohortName={cohortName}
               cohortType={cohortType}
               link={`/student/application/${id}`}
