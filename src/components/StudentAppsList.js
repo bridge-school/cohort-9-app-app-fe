@@ -21,10 +21,11 @@ const StudentsAppsList = ({ apps }) => {
           const { id, cohortName, cohortType } = li;
           return (
             <AppListItem
+              id={id}
               key={id}
               cohortName={cohortName}
               cohortType={cohortType}
-              link="/student/application"
+              link={`/student/application/${id}`}
             />
           );
         })}
