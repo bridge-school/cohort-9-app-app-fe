@@ -12,17 +12,14 @@ const StudentQuestion = ({
       case "short-answer":
         return (
           <Form.Group widths="equal" className="row">
-            <p className="sixteen wide column">{prompt}</p>
-            <TextArea className="sixteen wide column" />
+            <Form.Field control={Input} label={prompt} />
           </Form.Group>
         );
       case "paragraph":
         return (
           <Form.Group widths="equal">
-            <Form.Field
-              control={Input}
-              label={prompt}
-            />
+            <p className="sixteen wide column">{prompt}</p>
+            <TextArea className="sixteen wide column" />
           </Form.Group>
         );
       case "dropdown":
@@ -30,10 +27,8 @@ const StudentQuestion = ({
         return (
           <Form.Group widths="equal" className="row">
             <p className="sixteen wide column">{prompt}</p>
-            <select
-              placeholder="Select your answer"
-              className="sixteen wide column"
-            >
+            <select className="sixteen wide column">
+              {/* <option disabled>Select your answer</option> */}
               {dropdownOptions.map(option => {
                 return <option value={option}>{option}</option>;
               })}

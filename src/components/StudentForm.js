@@ -10,28 +10,28 @@ const StudentForm = (props) => {
 
   const placeholderQuestionData = [
     {
-      prompt: "Here's my question?",
+      prompt: "Checkboxes Question......?",
       type: "checkboxes",
       isRequired: true,
-      options: ["this", "that", "other"],
+      options: ["option one", "option two", "option three", "option four"],
       timestampForKey: 1575348543996
     },
     {
-      prompt: "Another one?",
+      prompt: "Dropdown Question...........?",
       type: "dropdown",
       isRequired: false,
       options: ["one", "two", "three", "four"],
       timestampForKey: 1575348548884
     },
     {
-      prompt: "Last one, I promise?",
+      prompt: "Paragraph Question...........?",
       type: "paragraph",
       isRequired: true,
       options: [],
       timestampForKey: 1575348559154
     },
     {
-      prompt: "The Lastest?",
+      prompt: "Short-Answer Question...........?",
       type: "short-answer",
       isRequired: false,
       options: [],
