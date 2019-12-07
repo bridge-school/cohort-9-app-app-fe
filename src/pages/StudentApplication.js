@@ -5,7 +5,7 @@ import { useHistory, useParams } from "react-router-dom";
 
 import StudentForm from '../components/StudentForm';
 import { postStudentFormDetails } from "../redux/actions/studentFormActions";
-// import SubmitButton from "../components/SubmitButton";
+import SubmitButton from "../components/SubmitButton";
 
 const StudentApplication = ({apps, postStudentFormDetails }) => {
   const cohortId = useParams().id
