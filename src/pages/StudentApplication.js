@@ -1,14 +1,21 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { connect } from "react-redux";
-import { useHistory } from "react-router-dom";
+import {Header} from 'semantic-ui-react'
+import { useHistory, useParams } from "react-router-dom";
 
 import StudentForm from '../components/StudentForm';
 import { postStudentFormDetails } from "../redux/actions/studentFormActions";
 // import SubmitButton from "../components/SubmitButton";
 
-const StudentApplication = (props) => {
+const StudentApplication = ({apps, postStudentFormDetails }) => {
+  const cohortId = useParams().id
+  const formData = apps.apps.cohort_apps.filter(app => app.id === cohortId)
+  console.log(formData)
   const history = useHistory();
-
+  const pageTitle="Apply For Bridge"
+  useEffect(() => {
+    document.title = pageTitle
+  }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -19,7 +26,7 @@ const StudentApplication = (props) => {
       lastName: "Pipa"
     };
 
-    props.postStudentFormDetails(exampleFormData)
+    postStudentFormDetails(exampleFormData)
       .then(() => {
         // on stccess of form submission re-direct 
         // to confirmation page
@@ -30,10 +37,10 @@ const StudentApplication = (props) => {
 
   return (
     <div>
-      <h1>Apply For Bridge</h1>
+      <Header as="h1">{pageTitle}</Header>
       <StudentForm onSubmit={handleSubmit}>
-        {/* <p>Student form fields will go here...</p> */}
-        {/* <SubmitButton>Apply for Bridge</SubmitButton> */}
+        <p>Student form fields will go here...</p>
+        <SubmitButton>Apply for Bridge</SubmitButton>
       </StudentForm>
     </div>
   );
@@ -43,4 +50,8 @@ const mapDispatchToProps = {
   postStudentFormDetails
 };
 
-export default connect(null, mapDispatchToProps)(StudentApplication);
+const mapStateToProps = state => ({
+  apps: state.apps
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(StudentApplication);

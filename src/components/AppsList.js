@@ -10,7 +10,7 @@ const AppsList = ({apps}) => {
                 const {id, cohortName, cohortType, link} = li
                 return (
                  <AppListItem 
-                    key={id}
+                    id={id}
                     cohortName={cohortName}
                     cohortType={cohortType}
                     link={link}

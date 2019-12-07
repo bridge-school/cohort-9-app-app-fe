@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { Button, Checkbox, Form } from "semantic-ui-react";
+import { Button, Checkbox, Form, Header} from "semantic-ui-react";
+import { ApplicationContainer } from "./AdminFormStyled";
 
 import {
   setCohortName,
@@ -12,17 +13,19 @@ import {
 } from "../redux/actions/adminFormActions";
 import { resetDates } from "../redux/actions/dateActions";
 
-import TextInput from "./TextInput";
-import Select from "./Select";
-import SubmitButton from "./SubmitButton";
-import DatePickerContainer from "./DatePickerContainer";
-import Questions from "./Questions/Questions";
+import TextInput from "../components/TextInput";
+import Select from "../components/Select";
+import SubmitButton from "../components/SubmitButton";
+import DatePickerContainer from "../components/DatePickerContainer";
+import Questions from "../components/Questions/Questions";
 
 const AdminForm = props => {
+  const pageTitle="Create Application Form"
   const [isDuplicate, setDuplicate] = useState(false);
   useEffect(() => {
     props.setResetApp();
     props.resetDates();
+    document.title = pageTitle
   }, []);
 
   const handleCohortNameChange = e => {
@@ -87,8 +90,9 @@ const AdminForm = props => {
   }
 
   return (
-    <div>
-      <Form onSubmit={handleSubmit} >
+    <ApplicationContainer>
+      <Header as="h1">{pageTitle}</Header>
+      <Form onSubmit={handleSubmit}>
         <TextInput
           value={props.cohortName}
           handleChange={handleCohortNameChange}
@@ -107,7 +111,7 @@ const AdminForm = props => {
       {isDuplicate && (
         <p>{`This Cohort Name already exists for ${props.cohortType}`}</p>
       )}
-    </div>
+    </ApplicationContainer>
   );
 };
 

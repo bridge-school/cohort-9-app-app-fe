@@ -7,13 +7,16 @@ import { Header } from 'semantic-ui-react';
  
 
 const StudentDashboard = ({ isLoading, apps, getAllApps }) => {
+  const pageTitle = "Cohort Application Forms"
+  
   useEffect(() => {
     getAllApps();
+    document.title=pageTitle
   }, [getAllApps]);
 
   return (
     <>
-      <Header as="h1">Apply</Header>
+      <Header as="h1">{pageTitle}</Header>
       {apps.apps.cohort_apps && (
         <StudentsAppsList apps={apps.apps.cohort_apps} />
       )}
