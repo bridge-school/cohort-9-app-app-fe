@@ -6,11 +6,10 @@ import { useHistory, useParams } from "react-router-dom";
 import { postStudentFormDetails } from "../redux/actions/studentFormActions";
 import SubmitButton from "../components/SubmitButton";
 
-export const filterFormData = (array, id) => array.filter(item => item.id === id);
 
 const StudentApplication = ({apps, postStudentFormDetails }) => {
   const cohortId = useParams().id
-  filterFormData(apps, cohortId)
+  const filterFormData = (apps, cohortId) => apps.filter(app => app.id === cohortId);
   console.log(filterFormData)
   const history = useHistory();
   const pageTitle="Apply For Bridge"
