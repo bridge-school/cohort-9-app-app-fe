@@ -6,10 +6,13 @@ import { useHistory, useParams } from "react-router-dom";
 import { postStudentFormDetails } from "../redux/actions/studentFormActions";
 import SubmitButton from "../components/SubmitButton";
 
+
+export const filterFormData = (arr, id) => arr.filter(obj => obj.id === id);
+
 const StudentApplication = ({apps, postStudentFormDetails }) => {
   const cohortId = useParams().id
-  const formData = apps.apps.cohort_apps.filter(app => app.id === cohortId)
-  console.log(formData)
+  const filteredData = filterFormData(apps, cohortId)
+  console.log(filteredData)
   const history = useHistory();
   const pageTitle="Apply For Bridge"
   useEffect(() => {
@@ -50,7 +53,7 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = state => ({
-  apps: state.apps
+  apps: state.apps.apps.cohort_apps
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(StudentApplication);
