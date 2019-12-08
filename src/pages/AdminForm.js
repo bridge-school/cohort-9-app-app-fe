@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import {Header} from 'semantic-ui-react'
+import { Header } from "semantic-ui-react";
 import { ApplicationContainer } from "./AdminFormStyled";
 
 import {
@@ -20,12 +20,12 @@ import DatePickerContainer from "../components/DatePickerContainer";
 import Questions from "../components/Questions/Questions";
 
 const AdminForm = props => {
-  const pageTitle="Create Application Form"
+  const pageTitle = "Create Application Form";
   const [isDuplicate, setDuplicate] = useState(false);
   useEffect(() => {
     props.setResetApp();
     props.resetDates();
-    document.title = pageTitle
+    document.title = pageTitle;
   }, []);
 
   const handleCohortNameChange = e => {
@@ -64,7 +64,7 @@ const AdminForm = props => {
         dateOpen,
         dateClose,
         dateOfResponse,
-        questions: props.questionsData,
+        questions: props.questionsData
       };
       //calls the thunk here to "POST" to database
       props.postFormDetailsThunk(cohortData);
@@ -91,7 +91,7 @@ const AdminForm = props => {
 
   return (
     <ApplicationContainer>
-      <Header as='h1'>{pageTitle}</Header>
+      <Header as="h1">{pageTitle}</Header>
       <form onSubmit={handleSubmit}>
         <TextInput
           value={props.cohortName}
@@ -111,8 +111,7 @@ const AdminForm = props => {
       {isDuplicate && (
         <p>{`This Cohort Name already exists for ${props.cohortType}`}</p>
       )}
-      </ApplicationContainer>
-
+    </ApplicationContainer>
   );
 };
 
@@ -126,7 +125,7 @@ const mapStateToProps = state => {
     dateOpen: state.dates.dateOpen,
     dateClose: state.dates.dateClose,
     dateOfResponse: state.dates.dateOfResponse,
-    questionsData: state.cohortInfo.questionsData,
+    questionsData: state.cohortInfo.questionsData
   };
 };
 
