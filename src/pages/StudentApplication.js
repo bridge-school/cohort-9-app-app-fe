@@ -7,10 +7,13 @@ import { postStudentFormDetails } from "../redux/actions/studentFormActions";
 import SubmitButton from "../components/SubmitButton";
 
 
+export const filterFormData = (arr, id) => arr.filter(obj => obj.id === id);
+
 const StudentApplication = ({apps, postStudentFormDetails }) => {
   const cohortId = useParams().id
   const filterFormData = (apps, cohortId) => apps.filter(app => app.id === cohortId);
-  console.log(filterFormData)
+  const filteredData = filterFormData(apps, cohortId)
+  console.log(filteredData)
   const history = useHistory();
   const pageTitle="Apply For Bridge"
   useEffect(() => {
@@ -51,7 +54,7 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = state => ({
-  apps: state.apps.cohort_apps
+  apps: state.apps.apps.cohort_apps
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(StudentApplication);
