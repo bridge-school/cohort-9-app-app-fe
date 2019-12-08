@@ -11,7 +11,6 @@ export const filterFormData = (arr, id) => arr.filter(obj => obj.id === id);
 
 const StudentApplication = ({apps, postStudentFormDetails }) => {
   const cohortId = useParams().id
-  const filterFormData = (apps, cohortId) => apps.filter(app => app.id === cohortId);
   const filteredData = filterFormData(apps, cohortId)
   console.log(filteredData)
   const history = useHistory();
