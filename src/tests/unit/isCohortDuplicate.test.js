@@ -19,6 +19,25 @@ describe("Duplicate cohort submittion check", () => {
 
     expect(isCohortDuplicate()).toEqual(1);
   });
+
+  it("returns an array with lenght 1 for duplicate upper case cohortName ", () => {
+    const isCohortDuplicate = () => {
+      const props = {
+        cohortName: "COHORT 10",
+        cohortType: "backend",
+        existingCohorts: [{ cohortName: "cohort 10", cohortType: "backend" }]
+      };
+
+      const { cohortName, cohortType, existingCohorts } = props;
+      return existingCohorts
+        .filter(cohort => cohort.cohortType === cohortType)
+        .filter(
+          cohort => cohort.cohortName.toLowerCase() === cohortName.toLowerCase()
+        ).length;
+    };
+
+    expect(isCohortDuplicate()).toEqual(1);
+  });
   it("returns an array with lenght 0 for non duplicate cohort", () => {
     const isCohortDuplicate = () => {
       const props = {
