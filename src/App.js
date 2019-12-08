@@ -34,7 +34,7 @@ function App() {
             <AdminForm />
           </CommonLayout>
         </Route>
-        <Route exact path="/student/confirmation">
+        <Route path="/student/confirmation/:id">
           <CommonLayout>
             <Confirmation />
           </CommonLayout>

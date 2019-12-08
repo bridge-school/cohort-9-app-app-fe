@@ -12,7 +12,7 @@ const studentFormReducer = (state = initialState, action = {}) => {
     //based on the action type updating the paylod
     case ACTION_TYPES.STUDENT_FORM_POST_SUCCESS:
       return {
-        ...state,
+        // ...state,
         formPostSuccess: true,
       };
     case ACTION_TYPES.STUDENT_FORM_POST_ERROR:

@@ -1,23 +1,24 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import { connect } from "react-redux";
-import {Header} from 'semantic-ui-react'
+import {Header, Message} from 'semantic-ui-react'
 import { useHistory, useParams } from "react-router-dom";
+import { filterFormData } from "../helperFunctions/helpers.js"
+import { postStudentFormDetails} from "../redux/actions/studentFormActions";
 
-import { postStudentFormDetails } from "../redux/actions/studentFormActions";
 import SubmitButton from "../components/SubmitButton";
 
 
-export const filterFormData = (arr, id) => arr.filter(obj => obj.id === id);
 
-const StudentApplication = ({apps, postStudentFormDetails }) => {
+const StudentApplication = ({apps, postStudentFormDetails, isSubmitted}) => {
   const cohortId = useParams().id
   const filteredData = filterFormData(apps, cohortId)
   console.log(filteredData)
   const history = useHistory();
   const pageTitle="Apply For Bridge"
+  const [error, setError] = useState(false);
   useEffect(() => {
     document.title = pageTitle
-  }, []);
+  }, [error]);
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -30,9 +31,12 @@ const StudentApplication = ({apps, postStudentFormDetails }) => {
 
     postStudentFormDetails(exampleFormData)
       .then(() => {
-        // on stccess of form submission re-direct 
-        // to confirmation page
-        history.push("/student/confirmation");
+        // on success of form submission re-direct to confirmation page
+        // on failure of form submission alert user
+        console.log(isSubmitted)
+        isSubmitted === true ? 
+          history.push(`/student/confirmation/${cohortId}`)
+        : setError(true);
       });
 
   };
@@ -44,6 +48,15 @@ const StudentApplication = ({apps, postStudentFormDetails }) => {
         <p>Student form fields will go here...</p>
         <SubmitButton>Apply for Bridge</SubmitButton>
       </form>
+
+      {error === true? 
+        <Message error>
+          <i className="close icon"></i>
+          <Header as="h3">
+            There was an error with your submission. Please try again.
+          </Header>
+        </Message>
+      : null}
     </div>
   );
 };
@@ -53,7 +66,8 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = state => ({
-  apps: state.apps.apps.cohort_apps
+  apps: state.apps.apps.cohort_apps,
+  isSubmitted: state.studentForm.formPostSuccess
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(StudentApplication);
