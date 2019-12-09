@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { Header } from "semantic-ui-react";
+import { Header, Message } from "semantic-ui-react";
 import { ApplicationContainer } from "./AdminFormStyled";
 
 import {
@@ -108,8 +108,12 @@ const AdminForm = props => {
 
         <SubmitButton>Create Application Group</SubmitButton>
       </form>
+
       {isDuplicate && (
-        <p>{`This Cohort Name already exists for ${props.cohortType}`}</p>
+        <Message color="red">
+          <Message.Header>Error Message</Message.Header>
+          <p>{`This Cohort Name already exists for ${props.cohortType}`}</p>
+        </Message>
       )}
     </ApplicationContainer>
   );
