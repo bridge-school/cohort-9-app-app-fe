@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import {Header} from 'semantic-ui-react'
+import { Header, Message } from "semantic-ui-react";
 import { ApplicationContainer } from "./AdminFormStyled";
+import { fetchAllApps } from "../redux/actions/allCohortAppsActions";
 
 import {
   setCohortName,
@@ -20,16 +21,19 @@ import DatePickerContainer from "../components/DatePickerContainer";
 import Questions from "../components/Questions/Questions";
 
 const AdminForm = props => {
-  const pageTitle="Create Application Form"
+  const pageTitle = "Create Application Form";
   const [isDuplicate, setDuplicate] = useState(false);
+  const [visible, setVisible] = useState(true);
   useEffect(() => {
     props.setResetApp();
     props.resetDates();
-    document.title = pageTitle
+    props.getAllApps();
+    document.title = pageTitle;
   }, []);
 
   const handleCohortNameChange = e => {
     props.setCohortName(e.target.value);
+    setDuplicate(false);
   };
   /**
    * Check if the cohort name and type already exists in databases
@@ -37,6 +41,7 @@ const AdminForm = props => {
    */
   const isCohortDuplicate = () => {
     const { cohortName, cohortType, existingCohorts } = props;
+
     return existingCohorts
       .filter(cohort => cohort.cohortType === cohortType)
       .filter(
@@ -51,7 +56,8 @@ const AdminForm = props => {
       cohortType,
       dateOpen,
       dateClose,
-      dateOfResponse
+      dateOfResponse,
+      existingCohorts
     } = props;
 
     const isCohortDuplicateValue = isCohortDuplicate();
@@ -64,7 +70,7 @@ const AdminForm = props => {
         dateOpen,
         dateClose,
         dateOfResponse,
-        questions: props.questionsData,
+        questions: props.questionsData
       };
       //calls the thunk here to "POST" to database
       props.postFormDetailsThunk(cohortData);
@@ -75,6 +81,7 @@ const AdminForm = props => {
 
   const handleCohortTypeChange = e => {
     props.setCohortType(e.target.value);
+    setDuplicate(false);
   };
 
   const selectOptions = [
@@ -91,7 +98,7 @@ const AdminForm = props => {
 
   return (
     <ApplicationContainer>
-      <Header as='h1'>{pageTitle}</Header>
+      <Header as="h1">{pageTitle}</Header>
       <form onSubmit={handleSubmit}>
         <TextInput
           value={props.cohortName}
@@ -108,11 +115,14 @@ const AdminForm = props => {
 
         <SubmitButton>Create Application Group</SubmitButton>
       </form>
-      {isDuplicate && (
-        <p>{`This Cohort Name already exists for ${props.cohortType}`}</p>
-      )}
-      </ApplicationContainer>
 
+      {isDuplicate && (
+        <Message color="red">
+          <Message.Header>Error Message</Message.Header>
+          <p>{`This Cohort Name already exists for ${props.cohortType}`}</p>
+        </Message>
+      )}
+    </ApplicationContainer>
   );
 };
 
@@ -126,7 +136,7 @@ const mapStateToProps = state => {
     dateOpen: state.dates.dateOpen,
     dateClose: state.dates.dateClose,
     dateOfResponse: state.dates.dateOfResponse,
-    questionsData: state.cohortInfo.questionsData,
+    questionsData: state.cohortInfo.questionsData
   };
 };
 
@@ -137,7 +147,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(postFormDetailsThunk(cohortData)),
   setResetApp: () => dispatch(setResetApp()),
   resetIsSubmitted: () => dispatch(resetIsSubmitted()),
-  resetDates: () => dispatch(resetDates())
+  resetDates: () => dispatch(resetDates()),
+  getAllApps: () => dispatch(fetchAllApps())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminForm);

@@ -6,6 +6,8 @@ exports[`TextInput Should render properly 1`] = `
     Cohort Name:
     <ForwardRef(styled.input)
       maxLength="64"
+      placeholder="Enter Cohort Name"
+      required={true}
       type="text"
     />
   </ForwardRef(styled.label)>
