@@ -3,6 +3,18 @@ export const ACTION_TYPES = {
   STUDENT_FORM_POST_ERROR: "STUDENT_FORM_POST_ERROR",
   STUDENT_FORM_GET_SUCCESS: "STUDENT_FORM_GET_SUCCESS",
   STUDENT_FORM_GET_ERROR: "STUDENT_FORM_GET_ERROR",
+  SET_QUESTION_VALUE: "SET_QUESTION_VALUE"
+};
+
+// Action creator for successful student application submission
+export const setQuestionValue = (index, value) => {
+  return {
+    type: ACTION_TYPES.SET_QUESTION_VALUE,
+    payload: {
+      value,
+      index
+    }
+  };
 };
 
 // Action creator for successful student application submission

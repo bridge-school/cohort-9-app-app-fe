@@ -10,10 +10,15 @@ import {
 } from "semantic-ui-react";
 import styled from "styled-components";
 
-const TypeDropdown = props => {
+const TypeDropdown = ({ value, onChange }) => {
   return (
     <Form.Group widths="equal" className="row">
-      <Form.Field control={Input} maxLength="1000" />
+      <Form.Field 
+        control={Input} 
+        maxLength="1000" 
+        value={value}
+        onChange={onChange}
+      />
     </Form.Group>
   );
 };

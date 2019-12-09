@@ -10,10 +10,15 @@ import {
 } from "semantic-ui-react";
 import styled from "styled-components";
 
-const TypeParagraph = props => {
+const TypeParagraph = ({ value, onChange }) => {
   return (
     <Form.Group widths="equal">
-      <TextArea maxLength="1000" className="sixteen wide column" />
+      <TextArea 
+        maxLength="1000" 
+        className="sixteen wide column" 
+        value={value} 
+        onChange={onChange}
+      />
     </Form.Group>
   );
 };

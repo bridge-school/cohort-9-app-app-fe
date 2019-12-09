@@ -6,23 +6,52 @@ import TypeShortAnswer from './StudentQuestionTypes/TypeShortAnswer';
 import TypeDropdown from './StudentQuestionTypes/TypeDropdown';
 import TypeCheckbox from './StudentQuestionTypes/TypeCheckbox';
 
-const StudentQuestion = ({ questionData }) => {
-  const { type, isRequired, options } = questionData;
-  let { prompt } = questionData;
+import {setQuestionValue} from '../redux/actions/studentFormActions';
+
+const StudentQuestion = (props) => {
+  const { type, isRequired, options, index } = props.questionData;
+
+  const value = props.values[index];
+
+  let { prompt } = props.questionData;
   if (isRequired) {
     prompt += " *";
+  }
+
+  const handleOnChange = (e) => {
+    props.setQuestionValue(index, e.target.value);
+  }
+
+  const handleOnCheckboxChange = (val) => {
+    props.setQuestionValue(index, val);
   }
 
   const renderQuestionByType = () => {
     switch (type) {
       case "short-answer":
-        return <TypeShortAnswer />;
+        return <TypeShortAnswer 
+          value={value} 
+          onChange={handleOnChange}
+        />;
       case "paragraph":
-        return <TypeParagraph />;
+        return <TypeParagraph 
+          value={value} 
+          onChange={handleOnChange}
+        />;
       case "dropdown":
-        return <TypeDropdown options={options} />;
+        return <TypeDropdown 
+          options={options} 
+          value={value} 
+          onChange={handleOnChange}
+        />;
       case "checkboxes":
-        return <TypeCheckbox options={options} />;
+        return (
+          <TypeCheckbox
+            options={options}
+            value={value}
+            onChange={handleOnCheckboxChange}
+          />
+        );
       default:
         console.error(`Unrecognized question type: ${type}`);
         return null;
@@ -39,26 +68,12 @@ const StudentQuestion = ({ questionData }) => {
 
 const mapStateToProps = state => {
   return {
-    // cohortName: state.cohortInfo.cohortName,
-    // cohortType: state.cohortInfo.cohortType,
-    // existingCohorts: state.apps.apps.cohort_apps,
-    // isSubmitted: state.cohortInfo.isSubmitted,
-    // error: state.cohortInfo.error,
-    // dateOpen: state.dates.dateOpen,
-    // dateClose: state.dates.dateClose,
-    // dateOfResponse: state.dates.dateOfResponse,
-    // questionsData: state.cohortInfo.questionsData
+    values: state.studentForm.questionsValues,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  // setCohortName: cohortName => dispatch(setCohortName(cohortName)),
-  // setCohortType: cohortType => dispatch(setCohortType(cohortType)),
-  // postFormDetailsThunk: cohortData =>
-  //   dispatch(postFormDetailsThunk(cohortData)),
-  // setResetApp: () => dispatch(setResetApp()),
-  // resetIsSubmitted: () => dispatch(resetIsSubmitted()),
-  // resetDates: () => dispatch(resetDates())
+  setQuestionValue: (index, value) => dispatch(setQuestionValue(index, value))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(StudentQuestion);

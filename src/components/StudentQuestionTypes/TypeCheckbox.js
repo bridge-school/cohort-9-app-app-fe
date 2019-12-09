@@ -10,13 +10,27 @@ import {
 } from "semantic-ui-react";
 import styled from "styled-components";
 
-const TypeCheckbox = props => {
+const TypeCheckbox = ({ value, options, onChange }) => {
   return (
     <Form.Group widths="equal">
       <OptionsContainer>
-        {props.options.map((option, index) => (
-          <OptionButton key={index}>{option}</OptionButton>
-        ))}
+        {options.map((option, index) => {
+
+          const handleOnClick = (e) => {
+            e.preventDefault();
+            onChange(option)
+          }
+
+          return (
+            <OptionButton 
+              key={index} 
+              onClick={handleOnClick}
+              isSelected={value === option}
+            >
+            {option}
+            </OptionButton>
+          );
+        })}
       </OptionsContainer>
     </Form.Group>
   );
@@ -37,6 +51,8 @@ const OptionButton = styled.button`
   font-weight: 600;
   border: 2px solid #ccc;
   cursor: pointer;
+
+  ${props => props.isSelected ? `background: grey;` : `` }
 `;
 
 export default TypeCheckbox;

@@ -9,7 +9,7 @@ export const initialState = {
   studentFormGetError: null,
   questionsReceived: [],
   questionsValues: [],
-  questionsErrors: [],
+  questionsErrors: []
 };
 
 const studentFormReducer = (state = initialState, action = {}) => {
@@ -40,6 +40,14 @@ const studentFormReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         studentFormGetError: action.payload
+      };
+    case ACTION_TYPES.SET_QUESTION_VALUE:
+      let questionsValues = [...state.questionsValues];
+      questionsValues[action.payload.index] = action.payload.value;
+      
+      return {
+        ...state,
+        questionsValues
       };
     default:
       return state;

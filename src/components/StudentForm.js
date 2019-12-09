@@ -11,45 +11,23 @@ import StudentQuestion from "./StudentQuestion";
 // this should receive id from clicked button on student's dashboard
 // and get the assosiated id for displaying below
 const StudentForm = (props) => {
-
-  
-
-  // as we dont know the exact number of questions,
-  // we start with an empty array
-  // const [errors, setErrors] = useState([]);
-
   useEffect(() => {
     // make request to get question data for this form
     props.getStudentFormQuestions();
-    // setErrors(errs);
   }, []);
 
   // handle submit - has access to all values of inputs
   const submitStudentData = (e) => {
     e.preventDefault();
-    // console.log(e);
-
-    // check if validation is ok
-    // let errs = [];
-    // for each question (index)
-    //  if everything good - errrs[index] = ""
-
-    //  else errs[index] = "Can't be empty"
-    // if (value of second question is empty but it required) {
-
-    // }
-
-
-    // if not, setErrors for specific questions - this modifies state
-
-    
   }
-
-  const getQuestionDataSuccess = true;
 
   if (!props.studentFormGetSuccess) {
     return <h2>Loading...</h2>;
   }
+  console.log('PIPAAAAAA')
+  console.log(props.questionsValues)
+
+  const values = props.questionsValues;
 
   return (
     <Form onSubmit={submitStudentData}>
@@ -74,7 +52,6 @@ const StudentForm = (props) => {
           <StudentQuestion
             key={question.timestampForKey}
             questionData={question}
-            // errorInfo={errors[index]}
           />
         );
       })}
