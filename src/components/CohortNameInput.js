@@ -16,6 +16,7 @@ const CohortNameInput = (props) => {
           value={props.value} 
           onChange={props.handleChange}
           maxLength="64"
+          required
         />
       </InputLabel>
     </div>

@@ -7,7 +7,7 @@ const Select = ({ value, handleChange, options }) => {
     <div>
       <SelectLabel>
         Cohort Type:
-        <SelectDropdown value={value} onChange={handleChange}>
+        <SelectDropdown required value={value} onChange={handleChange}>
           <option value>
             {""}
             -- select an option --{" "}

@@ -101,6 +101,7 @@ const AdminForm = props => {
           value={props.cohortType}
           handleChange={handleCohortTypeChange}
           options={selectOptions}
+         
         />
         <DatePickerContainer />
 
