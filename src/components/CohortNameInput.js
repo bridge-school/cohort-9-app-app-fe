@@ -3,10 +3,10 @@ import React from "react";
 import {
   InputField,
   InputLabel
-} from "./TextInputStyled";
+} from "./CohortNameInputStyled";
 
 
-const TextInput = (props) => {
+const CohortNameInput = (props) => {
   return (
     <div>
       <InputLabel>
@@ -22,4 +22,4 @@ const TextInput = (props) => {
   );
 }
 
-export default TextInput;
+export default CohortNameInput;

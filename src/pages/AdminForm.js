@@ -13,7 +13,7 @@ import {
 } from "../redux/actions/adminFormActions";
 import { resetDates } from "../redux/actions/dateActions";
 
-import TextInput from "../components/TextInput";
+import CohortNameInput from "../components/CohortNameInput";
 import Select from "../components/Select";
 import SubmitButton from "../components/SubmitButton";
 import DatePickerContainer from "../components/DatePickerContainer";
@@ -93,7 +93,7 @@ const AdminForm = props => {
     <ApplicationContainer>
       <Header as='h1'>{pageTitle}</Header>
       <form onSubmit={handleSubmit}>
-        <TextInput
+        <CohortNameInput
           value={props.cohortName}
           handleChange={handleCohortNameChange}
         />

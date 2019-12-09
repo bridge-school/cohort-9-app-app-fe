@@ -1,12 +1,12 @@
 import React from "react";
 import ShallowRenderer from "react-test-renderer/shallow";
-import TextInput from "../../components/TextInput";
+import CohortNameInput from "../../components/CohortNameInput";
 
-describe("TextInput", () => {
+describe("CohortNameInput", () => {
   test("Should render properly", () => {
     const renderer = new ShallowRenderer();
     const element = renderer.render(
-      <TextInput />
+      <CohortNameInput />
     );
     expect(element).toMatchSnapshot();
   });
