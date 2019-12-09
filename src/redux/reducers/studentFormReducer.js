@@ -4,7 +4,12 @@ export const initialState = {
   exampleFieldOne: "",
   exampleFieldTwo: "",
   formPostSuccess: false,
-  formPostError: null
+  formPostError: null,
+  studentFormGetSuccess: false,
+  studentFormGetError: null,
+  questionsReceived: [],
+  questionsValues: [],
+  questionsErrors: [],
 };
 
 const studentFormReducer = (state = initialState, action = {}) => {
@@ -19,6 +24,22 @@ const studentFormReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         formPostError: action.payload
+      };
+    case ACTION_TYPES.STUDENT_FORM_GET_SUCCESS:
+      return {
+        ...state,
+        studentFormGetSuccess: true,
+        questionsReceived: action.payload,
+        // set initial values of inputs to empty strings
+        questionsValues: action.payload.map(q => ""),
+        // set initial values of validation errors for inputs
+        // to empty strings (which means: no error)
+        questionsErrors: action.payload.map(q => "")
+      };
+    case ACTION_TYPES.STUDENT_FORM_GET_ERROR:
+      return {
+        ...state,
+        studentFormGetError: action.payload
       };
     default:
       return state;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Checkbox, Form, Input} from "semantic-ui-react";
 
 import SubmitButton from "./SubmitButton";
@@ -39,27 +39,78 @@ const StudentForm = (props) => {
     }
   ];
 
+  // as we dont know the exact number of questions,
+  // we start with an empty array
+  const [errors, setErrors] = useState([]);
+
+  useEffect(() => {
+    // make request to get question data for this form
+
+    // temp. hardcoded values:
+    const errs = placeholderQuestionData.map(question => "");
+    setErrors(errs);
+  }, []);
+
+  // handle submit - has access to all values of inputs
+  const submitStudentData = (e) => {
+    e.preventDefault();
+    console.log(e);
+
+    // check if validation is ok
+    // let errs = [];
+    // for each question (index)
+    //  if everything good - errrs[index] = ""
+
+    //  else errs[index] = "Can't be empty"
+    // if (value of second question is empty but it required) {
+
+    // }
+
+
+    // if not, setErrors for specific questions - this modifies state
+
+    
+  }
+
+  const getQuestionDataSuccess = true;
+
+  // error check is temporary
+  if (!getQuestionDataSuccess || errors.length === 0) {
+    return null;
+  }
 
   return (
-    <Form>
+    <Form onSubmit={submitStudentData}>
       <Form.Group widths="equal">
         <Form.Field
+          required
           control={Input}
           label="Full name"
           placeholder="Full name"
         />
       </Form.Group>
       <Form.Group widths="equal">
-        <Form.Input label="Email" placeholder="Email" />
+        <Form.Input 
+          label="Email" 
+          placeholder="Email" 
+          type="email"
+          required
+        />
       </Form.Group>
-      {/* <Form.Group> */}
-        {/* <p>Qusestions below</p> */}
-        {placeholderQuestionData.map(question => {
-          return (
-            <StudentQuestion key={question.timestampForKey} questionData={question} />
-          );
-        })}
-      {/* </Form.Group> */}
+
+      {placeholderQuestionData.map((question, index) => {
+        // we add index information to the question object
+        // so that we can use it inside each StudentQuestion
+        question.index = index;
+        
+        return (
+          <StudentQuestion 
+            key={question.timestampForKey} 
+            questionData={question}
+            errorInfo={errors[index]}
+          />
+        );
+      })}
 
       <SubmitButton>Apply for Bridge</SubmitButton>
     </Form>
