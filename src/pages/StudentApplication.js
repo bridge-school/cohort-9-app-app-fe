@@ -2,21 +2,22 @@ import React, {useEffect, useState} from "react";
 import { connect } from "react-redux";
 import {Header, Message} from 'semantic-ui-react'
 import { useParams } from "react-router-dom";
-import { filterFormData } from "../helperFunctions/helpers.js"
+import { fetchAppById } from "../redux/actions/cohortAppActions";
 import { postStudentFormDetails} from "../redux/actions/studentFormActions";
 import { Redirect } from "react-router-dom";
 import SubmitButton from "../components/SubmitButton";
 
-const StudentApplication = ({apps, postStudentFormDetails, formPostSuccess, formPostError}) => {
-  const cohortId = useParams().id
-  const filteredData = filterFormData(apps, cohortId);
-  console.log(filteredData)
+const StudentApplication = ({app, getApplicationById, postStudentFormDetails, formPostSuccess, formPostError}) => {
   const pageTitle="Apply For Bridge"
+  const cohortId = useParams().id
+  const cohortData = app;
+  console.log(cohortData)
   const [submitted, setSubmitted] = useState(null)
 
   useEffect(() => {
     document.title = pageTitle
-  }, [formPostError, formPostSuccess]);
+    getApplicationById(cohortId)
+  }, [formPostError, formPostSuccess, getApplicationById, cohortId]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,7 +33,6 @@ const StudentApplication = ({apps, postStudentFormDetails, formPostSuccess, form
   if (submitted && formPostSuccess === true) {
     return <Redirect to={`/student/confirmation/${cohortId}`} />;
   } 
-  
   return (
     <div>
       <Header as='h1'>{pageTitle}</Header>
@@ -40,7 +40,7 @@ const StudentApplication = ({apps, postStudentFormDetails, formPostSuccess, form
         <p>Student form fields will go here...</p>
         <SubmitButton>Apply for Bridge</SubmitButton>
       </form>
-      {submitted === true && formPostError !== null? 
+      {submitted === true && formPostError === true? 
         <Message error>
           <i className="close icon"></i>
           <Header as="h3">
@@ -52,13 +52,14 @@ const StudentApplication = ({apps, postStudentFormDetails, formPostSuccess, form
   );
 };
 
-const mapDispatchToProps = {
-  postStudentFormDetails,
-};
+const mapDispatchToProps = dispatch => ({
+  postStudentFormDetails: () => dispatch(postStudentFormDetails()),
+  getApplicationById: (id) => dispatch(fetchAppById(id))
+});
 
 const mapStateToProps = state => {
   return {
-    apps: state.apps.apps.cohort_apps,
+    app: state.app.cohort.cohort,
     formPostSuccess: state.studentForm.formPostSuccess,
     formPostError: state.studentForm.formPostError
   }
