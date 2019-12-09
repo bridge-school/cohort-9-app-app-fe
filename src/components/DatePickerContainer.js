@@ -27,6 +27,7 @@ const DatePickerContainer = ({
           //minimum date should be today date so user cannot select any day from previous
           minDate={new Date()}
           placeholderText="Click to select a date"
+          required={true}
         />
       </DatePickerLabelStyled>
       <DatePickerLabelStyled>
@@ -37,6 +38,7 @@ const DatePickerContainer = ({
           //Minimum date should be one day after close date at least
           minDate={addDays(dateOpen, 1)}
           placeholderText="Click to select a date"
+          required={true}
         />
       </DatePickerLabelStyled>
       <DatePickerLabelStyled>
@@ -47,6 +49,7 @@ const DatePickerContainer = ({
           //Minimum date should be one day after date of response at least
           minDate={addDays(dateClose, 1)}
           placeholderText="Click to select a date"
+          required={true}
         />
       </DatePickerLabelStyled>
     </DatePickerContainerStyled>
