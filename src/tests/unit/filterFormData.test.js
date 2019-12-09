@@ -1,4 +1,4 @@
-import { filterFormData } from "../helperFunctions/helpers.js"
+import { filterFormData } from "../../helperFunctions/helpers.js"
 
 const cohortIdNotInArray = "Adsefg900"
 const cohortId = 'AKd12ds3'
