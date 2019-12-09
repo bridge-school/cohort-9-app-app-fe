@@ -6,6 +6,7 @@ exports[`CohortNameInput Should render properly 1`] = `
     Cohort Name:
     <ForwardRef(styled.input)
       maxLength="64"
+      required={true}
       type="text"
     />
   </ForwardRef(styled.label)>
