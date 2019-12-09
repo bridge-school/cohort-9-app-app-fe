@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header Should render properly 1`] = `
+<nav
+  className="sc-bdVaJa gbvVgg"
+>
+  <div
+    className="ui two column grid"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="column"
+      />
+      <div
+        className="right aligned column"
+      >
+        <div
+          className="sc-bwzfXH ixKSS"
+        >
+          Admin view
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+`;
+
+exports[`Header Should render properly as an admin 1`] = `
+<nav
+  className="sc-bdVaJa gbvVgg"
+>
+  <div
+    className="ui two column grid"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="column"
+      />
+      <div
+        className="right aligned column"
+      >
+        <div
+          className="sc-bwzfXH ixKSS"
+        >
+          Admin view
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+`;
