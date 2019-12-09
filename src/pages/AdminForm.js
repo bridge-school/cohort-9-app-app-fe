@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Header, Message } from "semantic-ui-react";
 import { ApplicationContainer } from "./AdminFormStyled";
+import { fetchAllApps } from "../redux/actions/allCohortAppsActions";
 
 import {
   setCohortName,
@@ -25,6 +26,7 @@ const AdminForm = props => {
   useEffect(() => {
     props.setResetApp();
     props.resetDates();
+    props.getAllApps();
     document.title = pageTitle;
   }, []);
 
@@ -37,6 +39,7 @@ const AdminForm = props => {
    */
   const isCohortDuplicate = () => {
     const { cohortName, cohortType, existingCohorts } = props;
+
     return existingCohorts
       .filter(cohort => cohort.cohortType === cohortType)
       .filter(
@@ -51,7 +54,8 @@ const AdminForm = props => {
       cohortType,
       dateOpen,
       dateClose,
-      dateOfResponse
+      dateOfResponse,
+      existingCohorts
     } = props;
 
     const isCohortDuplicateValue = isCohortDuplicate();
@@ -140,7 +144,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(postFormDetailsThunk(cohortData)),
   setResetApp: () => dispatch(setResetApp()),
   resetIsSubmitted: () => dispatch(resetIsSubmitted()),
-  resetDates: () => dispatch(resetDates())
+  resetDates: () => dispatch(resetDates()),
+  getAllApps: () => dispatch(fetchAllApps())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminForm);
