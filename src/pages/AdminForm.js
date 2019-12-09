@@ -23,6 +23,7 @@ import Questions from "../components/Questions/Questions";
 const AdminForm = props => {
   const pageTitle = "Create Application Form";
   const [isDuplicate, setDuplicate] = useState(false);
+  const [visible, setVisible] = useState(true);
   useEffect(() => {
     props.setResetApp();
     props.resetDates();
@@ -32,6 +33,7 @@ const AdminForm = props => {
 
   const handleCohortNameChange = e => {
     props.setCohortName(e.target.value);
+    setDuplicate(false);
   };
   /**
    * Check if the cohort name and type already exists in databases
@@ -79,6 +81,7 @@ const AdminForm = props => {
 
   const handleCohortTypeChange = e => {
     props.setCohortType(e.target.value);
+    setDuplicate(false);
   };
 
   const selectOptions = [
