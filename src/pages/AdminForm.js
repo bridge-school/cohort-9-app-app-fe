@@ -19,11 +19,12 @@ import Select from "../components/Select";
 import SubmitButton from "../components/SubmitButton";
 import DatePickerContainer from "../components/DatePickerContainer";
 import Questions from "../components/Questions/Questions";
+import { filterDuplicateCohorts } from "../helperFunctions/helpers.js";
 
 const AdminForm = props => {
   const pageTitle = "Create Application Form";
   const [isDuplicate, setDuplicate] = useState(false);
-  const [visible, setVisible] = useState(true);
+
   useEffect(() => {
     props.setResetApp();
     props.resetDates();
@@ -34,19 +35,6 @@ const AdminForm = props => {
   const handleCohortNameChange = e => {
     props.setCohortName(e.target.value);
     setDuplicate(false);
-  };
-  /**
-   * Check if the cohort name and type already exists in databases
-   * If that already exists then the returned length will be greater than 0
-   */
-  const isCohortDuplicate = () => {
-    const { cohortName, cohortType, existingCohorts } = props;
-
-    return existingCohorts
-      .filter(cohort => cohort.cohortType === cohortType)
-      .filter(
-        cohort => cohort.cohortName.toLowerCase() === cohortName.toLowerCase()
-      ).length;
   };
 
   const handleSubmit = e => {
@@ -60,7 +48,16 @@ const AdminForm = props => {
       existingCohorts
     } = props;
 
-    const isCohortDuplicateValue = isCohortDuplicate();
+    /**
+     * Check if the cohort name and type already exists in databases
+     * If that already exists then the returned length will be greater than 0
+     */
+    const isCohortDuplicateValue = filterDuplicateCohorts(
+      cohortName,
+      cohortType,
+      existingCohorts
+    );
+
     //if that recotrd doesnt exist in database then add it to database
     if (isCohortDuplicateValue === 0) {
       const cohortData = {
