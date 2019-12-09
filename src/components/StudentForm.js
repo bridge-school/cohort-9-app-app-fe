@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Checkbox, Form, Input} from "semantic-ui-react";
+import { connect } from "react-redux";
+import { 
+  getStudentFormQuestions
+} from "../redux/actions/studentFormActions";
 
+import { Button, Checkbox, Form, Input} from "semantic-ui-react";
 import SubmitButton from "./SubmitButton";
 import StudentQuestion from "./StudentQuestion";
 
@@ -8,53 +12,22 @@ import StudentQuestion from "./StudentQuestion";
 // and get the assosiated id for displaying below
 const StudentForm = (props) => {
 
-  const placeholderQuestionData = [
-    {
-      prompt: "Checkboxes Question......?",
-      type: "checkboxes",
-      isRequired: true,
-      options: ["option one", "option two", "option three", "option four"],
-      timestampForKey: 1575348543996
-    },
-    {
-      prompt: "Dropdown Question...........?",
-      type: "dropdown",
-      isRequired: false,
-      options: ["one", "two", "three", "four"],
-      timestampForKey: 1575348548884
-    },
-    {
-      prompt: "Paragraph Question...........?",
-      type: "paragraph",
-      isRequired: true,
-      options: [],
-      timestampForKey: 1575348559154
-    },
-    {
-      prompt: "Short-Answer Question...........?",
-      type: "short-answer",
-      isRequired: false,
-      options: [],
-      timestampForKey: 1575348548888
-    }
-  ];
+  
 
   // as we dont know the exact number of questions,
   // we start with an empty array
-  const [errors, setErrors] = useState([]);
+  // const [errors, setErrors] = useState([]);
 
   useEffect(() => {
     // make request to get question data for this form
-
-    // temp. hardcoded values:
-    const errs = placeholderQuestionData.map(question => "");
-    setErrors(errs);
+    props.getStudentFormQuestions();
+    // setErrors(errs);
   }, []);
 
   // handle submit - has access to all values of inputs
   const submitStudentData = (e) => {
     e.preventDefault();
-    console.log(e);
+    // console.log(e);
 
     // check if validation is ok
     // let errs = [];
@@ -74,9 +47,8 @@ const StudentForm = (props) => {
 
   const getQuestionDataSuccess = true;
 
-  // error check is temporary
-  if (!getQuestionDataSuccess || errors.length === 0) {
-    return null;
+  if (!props.studentFormGetSuccess) {
+    return <h2>Loading...</h2>;
   }
 
   return (
@@ -90,24 +62,19 @@ const StudentForm = (props) => {
         />
       </Form.Group>
       <Form.Group widths="equal">
-        <Form.Input 
-          label="Email" 
-          placeholder="Email" 
-          type="email"
-          required
-        />
+        <Form.Input label="Email" placeholder="Email" type="email" required />
       </Form.Group>
 
-      {placeholderQuestionData.map((question, index) => {
+      {props.questionsReceived.map((question, index) => {
         // we add index information to the question object
         // so that we can use it inside each StudentQuestion
         question.index = index;
-        
+
         return (
-          <StudentQuestion 
-            key={question.timestampForKey} 
+          <StudentQuestion
+            key={question.timestampForKey}
             questionData={question}
-            errorInfo={errors[index]}
+            // errorInfo={errors[index]}
           />
         );
       })}
@@ -117,4 +84,18 @@ const StudentForm = (props) => {
   );
 }
 
-export default StudentForm;
+const mapStateToProps = state => {
+  return {
+    studentFormGetSuccess: state.studentForm.studentFormGetSuccess,
+    studentFormGetError: state.studentForm.studentFormGetError,
+    questionsReceived: state.studentForm.questionsReceived,
+    questionsValues: state.studentForm.questionsValues,
+    questionsErrors: state.studentForm.questionsErrors
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  getStudentFormQuestions: formID => dispatch(getStudentFormQuestions(formID))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(StudentForm);

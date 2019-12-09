@@ -56,6 +56,8 @@ export const getStudentFormError = error => {
 
 //creating Thunk to get the questions for the student form from firebase
 export const getStudentFormQuestions = formID => async dispatch => {
+  // TODO: uncomment when backend endpoint is connected
+  /*
   const res = await fetch(`/applications/students/${formID}`, {
     method: "get",
     headers: {
@@ -68,4 +70,41 @@ export const getStudentFormQuestions = formID => async dispatch => {
   } else {
     dispatch(getStudentFormError(res.error));
   }
+  */
+
+  // hardcoded temporarily:
+  const placeholderQuestionData = [
+    {
+      prompt: "Checkboxes Question......?",
+      type: "checkboxes",
+      isRequired: true,
+      options: ["option one", "option two", "option three", "option four"],
+      timestampForKey: 1575348543996
+    },
+    {
+      prompt: "Dropdown Question...........?",
+      type: "dropdown",
+      isRequired: false,
+      options: ["one", "two", "three", "four"],
+      timestampForKey: 1575348548884
+    },
+    {
+      prompt: "Paragraph Question...........?",
+      type: "paragraph",
+      isRequired: true,
+      options: [],
+      timestampForKey: 1575348559154
+    },
+    {
+      prompt: "Short-Answer Question...........?",
+      type: "short-answer",
+      isRequired: false,
+      options: [],
+      timestampForKey: 1575348548888
+    }
+  ];
+
+  setTimeout(() => {
+    dispatch(getStudentFormSuccess(placeholderQuestionData));
+  }, 500);
 };
