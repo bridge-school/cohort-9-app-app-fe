@@ -12,6 +12,12 @@ const StudentQuestion = (props) => {
   const { type, isRequired, options, index } = props.questionData;
 
   const value = props.values[index];
+  const error = props.errors[index];
+
+  console.log('ERROR');
+  console.log(error);
+  console.log('value outside');
+  console.log(value);
 
   let { prompt } = props.questionData;
   if (isRequired) {
@@ -30,28 +36,30 @@ const StudentQuestion = (props) => {
     switch (type) {
       case "short-answer":
         return <TypeShortAnswer 
-          value={value} 
+          val={value}
           onChange={handleOnChange}
+          error={error}
         />;
       case "paragraph":
         return <TypeParagraph 
-          value={value} 
+          val={value} 
           onChange={handleOnChange}
+          error={error}
         />;
       case "dropdown":
         return <TypeDropdown 
           options={options} 
-          value={value} 
+          val={value} 
           onChange={handleOnChange}
+          error={error}
         />;
       case "checkboxes":
-        return (
-          <TypeCheckbox
+        return <TypeCheckbox
             options={options}
-            value={value}
+            val={value}
             onChange={handleOnCheckboxChange}
-          />
-        );
+            error={error}
+          />;
       default:
         console.error(`Unrecognized question type: ${type}`);
         return null;
@@ -69,6 +77,7 @@ const StudentQuestion = (props) => {
 const mapStateToProps = state => {
   return {
     values: state.studentForm.questionsValues,
+    errors: state.studentForm.questionsErrors
   };
 };
 

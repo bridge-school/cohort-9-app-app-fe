@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from "react-redux";
-import { 
-  getStudentFormQuestions
+import {
+  getStudentFormQuestions,
+  setQuestionError
 } from "../redux/actions/studentFormActions";
 
 import { Button, Checkbox, Form, Input} from "semantic-ui-react";
@@ -19,13 +20,28 @@ const StudentForm = (props) => {
   // handle submit - has access to all values of inputs
   const submitStudentData = (e) => {
     e.preventDefault();
+    const data = props.questionsReceived;
+    const values = props.questionsErrors;
+    let anyError = false;
+
+    data.forEach((q, index) => {
+      const val = values[index];
+      if (val === "" && q.isRequired) {
+        props.setQuestionError(index, "This is a required field");
+        anyError = true;
+      }
+    })
+    // if there are any errors return early
+    if (anyError) {
+      return;
+    }
+    // submitData
+
   }
 
   if (!props.studentFormGetSuccess) {
     return <h2>Loading...</h2>;
   }
-  console.log('PIPAAAAAA')
-  console.log(props.questionsValues)
 
   const values = props.questionsValues;
 
@@ -67,12 +83,13 @@ const mapStateToProps = state => {
     studentFormGetError: state.studentForm.studentFormGetError,
     questionsReceived: state.studentForm.questionsReceived,
     questionsValues: state.studentForm.questionsValues,
-    questionsErrors: state.studentForm.questionsErrors
+    questionsErrors: state.studentForm.questionsErrors,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  getStudentFormQuestions: formID => dispatch(getStudentFormQuestions(formID))
+  getStudentFormQuestions: formID => dispatch(getStudentFormQuestions(formID)),
+  setQuestionError: (index, error) => dispatch(setQuestionError(index, error))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(StudentForm);

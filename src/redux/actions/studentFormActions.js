@@ -3,15 +3,27 @@ export const ACTION_TYPES = {
   STUDENT_FORM_POST_ERROR: "STUDENT_FORM_POST_ERROR",
   STUDENT_FORM_GET_SUCCESS: "STUDENT_FORM_GET_SUCCESS",
   STUDENT_FORM_GET_ERROR: "STUDENT_FORM_GET_ERROR",
-  SET_QUESTION_VALUE: "SET_QUESTION_VALUE"
+  SET_QUESTION_VALUE: "SET_QUESTION_VALUE",
+  SET_QUESTION_ERROR: "SET_QUESTION_ERROR",
 };
 
-// Action creator for successful student application submission
+// Action creator for setting input value in student application submission
 export const setQuestionValue = (index, value) => {
   return {
     type: ACTION_TYPES.SET_QUESTION_VALUE,
     payload: {
       value,
+      index
+    }
+  };
+};
+
+// Action creator for validation errors
+export const setQuestionError = (index, error) => {
+  return {
+    type: ACTION_TYPES.SET_QUESTION_ERROR,
+    payload: {
+      error,
       index
     }
   };
@@ -96,7 +108,7 @@ export const getStudentFormQuestions = formID => async dispatch => {
     {
       prompt: "Dropdown Question...........?",
       type: "dropdown",
-      isRequired: false,
+      isRequired: true,
       options: ["one", "two", "three", "four"],
       timestampForKey: 1575348548884
     },
@@ -110,7 +122,7 @@ export const getStudentFormQuestions = formID => async dispatch => {
     {
       prompt: "Short-Answer Question...........?",
       type: "short-answer",
-      isRequired: false,
+      isRequired: true,
       options: [],
       timestampForKey: 1575348548888
     }

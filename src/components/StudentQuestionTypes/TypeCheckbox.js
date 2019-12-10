@@ -10,35 +10,42 @@ import {
 } from "semantic-ui-react";
 import styled from "styled-components";
 
-const TypeCheckbox = ({ value, options, onChange }) => {
+const TypeCheckbox = ({ val, options, onChange, error }) => {
   return (
-    <Form.Group widths="equal">
-      <OptionsContainer>
-        {options.map((option, index) => {
+    <>
+      {error !== "" && <ErrorMessage>{error}</ErrorMessage>}
+      <Form.Group widths="equal">
+        <OptionsContainer>
+          {options.map((option, index) => {
+            const handleOnClick = e => {
+              e.preventDefault();
+              onChange(option);
+            };
 
-          const handleOnClick = (e) => {
-            e.preventDefault();
-            onChange(option)
-          }
-
-          return (
-            <OptionButton 
-              key={index} 
-              onClick={handleOnClick}
-              isSelected={value === option}
-            >
-            {option}
-            </OptionButton>
-          );
-        })}
-      </OptionsContainer>
-    </Form.Group>
+            return (
+              <OptionButton
+                key={index}
+                onClick={handleOnClick}
+                isSelected={val === option}
+              >
+                {option}
+              </OptionButton>
+            );
+          })}
+        </OptionsContainer>
+      </Form.Group>
+    </>
   );
 };
 
 const OptionsContainer = styled.div`
   display: flex;
   justify-content: space-between;
+`;
+
+const ErrorMessage = styled.p`
+  color: red;
+  margin-bottom: 10px;
 `;
 
 const OptionButton = styled.button`

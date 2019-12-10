@@ -49,6 +49,14 @@ const studentFormReducer = (state = initialState, action = {}) => {
         ...state,
         questionsValues
       };
+    case ACTION_TYPES.SET_QUESTION_ERROR:
+      let questionsErrors = [...state.questionsErrors];
+      questionsErrors[action.payload.index] = action.payload.error;
+
+      return {
+        ...state,
+        questionsErrors
+      };
     default:
       return state;
   }
