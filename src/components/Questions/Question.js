@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Checkbox, Grid } from 'semantic-ui-react'
+import { Form, Checkbox } from 'semantic-ui-react'
 import "./Quetions.css";
 
 const Question = ({
@@ -21,7 +21,7 @@ const Question = ({
   ]
 
   return (
-    <Form>
+    <>
       <Form.Group>
         <Form.Input
           id={`q${index}__name`}
@@ -78,7 +78,7 @@ const Question = ({
           />
         </Form.Group>
       }
-    </Form>
+    </>
   );
 };
 

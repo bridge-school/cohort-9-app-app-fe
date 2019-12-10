@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { Header, Message } from "semantic-ui-react";
+import { Header, Message, Form } from "semantic-ui-react";
 import { ApplicationContainer } from "./AdminFormStyled";
 import { fetchAllApps } from "../redux/actions/allCohortAppsActions";
 
@@ -96,7 +96,7 @@ const AdminForm = props => {
   return (
     <ApplicationContainer>
       <Header as="h1">{pageTitle}</Header>
-      <form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <CohortNameInput
           value={props.cohortName}
           handleChange={handleCohortNameChange}
@@ -112,7 +112,7 @@ const AdminForm = props => {
         <Questions />
 
         <SubmitButton>Create Application Group</SubmitButton>
-      </form>
+      </Form>
 
       {isDuplicate && (
         <Message color="red">
