@@ -6,11 +6,8 @@ const SelectInput = ({ value, handleChange, options }) => {
     <div>
       <SelectLabel>
         Cohort Type:
-        <SelectDropdown value={value} onChange={handleChange}>
-         <option value>
-            {""}
-            -- select an option --{" "}
-          </option>
+        <SelectDropdown value={value} onChange={handleChange} required>
+          <option value="">-- select an option --</option>
 
           {options.map(option => {
             return (
