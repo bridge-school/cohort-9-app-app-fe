@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../Header/Header';
-import {Wrapper} from './CommonLayoutStyled'
+import {Wrapper} from './CommonLayoutStyled';
+
 const CommonLayout = ({children, isAdmin}) => {
   return (
     <div>

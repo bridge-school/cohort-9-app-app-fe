@@ -9,8 +9,7 @@ const StudentsAppsList = ({ apps }) => {
     return apps.filter(app => {
       const dateClose = moment(app.dateClose, "YYYY-MM-DDTHH:mm:ss.SSSZ");
       const now = moment();
-      console.log("now is " + now);
-      console.log("dateLimit is " + dateClose);
+      
       return dateClose.isValid() && now.isBefore(dateClose);
     });
   };
