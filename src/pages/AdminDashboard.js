@@ -25,7 +25,7 @@ const AdminDashboard = ({ isLoading, apps, getAllApps }) => {
           </Grid.Column>
         </Grid.Row>
       </Grid>
-      {apps.apps.cohort_apps && <AppsList apps={apps.apps.cohort_apps} />}
+      {apps.apps.cohort_apps && <AppsList isAdmin={true} apps={apps.apps.cohort_apps} />}
     </>
   );
 };

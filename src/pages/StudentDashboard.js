@@ -16,7 +16,7 @@ const StudentDashboard = ({ isLoading, apps, getAllOpenApps }) => {
   return (
     <>
       <Header as="h1">{pageTitle}</Header>
-      {apps.apps.cohort_apps && <AppsList apps={apps.apps.cohort_apps} />}
+      {apps.apps.cohort_apps && <AppsList isAdmin={false} apps={apps.apps.cohort_apps} />}
     </>
   );
 };
