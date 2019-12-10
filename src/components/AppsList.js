@@ -16,6 +16,7 @@ return (
                 cohortName={cohortName}
                 cohortType={cohortType}
                 link={`/student/application/${id}`}
+                // link={link}
               />
             );
         })}  
