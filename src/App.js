@@ -30,7 +30,7 @@ function App() {
           </CommonLayout>
         </Route>
         <Route exact path="/admin/cohorts/application">
-          <CommonLayout>
+          <CommonLayout isAdmin>
             <AdminForm />
           </CommonLayout>
         </Route>
