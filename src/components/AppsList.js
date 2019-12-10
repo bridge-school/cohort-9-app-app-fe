@@ -5,7 +5,7 @@ import {AppListStyled} from "./AppListStyled"
 import { Button, Grid, Table } from 'semantic-ui-react'
 
 const AppsList = ({ apps, isAdmin }) => { 
-return (
+  return (
     <AppListStyled>
         {apps.map(li => {
             const {id, cohortName, cohortType} = li;
@@ -19,7 +19,7 @@ return (
             );
         })}  
     </AppListStyled>
-)
+  )
 }
 
 export default AppsList;
