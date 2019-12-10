@@ -25,6 +25,7 @@ const Question = ({
               const value = e.target.value;
               onPromptChange(index, value);
             }}
+            required
           />
         </label>
       </div>
@@ -38,6 +39,7 @@ const Question = ({
               onTypeChange(index, value);
             }}
             value={question.type}
+            required
           >
             <option value="short-answer">Short Answer</option>
             <option value="paragraph">Paragraph</option>
@@ -58,6 +60,7 @@ const Question = ({
                 const value = e.target.value;
                 onOptionsChange(index, value);
               }}
+              required
             />
           </label>
         </div>
