@@ -26,7 +26,6 @@ const Dashboard =({apps, getAllApps,getAllOpenApps, isAdmin})=> {
               </Grid.Column>
             </Grid.Row>
           </Grid>
-          {console.log(isAdmin)}
           {apps.apps.cohort_apps ? <AppsList isAdmin={isAdmin} apps={apps.apps.cohort_apps} /> : <h3>Loading...</h3>}
         </>
       );
