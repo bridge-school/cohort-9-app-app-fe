@@ -1,5 +1,6 @@
 import React from "react";
-import { Form, Checkbox } from 'semantic-ui-react'
+import { Form, Checkbox, Grid } from 'semantic-ui-react'
+import "./Quetions.css";
 
 const Question = ({
   question,
@@ -44,6 +45,7 @@ const Question = ({
         />
         <Form.Field
           id={`q${index}__req`}
+          className="Question-checkbox"
           control={Checkbox}
           label={{ children: `Is Required`, htmlFor: `q${index}__req` }}
           onChange={(e, {checked: value}) => {
@@ -53,6 +55,7 @@ const Question = ({
           width={2}
         />
         <Form.Button
+          className="Question-deleteBtn"
           content="X"
           type="button"
           onClick={() => {
