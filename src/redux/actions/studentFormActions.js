@@ -3,8 +3,27 @@ export const ACTION_TYPES = {
   STUDENT_FORM_POST_ERROR: "STUDENT_FORM_POST_ERROR",
   STUDENT_FORM_GET_SUCCESS: "STUDENT_FORM_GET_SUCCESS",
   STUDENT_FORM_GET_ERROR: "STUDENT_FORM_GET_ERROR",
+  SET_STUDENT_NAME: "SET_STUDENT_NAME",
+  SET_STUDENT_EMAIL: "SET_STUDENT_EMAIL",
   SET_QUESTION_VALUE: "SET_QUESTION_VALUE",
   SET_QUESTION_ERROR: "SET_QUESTION_ERROR",
+  RESET_QUESTION_ERROR: "RESET_QUESTION_ERROR",
+};
+
+// Action creator for setting student name
+export const setStudentName = (name) => {
+  return {
+    type: ACTION_TYPES.SET_STUDENT_NAME,
+    payload: name
+  };
+};
+
+// Action creator for setting student email
+export const setStudentEmail = (email) => {
+  return {
+    type: ACTION_TYPES.SET_STUDENT_EMAIL,
+    payload: email
+  };
 };
 
 // Action creator for setting input value in student application submission
@@ -26,6 +45,15 @@ export const setQuestionError = (index, error) => {
       error,
       index
     }
+  };
+};
+
+// Action creator for re-seting errors, once student 
+// starts typing in the required field
+export const resetQuestionError = index => {
+  return {
+    type: ACTION_TYPES.RESET_QUESTION_ERROR,
+    payload: index
   };
 };
 
@@ -80,55 +108,18 @@ export const getStudentFormError = error => {
 
 //creating Thunk to get the questions for the student form from firebase
 export const getStudentFormQuestions = formID => async dispatch => {
-  // TODO: uncomment when backend endpoint is connected
-  /*
-  const res = await fetch(`/applications/students/${formID}`, {
+  const res = await fetch(`/applications/${formID}`, {
     method: "get",
     headers: {
       "Content-Type": "application/json"
     }
   });
-  console.log(res);
+  const data = await res.json();
+  const formData = data.cohort[0];
+
   if (res.status === 200) {
-    dispatch(getStudentFormSuccess(res.data));
+    dispatch(getStudentFormSuccess(formData));
   } else {
-    dispatch(getStudentFormError(res.error));
+    dispatch(getStudentFormError("Unable to get application form by ID"));
   }
-  */
-
-  // hardcoded temporarily:
-  const placeholderQuestionData = [
-    {
-      prompt: "Checkboxes Question......?",
-      type: "checkboxes",
-      isRequired: true,
-      options: ["option one", "option two", "option three", "option four"],
-      timestampForKey: 1575348543996
-    },
-    {
-      prompt: "Dropdown Question...........?",
-      type: "dropdown",
-      isRequired: true,
-      options: ["one", "two", "three", "four"],
-      timestampForKey: 1575348548884
-    },
-    {
-      prompt: "Paragraph Question...........?",
-      type: "paragraph",
-      isRequired: true,
-      options: [],
-      timestampForKey: 1575348559154
-    },
-    {
-      prompt: "Short-Answer Question...........?",
-      type: "short-answer",
-      isRequired: true,
-      options: [],
-      timestampForKey: 1575348548888
-    }
-  ];
-
-  setTimeout(() => {
-    dispatch(getStudentFormSuccess(placeholderQuestionData));
-  }, 500);
 };

@@ -6,18 +6,13 @@ import TypeShortAnswer from './StudentQuestionTypes/TypeShortAnswer';
 import TypeDropdown from './StudentQuestionTypes/TypeDropdown';
 import TypeCheckbox from './StudentQuestionTypes/TypeCheckbox';
 
-import {setQuestionValue} from '../redux/actions/studentFormActions';
+import { setQuestionValue, resetQuestionError } from '../redux/actions/studentFormActions';
 
 const StudentQuestion = (props) => {
   const { type, isRequired, options, index } = props.questionData;
 
   const value = props.values[index];
   const error = props.errors[index];
-
-  console.log('ERROR');
-  console.log(error);
-  console.log('value outside');
-  console.log(value);
 
   let { prompt } = props.questionData;
   if (isRequired) {
@@ -26,10 +21,12 @@ const StudentQuestion = (props) => {
 
   const handleOnChange = (e) => {
     props.setQuestionValue(index, e.target.value);
+    props.resetQuestionError(index);
   }
 
   const handleOnCheckboxChange = (val) => {
     props.setQuestionValue(index, val);
+    props.resetQuestionError(index);
   }
 
   const renderQuestionByType = () => {
@@ -82,7 +79,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  setQuestionValue: (index, value) => dispatch(setQuestionValue(index, value))
+  setQuestionValue: (index, value) => dispatch(setQuestionValue(index, value)),
+  resetQuestionError: index => dispatch(resetQuestionError(index))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(StudentQuestion);

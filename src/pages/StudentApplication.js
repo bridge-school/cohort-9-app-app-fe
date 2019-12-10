@@ -4,57 +4,29 @@ import {Header} from 'semantic-ui-react'
 import { useHistory, useParams } from "react-router-dom";
 
 import StudentForm from '../components/StudentForm';
-import { postStudentFormDetails } from "../redux/actions/studentFormActions";
-import SubmitButton from "../components/SubmitButton";
-
 
 export const filterFormData = (arr, id) => arr.filter(obj => obj.id === id);
 
 const StudentApplication = ({apps, postStudentFormDetails }) => {
-  const cohortId = useParams().id
-  const filteredData = filterFormData(apps, cohortId)
-  console.log(filteredData)
+  const cohortId = useParams().id;
+  const filteredData = filterFormData(apps, cohortId);
   const history = useHistory();
-  const pageTitle="Apply For Bridge"
+  const pageTitle="Apply For Bridge";
+
   useEffect(() => {
     document.title = pageTitle
   }, []);
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // this is placeholder data, later need to make sure
-    // that all form input values get submitted
-    const exampleFormData = {
-      firstName: "Bob",
-      lastName: "Pipa"
-    };
-
-    postStudentFormDetails(exampleFormData)
-      .then(() => {
-        // on stccess of form submission re-direct 
-        // to confirmation page
-        history.push("/student/confirmation");
-      });
-
-  };
 
   return (
-    <div>
+    <>
       <Header as="h1">{pageTitle}</Header>
-      <StudentForm onSubmit={handleSubmit}>
-        <p>Student form fields will go here...</p>
-        <SubmitButton>Apply for Bridge</SubmitButton>
-      </StudentForm>
-    </div>
+      <StudentForm />
+    </>
   );
-};
-
-const mapDispatchToProps = {
-  postStudentFormDetails
 };
 
 const mapStateToProps = state => ({
   apps: state.apps.apps.cohort_apps
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(StudentApplication);
+export default connect(mapStateToProps)(StudentApplication);

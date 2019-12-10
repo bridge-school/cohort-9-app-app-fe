@@ -20,11 +20,14 @@ const StudentDashboard = ({ isLoading, apps, getAllOpenApps }) => {
     </>
   );
 };
+
 const mapStateToProps = state => ({
   isLoading: state.isLoading,
   apps: state.apps
 });
+
 const mapDispatchToProps = dispatch => ({
   getAllOpenApps: () => dispatch(fetchOpenApps())
 });
+
 export default connect(mapStateToProps, mapDispatchToProps)(StudentDashboard);

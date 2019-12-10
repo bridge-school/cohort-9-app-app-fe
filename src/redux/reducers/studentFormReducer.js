@@ -1,15 +1,16 @@
 import { ACTION_TYPES } from "../actions/studentFormActions";
 
 export const initialState = {
-  exampleFieldOne: "",
-  exampleFieldTwo: "",
   formPostSuccess: false,
   formPostError: null,
   studentFormGetSuccess: false,
   studentFormGetError: null,
+  studentFormReceived: null,
+  studentName: "",
+  studentEmail: "",
   questionsReceived: [],
   questionsValues: [],
-  questionsErrors: []
+  questionsErrors: [],
 };
 
 const studentFormReducer = (state = initialState, action = {}) => {
@@ -29,17 +30,28 @@ const studentFormReducer = (state = initialState, action = {}) => {
       return {
         ...state,
         studentFormGetSuccess: true,
-        questionsReceived: action.payload,
+        studentFormReceived: action.payload,
+        questionsReceived: action.payload.questions,
         // set initial values of inputs to empty strings
-        questionsValues: action.payload.map(q => ""),
+        questionsValues: action.payload.questions.map(q => ""),
         // set initial values of validation errors for inputs
         // to empty strings (which means: no error)
-        questionsErrors: action.payload.map(q => "")
+        questionsErrors: action.payload.questions.map(q => "")
       };
     case ACTION_TYPES.STUDENT_FORM_GET_ERROR:
       return {
         ...state,
         studentFormGetError: action.payload
+      };
+    case ACTION_TYPES.SET_STUDENT_NAME: 
+      return {
+        ...state,
+        studentName: action.payload
+      };
+    case ACTION_TYPES.SET_STUDENT_EMAIL: 
+      return {
+        ...state,
+        studentEmail: action.payload
       };
     case ACTION_TYPES.SET_QUESTION_VALUE:
       let questionsValues = [...state.questionsValues];
@@ -57,8 +69,17 @@ const studentFormReducer = (state = initialState, action = {}) => {
         ...state,
         questionsErrors
       };
+    case ACTION_TYPES.RESET_QUESTION_ERROR:
+      let questionsErrorsWithReset = [...state.questionsErrors];
+      questionsErrorsWithReset[action.payload] = "";
+
+      return {
+        ...state,
+        questionsErrors: questionsErrorsWithReset
+      };
     default:
       return state;
   }
 };
+
 export default studentFormReducer;
