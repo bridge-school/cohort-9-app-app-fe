@@ -10,10 +10,10 @@ const Home = () => {
     return (
         <Grid relaxed columns={2}>
             <Grid.Column textAlign="center">
-                <Link to="/admin/cohorts"><Button color="teal" size="huge">Admin</Button></Link>
+                <Link to="/admin"><Button color="teal" size="huge">Admin</Button></Link>
             </Grid.Column>
             <Grid.Column textAlign="center">
-                <Link to="/student/cohorts"><Button color="purple" size="huge">Student</Button></Link>
+                <Link to="/student"><Button color="purple" size="huge">Student</Button></Link>
             </Grid.Column>
         </Grid>
     )
