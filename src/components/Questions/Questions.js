@@ -55,6 +55,7 @@ const Questions = (props) => {
       <Divider hidden />
       <Title>Application Questions</Title>
       {questionsData.map((question, i) => {
+<<<<<<< HEAD
         return (
           <Question
             key={`question_${question.timestampForKey}`}
@@ -73,6 +74,23 @@ const Questions = (props) => {
         <Button basic color='green' size='big' onClick={addNewQuestion}>Add new question</Button>
       </Container>
     </Container>
+=======
+          return (
+            <Question
+              key={`question_${question.timestampForKey}`}
+              index={i}
+              question={question}
+              onPromptChange={handleQuestionPromptChange}
+              onTypeChange={handleQuestionTypeChange}
+              onOptionsChange={handleQuestionOptionsChange}
+              onIsRequiredChange={handleIsRequiredChange}
+              onDelete={handleDelete}
+            />
+          );
+        })}
+      <Button onClick={addNewQuestion}>Add new question</Button>
+    </div>
+>>>>>>> test
   );
 };
 

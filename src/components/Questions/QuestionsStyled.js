@@ -6,5 +6,6 @@ export const Title = styled.h1`
   font-size: 35px;
   font-weight: 800;
   color: #333;
-  margin-bottom: 40px;
+  margin-top: 40px;
+  margin-bottom: 20px;
 `
