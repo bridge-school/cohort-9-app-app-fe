@@ -89,7 +89,7 @@ const StudentForm = (props) => {
   
   // if post on submit successful, redirect to confirmation page
   if (submitted && props.formPostSuccess) {
-      return <Redirect to={`/student/confirmation/${formID}`}/>;
+      return <Redirect to={`/student/cohorts/confirmation/${formID}`}/>;
   }
 
   return (

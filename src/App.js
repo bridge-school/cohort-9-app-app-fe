@@ -18,7 +18,7 @@ function App() {
             <Dashboard isAdmin={false}/>
           </CommonLayout>
         </Route>
-        <Route path="/student/application/:id">
+        <Route path="/student/cohorts/apply/:id">
           <CommonLayout>
             <StudentApplication />           
           </CommonLayout>
@@ -33,7 +33,7 @@ function App() {
             <AdminForm />
           </CommonLayout>
         </Route>
-        <Route path="/student/confirmation/:id">
+        <Route path="/student/cohorts/confirmation/:id">
           <CommonLayout>
             <Confirmation />
           </CommonLayout>

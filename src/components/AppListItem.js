@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 const AppListItem = ({id, cohortName, cohortType, isAdmin}) => {
     
-    const url = `/student/application/${id}`
+    const url = `/student/cohorts/apply/${id}`
     return (
         cohortName && (
             <li key={id}>
