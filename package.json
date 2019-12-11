@@ -5,6 +5,7 @@
   "dependencies": {
     "core-util-is": "^1.0.2",
     "date-fns": "^2.8.1",
+    "jest-mock": "^24.9.0",
     "moment": "^2.24.0",
     "react": "^16.8.6",
     "react-datepicker": "^2.10.0",
@@ -43,5 +44,8 @@
     ]
   },
   "proxy": "http://localhost:8081",
-  "devDependencies": {}
+  "devDependencies": {
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1"
+  }
 }
