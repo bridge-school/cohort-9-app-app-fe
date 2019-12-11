@@ -1,11 +1,9 @@
 import React from "react";
 import { AdminForm } from "../../pages/AdminForm";
-import { filterDuplicateCohorts } from "../../helperFunctions/helpers";
 import Adapter from "enzyme-adapter-react-16";
 import { configure, shallow } from "enzyme";
 import jest from "jest-mock";
-import { Provider } from "react-redux";
-import { store } from "../../redux/store";
+
 configure({ adapter: new Adapter() });
 
 describe("<AdminForm />", () => {
@@ -52,7 +50,7 @@ describe("<AdminForm />", () => {
       console.log(wrapper.debug());
       console.log(wrapper.find("form"));
       wrapper.find("form").simulate("submit", { preventDefault() {} });
-      expect(mocksetDuplicate).toBeTruthy();
+      expect(mockpostFormDetailsThunk).not.toHaveBeenCalled();
     });
   });
 });
