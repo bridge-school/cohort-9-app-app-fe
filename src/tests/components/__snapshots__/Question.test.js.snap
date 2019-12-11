@@ -1,10 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Question Should render checkboxes properly 1`] = `
-<form
-  className="ui form"
-  onSubmit={[Function]}
->
+Array [
   <div
     className="fields"
   >
@@ -139,7 +136,7 @@ exports[`Question Should render checkboxes properly 1`] = `
       </div>
     </div>
     <div
-      className="two wide field"
+      className="two wide field Question-checkbox"
     >
       <div
         className="ui checkbox"
@@ -164,7 +161,7 @@ exports[`Question Should render checkboxes properly 1`] = `
       </div>
     </div>
     <div
-      className="two wide field"
+      className="two wide field Question-deleteBtn"
     >
       <button
         className="ui button"
@@ -174,7 +171,7 @@ exports[`Question Should render checkboxes properly 1`] = `
         X
       </button>
     </div>
-  </div>
+  </div>,
   <div
     className="fields"
   >
@@ -198,15 +195,12 @@ exports[`Question Should render checkboxes properly 1`] = `
         />
       </div>
     </div>
-  </div>
-</form>
+  </div>,
+]
 `;
 
 exports[`Question Should render dropdown properly 1`] = `
-<form
-  className="ui form"
-  onSubmit={[Function]}
->
+Array [
   <div
     className="fields"
   >
@@ -341,7 +335,7 @@ exports[`Question Should render dropdown properly 1`] = `
       </div>
     </div>
     <div
-      className="two wide field"
+      className="two wide field Question-checkbox"
     >
       <div
         className="ui checkbox"
@@ -366,7 +360,7 @@ exports[`Question Should render dropdown properly 1`] = `
       </div>
     </div>
     <div
-      className="two wide field"
+      className="two wide field Question-deleteBtn"
     >
       <button
         className="ui button"
@@ -376,7 +370,7 @@ exports[`Question Should render dropdown properly 1`] = `
         X
       </button>
     </div>
-  </div>
+  </div>,
   <div
     className="fields"
   >
@@ -400,362 +394,352 @@ exports[`Question Should render dropdown properly 1`] = `
         />
       </div>
     </div>
-  </div>
-</form>
+  </div>,
+]
 `;
 
 exports[`Question Should render paragraph properly 1`] = `
-<form
-  className="ui form"
-  onSubmit={[Function]}
+<div
+  className="fields"
 >
   <div
-    className="fields"
+    className="eight wide field"
   >
-    <div
-      className="eight wide field"
+    <label
+      htmlFor="q2__name"
     >
-      <label
-        htmlFor="q2__name"
-      >
-        Question #3
-      </label>
-      <div
-        className="ui input"
-      >
-        <input
-          id="q2__name"
-          onChange={[Function]}
-          type="text"
-          value="question 3"
-        />
-      </div>
-    </div>
+      Question #3
+    </label>
     <div
-      className="four wide field"
+      className="ui input"
     >
-      <label
-        htmlFor="q2__type"
-      >
-        Question #3 Type
-      </label>
-      <div
-        aria-expanded={false}
-        className="ui fluid selection dropdown"
-        id="q2__type"
-        onBlur={[Function]}
+      <input
+        id="q2__name"
         onChange={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        onMouseDown={[Function]}
-        role="listbox"
-        tabIndex={0}
-      >
-        <div
-          aria-atomic={true}
-          aria-live="polite"
-          className="text"
-          role="alert"
-        >
-          Paragraph
-        </div>
-        <i
-          aria-hidden="true"
-          className="dropdown icon"
-          onClick={[Function]}
-        />
-        <div
-          className="menu transition"
-        >
-          <div
-            aria-checked={false}
-            aria-selected={false}
-            className="item"
-            onClick={[Function]}
-            role="option"
-            style={
-              Object {
-                "pointerEvents": "all",
-              }
-            }
-          >
-            <span
-              className="text"
-            >
-              Short Answer
-            </span>
-          </div>
-          <div
-            aria-checked={false}
-            aria-selected={false}
-            className="item"
-            onClick={[Function]}
-            role="option"
-            style={
-              Object {
-                "pointerEvents": "all",
-              }
-            }
-          >
-            <span
-              className="text"
-            >
-              Dropdown
-            </span>
-          </div>
-          <div
-            aria-checked={false}
-            aria-selected={false}
-            className="item"
-            onClick={[Function]}
-            role="option"
-            style={
-              Object {
-                "pointerEvents": "all",
-              }
-            }
-          >
-            <span
-              className="text"
-            >
-              Checkboxes
-            </span>
-          </div>
-          <div
-            aria-checked={true}
-            aria-selected={true}
-            className="active selected item"
-            onClick={[Function]}
-            role="option"
-            style={
-              Object {
-                "pointerEvents": "all",
-              }
-            }
-          >
-            <span
-              className="text"
-            >
-              Paragraph
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      className="two wide field"
-    >
-      <div
-        className="ui checkbox"
-        onChange={[Function]}
-        onClick={[Function]}
-        onMouseDown={[Function]}
-        onMouseUp={[Function]}
-      >
-        <input
-          checked={false}
-          className="hidden"
-          id="q2__req"
-          readOnly={true}
-          tabIndex={0}
-          type="checkbox"
-        />
-        <label
-          htmlFor="q2__req"
-        >
-          Is Required
-        </label>
-      </div>
-    </div>
-    <div
-      className="two wide field"
-    >
-      <button
-        className="ui button"
-        onClick={[Function]}
-        type="button"
-      >
-        X
-      </button>
+        type="text"
+        value="question 3"
+      />
     </div>
   </div>
-</form>
+  <div
+    className="four wide field"
+  >
+    <label
+      htmlFor="q2__type"
+    >
+      Question #3 Type
+    </label>
+    <div
+      aria-expanded={false}
+      className="ui fluid selection dropdown"
+      id="q2__type"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onMouseDown={[Function]}
+      role="listbox"
+      tabIndex={0}
+    >
+      <div
+        aria-atomic={true}
+        aria-live="polite"
+        className="text"
+        role="alert"
+      >
+        Paragraph
+      </div>
+      <i
+        aria-hidden="true"
+        className="dropdown icon"
+        onClick={[Function]}
+      />
+      <div
+        className="menu transition"
+      >
+        <div
+          aria-checked={false}
+          aria-selected={false}
+          className="item"
+          onClick={[Function]}
+          role="option"
+          style={
+            Object {
+              "pointerEvents": "all",
+            }
+          }
+        >
+          <span
+            className="text"
+          >
+            Short Answer
+          </span>
+        </div>
+        <div
+          aria-checked={false}
+          aria-selected={false}
+          className="item"
+          onClick={[Function]}
+          role="option"
+          style={
+            Object {
+              "pointerEvents": "all",
+            }
+          }
+        >
+          <span
+            className="text"
+          >
+            Dropdown
+          </span>
+        </div>
+        <div
+          aria-checked={false}
+          aria-selected={false}
+          className="item"
+          onClick={[Function]}
+          role="option"
+          style={
+            Object {
+              "pointerEvents": "all",
+            }
+          }
+        >
+          <span
+            className="text"
+          >
+            Checkboxes
+          </span>
+        </div>
+        <div
+          aria-checked={true}
+          aria-selected={true}
+          className="active selected item"
+          onClick={[Function]}
+          role="option"
+          style={
+            Object {
+              "pointerEvents": "all",
+            }
+          }
+        >
+          <span
+            className="text"
+          >
+            Paragraph
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="two wide field Question-checkbox"
+  >
+    <div
+      className="ui checkbox"
+      onChange={[Function]}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onMouseUp={[Function]}
+    >
+      <input
+        checked={false}
+        className="hidden"
+        id="q2__req"
+        readOnly={true}
+        tabIndex={0}
+        type="checkbox"
+      />
+      <label
+        htmlFor="q2__req"
+      >
+        Is Required
+      </label>
+    </div>
+  </div>
+  <div
+    className="two wide field Question-deleteBtn"
+  >
+    <button
+      className="ui button"
+      onClick={[Function]}
+      type="button"
+    >
+      X
+    </button>
+  </div>
+</div>
 `;
 
 exports[`Question Should render short answers properly 1`] = `
-<form
-  className="ui form"
-  onSubmit={[Function]}
+<div
+  className="fields"
 >
   <div
-    className="fields"
+    className="eight wide field"
   >
-    <div
-      className="eight wide field"
+    <label
+      htmlFor="q3__name"
     >
-      <label
-        htmlFor="q3__name"
-      >
-        Question #4
-      </label>
-      <div
-        className="ui input"
-      >
-        <input
-          id="q3__name"
-          onChange={[Function]}
-          type="text"
-          value="question 4"
-        />
-      </div>
-    </div>
+      Question #4
+    </label>
     <div
-      className="four wide field"
+      className="ui input"
     >
-      <label
-        htmlFor="q3__type"
-      >
-        Question #4 Type
-      </label>
-      <div
-        aria-expanded={false}
-        className="ui fluid selection dropdown"
-        id="q3__type"
-        onBlur={[Function]}
+      <input
+        id="q3__name"
         onChange={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        onMouseDown={[Function]}
-        role="listbox"
-        tabIndex={0}
-      >
-        <div
-          aria-atomic={true}
-          aria-live="polite"
-          className="text"
-          role="alert"
-        >
-          Short Answer
-        </div>
-        <i
-          aria-hidden="true"
-          className="dropdown icon"
-          onClick={[Function]}
-        />
-        <div
-          className="menu transition"
-        >
-          <div
-            aria-checked={true}
-            aria-selected={true}
-            className="active selected item"
-            onClick={[Function]}
-            role="option"
-            style={
-              Object {
-                "pointerEvents": "all",
-              }
-            }
-          >
-            <span
-              className="text"
-            >
-              Short Answer
-            </span>
-          </div>
-          <div
-            aria-checked={false}
-            aria-selected={false}
-            className="item"
-            onClick={[Function]}
-            role="option"
-            style={
-              Object {
-                "pointerEvents": "all",
-              }
-            }
-          >
-            <span
-              className="text"
-            >
-              Dropdown
-            </span>
-          </div>
-          <div
-            aria-checked={false}
-            aria-selected={false}
-            className="item"
-            onClick={[Function]}
-            role="option"
-            style={
-              Object {
-                "pointerEvents": "all",
-              }
-            }
-          >
-            <span
-              className="text"
-            >
-              Checkboxes
-            </span>
-          </div>
-          <div
-            aria-checked={false}
-            aria-selected={false}
-            className="item"
-            onClick={[Function]}
-            role="option"
-            style={
-              Object {
-                "pointerEvents": "all",
-              }
-            }
-          >
-            <span
-              className="text"
-            >
-              Paragraph
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      className="two wide field"
-    >
-      <div
-        className="ui checkbox"
-        onChange={[Function]}
-        onClick={[Function]}
-        onMouseDown={[Function]}
-        onMouseUp={[Function]}
-      >
-        <input
-          checked={false}
-          className="hidden"
-          id="q3__req"
-          readOnly={true}
-          tabIndex={0}
-          type="checkbox"
-        />
-        <label
-          htmlFor="q3__req"
-        >
-          Is Required
-        </label>
-      </div>
-    </div>
-    <div
-      className="two wide field"
-    >
-      <button
-        className="ui button"
-        onClick={[Function]}
-        type="button"
-      >
-        X
-      </button>
+        type="text"
+        value="question 4"
+      />
     </div>
   </div>
-</form>
+  <div
+    className="four wide field"
+  >
+    <label
+      htmlFor="q3__type"
+    >
+      Question #4 Type
+    </label>
+    <div
+      aria-expanded={false}
+      className="ui fluid selection dropdown"
+      id="q3__type"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onMouseDown={[Function]}
+      role="listbox"
+      tabIndex={0}
+    >
+      <div
+        aria-atomic={true}
+        aria-live="polite"
+        className="text"
+        role="alert"
+      >
+        Short Answer
+      </div>
+      <i
+        aria-hidden="true"
+        className="dropdown icon"
+        onClick={[Function]}
+      />
+      <div
+        className="menu transition"
+      >
+        <div
+          aria-checked={true}
+          aria-selected={true}
+          className="active selected item"
+          onClick={[Function]}
+          role="option"
+          style={
+            Object {
+              "pointerEvents": "all",
+            }
+          }
+        >
+          <span
+            className="text"
+          >
+            Short Answer
+          </span>
+        </div>
+        <div
+          aria-checked={false}
+          aria-selected={false}
+          className="item"
+          onClick={[Function]}
+          role="option"
+          style={
+            Object {
+              "pointerEvents": "all",
+            }
+          }
+        >
+          <span
+            className="text"
+          >
+            Dropdown
+          </span>
+        </div>
+        <div
+          aria-checked={false}
+          aria-selected={false}
+          className="item"
+          onClick={[Function]}
+          role="option"
+          style={
+            Object {
+              "pointerEvents": "all",
+            }
+          }
+        >
+          <span
+            className="text"
+          >
+            Checkboxes
+          </span>
+        </div>
+        <div
+          aria-checked={false}
+          aria-selected={false}
+          className="item"
+          onClick={[Function]}
+          role="option"
+          style={
+            Object {
+              "pointerEvents": "all",
+            }
+          }
+        >
+          <span
+            className="text"
+          >
+            Paragraph
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="two wide field Question-checkbox"
+  >
+    <div
+      className="ui checkbox"
+      onChange={[Function]}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onMouseUp={[Function]}
+    >
+      <input
+        checked={false}
+        className="hidden"
+        id="q3__req"
+        readOnly={true}
+        tabIndex={0}
+        type="checkbox"
+      />
+      <label
+        htmlFor="q3__req"
+      >
+        Is Required
+      </label>
+    </div>
+  </div>
+  <div
+    className="two wide field Question-deleteBtn"
+  >
+    <button
+      className="ui button"
+      onClick={[Function]}
+      type="button"
+    >
+      X
+    </button>
+  </div>
+</div>
 `;

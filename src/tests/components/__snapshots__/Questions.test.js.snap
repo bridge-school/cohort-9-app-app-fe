@@ -1,27 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Questions Should render questions properly 1`] = `
-<div>
-  <h1>
+<div
+  className="ui container"
+>
+  <div
+    className="ui hidden divider"
+  />
+  <h1
+    className="sc-bdVaJa cbzqQs"
+  >
     Application Questions
   </h1>
-  <button
-    onClick={[Function]}
+  <div
+    className="ui hidden divider"
+  />
+  <div
+    className="ui center aligned container"
   >
-    Add new question
-  </button>
+    <button
+      className="ui green big basic button"
+      onClick={[Function]}
+    >
+      Add new question
+    </button>
+  </div>
 </div>
 `;
 
 exports[`Questions Should render without questions properly 1`] = `
-<div>
-  <h1>
+<div
+  className="ui container"
+>
+  <div
+    className="ui hidden divider"
+  />
+  <h1
+    className="sc-bdVaJa cbzqQs"
+  >
     Application Questions
   </h1>
-  <button
-    onClick={[Function]}
+  <div
+    className="ui hidden divider"
+  />
+  <div
+    className="ui center aligned container"
   >
-    Add new question
-  </button>
+    <button
+      className="ui green big basic button"
+      onClick={[Function]}
+    >
+      Add new question
+    </button>
+  </div>
 </div>
 `;
