@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "babel-plugin-transform-semantic-ui-react-imports": "^1.4.1",
     "core-util-is": "^1.0.2",
     "date-fns": "^2.8.1",
     "moment": "^2.24.0",
