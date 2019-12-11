@@ -5,8 +5,10 @@ import { MemoryRouter, Link } from 'react-router-dom';
 import { Router } from 'react-router';
 import { render, unmountComponentAtNode } from "react-dom";
 import { createMemoryHistory } from "history";
+
 describe("Applications List Item", () => {
     describe("displays with props", () => {
+        const isAdmin = false;
         let container = null;
         beforeEach(() => {
             // setup a DOM element as a render target
@@ -24,7 +26,7 @@ describe("Applications List Item", () => {
             act(() => {
                 render(
                     <MemoryRouter>
-                        <AppListItem cohortName={mockCohortName} link=""/>
+                        <AppListItem isAdmin={false} cohortName={mockCohortName} />
                     </MemoryRouter>, container);
                 expect(container.querySelector('[data_test="appListItem_Segment"]')).toBeNull()
             });
@@ -34,7 +36,7 @@ describe("Applications List Item", () => {
             act(() => {
                 render(
                     <MemoryRouter>
-                        <AppListItem cohortName={mockCohortName} link=""/>
+                        <AppListItem cohortName={mockCohortName} isAdmin={false}/>
                     </MemoryRouter>, container)
             })
             expect(container.querySelector('[data_test="appListItem_Segment"]')).toBeTruthy()
@@ -48,7 +50,7 @@ describe("Applications List Item", () => {
             act(() => {
                 render(
                     <MemoryRouter>
-                        <AppListItem cohortName={mockCohortName} cohortType={mockCohortType} link=""/>
+                        <AppListItem cohortName={mockCohortName} cohortType={mockCohortType} isAdmin={false}/>
                     </MemoryRouter>
                 , container)
             })
@@ -61,7 +63,7 @@ describe("Applications List Item", () => {
             act(() => {
                 render(
                     <MemoryRouter>
-                        <AppListItem cohortName={mockCohortName} cohortType={mockCohortTypeFE} link=""/>
+                        <AppListItem cohortName={mockCohortName} cohortType={mockCohortTypeFE} isAdmin={false}/>
                     </MemoryRouter>, container)
             })
             expect(container.querySelector('[data_test="appListItem_Button"]').className).toEqual(expect.stringContaining("pink"))
@@ -72,7 +74,7 @@ describe("Applications List Item", () => {
             act(() => {
                 render(
                     <MemoryRouter>
-                        <AppListItem cohortName={mockCohortName} cohortType={mockCohortTypeBE} link=""/>
+                        <AppListItem cohortName={mockCohortName} cohortType={mockCohortTypeBE} isAdmin={false}/>
                     </MemoryRouter>, container)
             })
             expect(container.querySelector('[data_test="appListItem_Button"]').className).toEqual(expect.stringContaining("blue"))
@@ -83,7 +85,7 @@ describe("Applications List Item", () => {
             act(() => {
                 render(
                     <MemoryRouter>
-                        <AppListItem cohortName={mockCohortName} cohortType={mockCohortType} link=""/>
+                        <AppListItem cohortName={mockCohortName} cohortType={mockCohortType} isAdmin={false}/>
                     </MemoryRouter>, container)
             })
             expect(container.querySelector('[data_test="appListItem_Button"]').className).toEqual(expect.stringContaining("teal"))

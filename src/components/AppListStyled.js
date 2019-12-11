@@ -6,5 +6,16 @@ export const AppListStyled = styled.ul`
   padding: 0;
   li {
     list-style: none;
+    margin-bottom: 1rem;
+    a, .segment {
+      display: inline-block;
+      width: 100%;
+    }
+    .segment {
+      vertical-align: middle;
+      .header {
+        margin-bottom: 0;
+      }
+    }
   }
 `;

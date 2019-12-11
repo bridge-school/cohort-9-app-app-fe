@@ -10,7 +10,7 @@ const AppListItem = ({id, cohortName, cohortType, isAdmin}) => {
         cohortName && (
             <li key={id}>
                 { isAdmin !== true ? (
-                        <Link to={url}>
+                    <Link to={url}>
                         <Segment clearing padded data_test="appListItem_Segment">
                             <Header as='h2' floated='left'>{cohortName}</Header>
                             <Button data_test="appListItem_Button" 
@@ -19,7 +19,7 @@ const AppListItem = ({id, cohortName, cohortType, isAdmin}) => {
                                 {cohortType}
                             </Button>
                         </Segment> 
-                        </Link>
+                    </Link>
                     )
                 : (
                     <Segment clearing padded data_test="appListItem_Segment">

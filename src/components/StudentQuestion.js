@@ -6,7 +6,7 @@ import TypeShortAnswer from './StudentQuestionTypes/TypeShortAnswer';
 import TypeDropdown from './StudentQuestionTypes/TypeDropdown';
 import TypeCheckbox from './StudentQuestionTypes/TypeCheckbox';
 
-import { setQuestionValue, resetQuestionError } from '../redux/actions/studentFormActions';
+import { setQuestionValue, resetQuestionError } from '../redux/actions/studentSubmissionActions';
 
 const StudentQuestion = (props) => {
   const { type, isRequired, options, index } = props.questionData;
@@ -73,8 +73,8 @@ const StudentQuestion = (props) => {
 
 const mapStateToProps = state => {
   return {
-    values: state.studentForm.questionsValues,
-    errors: state.studentForm.questionsErrors
+    values: state.studentSubmission.questionsValues,
+    errors: state.studentSubmission.questionsErrors
   };
 };
 
