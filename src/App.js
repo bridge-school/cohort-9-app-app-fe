@@ -4,9 +4,8 @@ import CommonLayout from "./components/CommonLayout/CommonLayout";
 import "./App.css";
 
 import Home from "./pages/Home";
-import AdminDashboard from "./pages/AdminDashboard";
 import AdminForm from "./pages/AdminForm";
-import StudentDashboard from "./pages/StudentDashboard";
+import Dashboard from "./pages/Dashboard";
 import StudentApplication from "./pages/StudentApplication";
 import Confirmation from "./pages/StudentConfirmation";
 
@@ -16,7 +15,7 @@ function App() {
       <Switch>
         <Route exact path="/student/cohorts">
           <CommonLayout>
-            <StudentDashboard />
+            <Dashboard isAdmin={false}/>
           </CommonLayout>
         </Route>
         <Route path="/student/application/:id">
@@ -26,11 +25,11 @@ function App() {
         </Route>
         <Route exact path="/admin/cohorts">
           <CommonLayout isAdmin>
-            <AdminDashboard />
+            <Dashboard isAdmin={true}/>
           </CommonLayout>
         </Route>
         <Route exact path="/admin/cohorts/application">
-          <CommonLayout>
+          <CommonLayout isAdmin>
             <AdminForm />
           </CommonLayout>
         </Route>

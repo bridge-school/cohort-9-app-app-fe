@@ -1,10 +1,11 @@
 import React from 'react';
 import Header from '../Header/Header';
-import {Wrapper} from './CommonLayoutStyled'
+import {Wrapper} from './CommonLayoutStyled';
+
 const CommonLayout = ({children, isAdmin}) => {
   return (
     <div>
-      <Header isAdmin={isAdmin}/>
+      <Header isAdmin={isAdmin} title={'Cohort Application'}/>
       <Wrapper>
         {children}
       </Wrapper>
