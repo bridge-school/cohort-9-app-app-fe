@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
-import {Header} from 'semantic-ui-react'
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Button, Grid } from 'semantic-ui-react'
+import { Link } from "react-router-dom";
 
 const Home = () => {
    const pageTitle = "Bridge Applications App"
@@ -8,10 +8,14 @@ const Home = () => {
         document.title = pageTitle;
     })
     return (
-        <div>
-            <Link to="/admin/cohorts">Admin</Link>
-            <Link to="/student/cohorts">Student</Link>
-        </div>
+        <Grid relaxed columns={2}>
+            <Grid.Column textAlign="center">
+                <Link to="/admin/cohorts"><Button color="teal" size="huge">Admin</Button></Link>
+            </Grid.Column>
+            <Grid.Column textAlign="center">
+                <Link to="/student/cohorts"><Button color="purple" size="huge">Student</Button></Link>
+            </Grid.Column>
+        </Grid>
     )
 }
 
