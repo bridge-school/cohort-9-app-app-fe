@@ -1,3 +1,4 @@
+export const filterFormData = (arr, id) => arr.filter(obj => obj.id === id);
 export const filterDuplicateCohorts = (
   cohortName,
   cohortType,

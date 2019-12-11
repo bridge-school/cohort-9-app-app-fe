@@ -1,6 +1,4 @@
-import StudentApplication from "../../pages/StudentApplication"
-import {filterFormData} from "../../pages/StudentApplication"
-// const filterFormData = (testData, cohortId) => testData.filter(app => app.id === cohortId)
+import { filterFormData } from "../../helperFunctions/helpers.js"
 
 const cohortIdNotInArray = "Adsefg900"
 const cohortId = 'AKd12ds3'
