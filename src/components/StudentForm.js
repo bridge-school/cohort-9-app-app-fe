@@ -7,41 +7,42 @@ import StudentQuestion from "./StudentQuestion";
 import {
   setStudentName,
   setStudentEmail,
-  getStudentFormQuestions,
+  // getStudentFormQuestions,
   setQuestionError,
-  postStudentFormDetails
-} from "../redux/actions/studentFormActions";
-
-
+  postStudentSubmission
+} from "../redux/actions/studentSubmissionActions";
+import {getCohortApplicationById}  from "../redux/actions/getCohortApplicationByIdActions";
 
 // this should receive id from clicked button on student's dashboard
 // and get the assosiated id for displaying below
 const StudentForm = (props) => {
   const [submitted, setSubmitted] = useState(false);
-
   const formID = useParams().id
-  
+  const {getStudentFormQuestions} = props;
+  const {formPostError} = props;
+
   useEffect(() => {
     // make request to get question data for this form
     if (formID === "") {
       console.error("Unable to get ID from url")
     } 
-    props.getStudentFormQuestions(formID);
-  }, []);
+    getStudentFormQuestions(formID);
+  }, [formID, getStudentFormQuestions]);
+
 
   useEffect(() => {
     // rerender to show error message if formposterror is not null
-    if (props.formPostError !== null) {
-      console.log(props.formPostError)
+    if (formPostError !== null) {
+      console.log(formPostError)
     } 
-  },[props.formPostError]);
+  },[formPostError]);
 
   // handle submit - has access to all values of inputs
   const submitStudentData = (e) => {
     e.preventDefault();
     const questions = props.questionsReceived;
     const values = props.questionsValues;
-
+  
     // error validation before sending
     let anyError = false;
     questions.forEach((q, index) => {
@@ -74,7 +75,7 @@ const StudentForm = (props) => {
     setSubmitted(true);
   }
 
-  if (!props.studentFormGetSuccess) {
+  if (!props.getCohortApplicationSuccess) {
     return <h2>Loading...</h2>;
   }
 
@@ -132,10 +133,10 @@ const StudentForm = (props) => {
         </Grid.Column>
       </Grid>
 
-      {submitted === true && props.formPostError !== null ?
+      {submitted === true && formPostError !== null ?
           <Message negative>
             <Header as="h3">
-              There was an error with your submission: {props.formPostError}
+              There was an error with your submission: {formPostError}
             </Header>
             <p>Please try again.</p>
           </Message>
@@ -147,24 +148,23 @@ const StudentForm = (props) => {
 
 const mapStateToProps = state => {
   return {
-    studentFormGetSuccess: state.studentForm.studentFormGetSuccess,
-    getStudentFormError: state.studentForm.getStudentFormError,
-    studentName: state.studentForm.studentName,
-    studentEmail: state.studentForm.studentEmail,
-    questionsReceived: state.studentForm.questionsReceived,
-    questionsValues: state.studentForm.questionsValues,
-    questionsErrors: state.studentForm.questionsErrors,
-    formPostSuccess: state.studentForm.formPostSuccess,
-    formPostError: state.studentForm.formPostError
+    getCohortApplicationSuccess: state.cohortApplication.getCohortApplicationSuccess,
+    getCohortApplicationError: state.cohortApplication.getCohortApplicationError,
+    cohortApplicationReceived: state.cohortApplication.cohortApplicationReceived,
+    questionsReceived: state.cohortApplication.questionsReceived,
+    questionsValues: state.studentSubmission.questionsValues,
+    questionsErrors: state.studentSubmission.questionsErrors,
+    studentName: state.studentSubmission.studentName,
+    studentEmail: state.studentSubmission.studentEmail,
+    formPostSuccess: state.studentSubmission.formPostSuccess,
+    formPostError: state.studentSubmission.formPostError
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  getStudentFormQuestions: formID => dispatch(getStudentFormQuestions(formID)),
+  getStudentFormQuestions: formID => dispatch(getCohortApplicationById(formID)),
   setQuestionError: (index, error) => dispatch(setQuestionError(index, error)),
-  postStudentFormDetails: formData => {
-    dispatch(postStudentFormDetails(formData));
-  },
+  postStudentFormDetails: formData => dispatch(postStudentSubmission(formData)),
   setStudentName: name => dispatch(setStudentName(name)),
   setStudentEmail: email => dispatch(setStudentEmail(email)),
 });

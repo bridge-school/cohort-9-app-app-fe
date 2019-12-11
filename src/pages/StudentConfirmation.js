@@ -4,9 +4,7 @@ import { connect } from "react-redux";
 import moment from "moment";
 import {Header} from 'semantic-ui-react'
 import {Container} from "./StudentConfirmationStyled.js"
-import {
-  getStudentFormQuestions,
-} from "../redux/actions/studentFormActions";
+import { getCohortApplicationById} from "../redux/actions/getCohortApplicationByIdActions";
 
 // check if apps exists, else redirect
 const Confirmation = ({app, getApplicationById}) => {    
@@ -16,7 +14,7 @@ const Confirmation = ({app, getApplicationById}) => {
   useEffect(() => {
     document.title = pageTitle
     !cohortData && getApplicationById(cohortId)
-  }, []);
+  }, [cohortId, cohortData, getApplicationById]);
 
   let cohort_name, close_date, response_date;
   if (cohortData) {
@@ -40,11 +38,11 @@ const Confirmation = ({app, getApplicationById}) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  getApplicationById: cohortId => dispatch(getStudentFormQuestions(cohortId))
+  getApplicationById: cohortId => dispatch(getCohortApplicationById(cohortId))
 });
 
 const mapStateToProps = state => ({
-  app: state.studentForm.studentFormReceived
+  app: state.cohortApplication.cohortApplicationReceived
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Confirmation);
