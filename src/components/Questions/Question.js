@@ -27,12 +27,11 @@ const Question = ({
           <label htmlFor={`q${index}__name`}>{`Question #${qNumber}`}</label>
           <input 
             id={`q${index}__name`}
-            onChange={(e, {value}) => {
-              onPromptChange(index, value);
+            onChange={(e) => {
+              onPromptChange(index, e.target.value);
             }}
             value={question.prompt}
-           
-            ></input>
+          ></input>
         </Form.Field>
         <Form.Select 
           label={`Question #${qNumber} Type`} 

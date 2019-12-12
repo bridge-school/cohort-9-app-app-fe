@@ -14,15 +14,19 @@ const StudentQuestion = (props) => {
   const value = props.values[index];
   const error = props.errors[index];
   let { prompt } = props.questionData;
- 
 
   const handleOnChange = (e) => {
     props.setQuestionValue(index, e.target.value);
     props.resetQuestionError(index);
   }
 
-  const handleOnCheckboxChange = (val) => {
-    props.setQuestionValue(index, val);
+  const handleOnDropdownChange = (e, { value }) => {
+    props.setQuestionValue(index, value);
+    props.resetQuestionError(index);
+  };
+
+  const handleOnCheckboxChange = (e) => {
+    props.setQuestionValue(index, e.target.value);
     props.resetQuestionError(index);
   }
 
@@ -45,15 +49,17 @@ const StudentQuestion = (props) => {
           isRequired={isRequired}
         />;
       case "dropdown":
-        return <TypeDropdown 
-          options={options} 
-          val={value} 
-          onChange={handleOnChange}
-          error={error}
-          prompt={prompt}
-          isRequired={isRequired}
-        />;
-      case "checkboxes":
+        return (
+          <TypeDropdown
+            options={options}
+            val={value}
+            onChange={handleOnDropdownChange}
+            error={error}
+            prompt={prompt}
+            isRequired={isRequired}
+          />
+        );
+      case "checkbox":
         return <TypeCheckbox
             options={options}
             val={value}

@@ -4,7 +4,8 @@ import {
   Form,
   Message
 } from "semantic-ui-react";
-import styled from 'styled-components'
+import styled from 'styled-components';
+
 const TypeCheckbox = ({ val, options, onChange, error, prompt, isRequired }) => {
   const Checkbox = styled.input`
     position: absolute !important;
@@ -14,7 +15,8 @@ const TypeCheckbox = ({ val, options, onChange, error, prompt, isRequired }) => 
     clip: rect(1px 1px 1px 1px); 
     clip: rect(1px, 1px, 1px, 1px);
     white-space: nowrap;
-  `
+  `;
+  
   return (
     <>
       {error !== "" && error !== undefined && <Message negative>{error}</Message>}

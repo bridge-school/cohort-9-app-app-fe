@@ -1,6 +1,7 @@
 import React from "react";
 import {Header} from "semantic-ui-react"
 import AdminForm from "../components/AdminForm";
+import styled from 'styled-components';
 
 const CohortApplication = () => {
   return(
