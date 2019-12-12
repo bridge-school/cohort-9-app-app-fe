@@ -13,22 +13,22 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/student/cohorts">
+        <Route exact path="/student">
           <CommonLayout>
             <Dashboard isAdmin={false}/>
           </CommonLayout>
         </Route>
-        <Route path="/student/application/:id">
+        <Route path="/student/apply/:id">
           <CommonLayout>
             <StudentApplication />           
           </CommonLayout>
         </Route>
-        <Route exact path="/admin/cohorts">
+        <Route exact path="/admin">
           <CommonLayout isAdmin>
             <Dashboard isAdmin={true}/>
           </CommonLayout>
         </Route>
-        <Route exact path="/admin/cohorts/application">
+        <Route exact path="/admin/application">
           <CommonLayout isAdmin>
             <AdminForm />
           </CommonLayout>

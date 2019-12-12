@@ -21,7 +21,7 @@ const Dashboard =({apps, getAllApps,getAllOpenApps, isAdmin})=> {
             
               <Grid.Column textAlign='right'>
                 {isAdmin && 
-                  <Button size='large' color='teal' as={Link} to="/admin/cohorts/application">Create Application Group</Button>
+                  <Button size='large' color='teal' as={Link} to="/admin/application">Create Application Group</Button>
                 }
               </Grid.Column>
             </Grid.Row>
