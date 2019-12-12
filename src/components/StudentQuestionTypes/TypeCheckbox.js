@@ -40,6 +40,7 @@ const TypeCheckbox = ({ val, options, onChange, error, prompt, isRequired }) => 
                     {option}
                   </Button>
                   <Checkbox
+                    type="checkbox"
                     id={`${index}_${option}`}
                     name={prompt}
                     value={option}
