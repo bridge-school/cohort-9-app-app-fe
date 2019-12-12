@@ -1,9 +1,11 @@
+import { request } from "../../backend-request";
+
 export const ACTION_TYPES = {
     COHORT_APP_GET_SUCCESS: "COHORT_FORM_GET_SUCCESS",
     COHORT_APP_GET_ERROR: "COHORT_FORM_GET_ERROR",
   };
-
-// Action creator for successful cohort application fetch
+  
+  // Action creator for successful cohort application fetch
 export const getCohortApplicationSuccess = (formData) => {
     return {
       type: ACTION_TYPES.COHORT_APP_GET_SUCCESS, 
@@ -21,12 +23,7 @@ export const getCohortApplicationSuccess = (formData) => {
   
   //creating Thunk to get the cohort application data in firebase
   export const getCohortApplicationById = id => async dispatch => {
-    const res = await fetch(`/applications/${id}`, {
-      method: "get",
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
+    const res = await request(`applications/${id}`);
     const data = await res.json();
     const formData = data.cohort[0];
     if (res.status === 200) {
