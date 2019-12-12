@@ -75,8 +75,7 @@ const Question = ({
       {(question.type === "checkbox" || question.type === "dropdown") &&
           <Form.Input
             id={`q${index}__options`}
-            label={`q${index}__options`}
-            // label={{ children: `Question #${qNumber} ${question.type} options`, htmlFor: `q${index}__options` }}
+            label={{ children: `Question #${qNumber} ${question.type} options`, htmlFor: `q${index}__options` }}
             onChange={(e, {value}) => {
               onOptionsChange(index, value);
             }}
