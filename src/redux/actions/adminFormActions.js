@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../../backend-request";
 export const ACTION_TYPES = {
   SET_COHORT_NAME: "SET_COHORT_NAME",
   SET_COHORT_TYPE: "SET_COHORT_TYPE",
@@ -115,7 +116,7 @@ export const deleteQuestion = (questionIndex) => {
 
 // creating Thunk to post the details of the form to firebase
 export const postFormDetailsThunk = cohortData => async dispatch => {
-  const res = await fetch("/applications", {
+  const res = await fetch(`${API_BASE_URL}/applications`, {
     method: "post",
     body: JSON.stringify(cohortData),
     headers: {

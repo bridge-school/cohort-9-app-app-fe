@@ -1,3 +1,5 @@
+import { API_BASE_URL } from "../../backend-request";
+
 export const ACTION_TYPES = {
     STUDENT_FORM_POST_SUCCESS: "STUDENT_FORM_POST_SUCCESS",
     STUDENT_FORM_POST_ERROR: "STUDENT_FORM_POST_ERROR",
@@ -71,7 +73,7 @@ export const setStudentPostError = postError => {
   
   //creating Thunk to post the details of the student submission form to firebase
 export const postStudentSubmission = formData => async dispatch => {
-    const res = await fetch("/applications/students", {
+    const res = await fetch(`${API_BASE_URL}/applications/students`, {
       method: "post",
       body: JSON.stringify(formData),
       headers: {

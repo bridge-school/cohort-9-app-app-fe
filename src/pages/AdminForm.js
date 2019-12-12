@@ -21,8 +21,7 @@ import DatePickerContainer from "../components/DatePickerContainer";
 import Questions from "../components/Questions/Questions";
 import { filterDuplicateCohorts } from "../helperFunctions/helpers.js";
 
-
-const AdminForm = props => {
+export const AdminForm = props => {
   const pageTitle = "Create Application Form";
   const [isDuplicate, setDuplicate] = useState(false);
 
@@ -106,7 +105,6 @@ const AdminForm = props => {
           value={props.cohortType}
           handleChange={handleCohortTypeChange}
           options={selectOptions}
-         
         />
         <DatePickerContainer />
 
