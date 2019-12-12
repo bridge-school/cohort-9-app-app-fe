@@ -71,7 +71,6 @@ const Question = ({
         ><Icon color="teal" fitted name='trash' /></Button>
     </Form.Group>
     <Form.Group>
-
       {(question.type === "checkbox" || question.type === "dropdown") &&
           <Form.Input
             id={`q${index}__options`}

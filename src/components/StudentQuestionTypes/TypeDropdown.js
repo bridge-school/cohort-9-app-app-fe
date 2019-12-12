@@ -1,7 +1,7 @@
 import React from "react";
 import {
   Form,
-  Message,
+  // Message,
   Select
 } from "semantic-ui-react";
 
@@ -15,7 +15,7 @@ const TypeDropdown = ({ val, onChange, options, error, prompt, isRequired }) => 
   console.log(selectOptions)
   return (
     <>
-      {error !== "" && error !== undefined && <Message>{error}</Message>}
+      {/* {error !== "" && error !== undefined && <Message>{error}</Message>} */}
       <Form.Field>
         <label>{prompt}</label>
         <Select
