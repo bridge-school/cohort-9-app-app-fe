@@ -8,7 +8,7 @@ import {
   setStudentName,
   setStudentEmail,
   // getStudentFormQuestions,
-  setQuestionError,
+  // setQuestionError,
   postStudentSubmission
 } from "../redux/actions/studentSubmissionActions";
 import {getCohortApplicationById}  from "../redux/actions/getCohortApplicationByIdActions";
@@ -48,18 +48,18 @@ const StudentForm = (props) => {
     const values = props.questionsValues;
 
     // error validation before sending
-    let anyError = false;
-    questions.forEach((q, index) => {
-      const val = values[index];
-      if (val === "" && q.isRequired) {
-        props.setQuestionError(index, "This is a required field");
-        anyError = true;
-      }
-    });
-    // if there are any errors return early
-    if (anyError) {
-      return;
-    }
+    // let anyError = false;
+    // questions.forEach((q, index) => {
+    //   const val = values[index];
+    //   if (val === "" && q.isRequired) {
+    //     props.setQuestionError(index, "This is a required field");
+    //     anyError = true;
+    //   }
+    // });
+    // // if there are any errors return early
+    // if (anyError) {
+    //   return;
+    // }
     const questionsWithResponses = questions.map((q, index) => {
       return {
         question: q,
@@ -169,7 +169,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   getStudentFormQuestions: formID => dispatch(getCohortApplicationById(formID)),
-  setQuestionError: (index, error) => dispatch(setQuestionError(index, error)),
+  // setQuestionError: (index, error) => dispatch(setQuestionError(index, error)),
   postStudentFormDetails: formData => dispatch(postStudentSubmission(formData)),
   setStudentName: name => dispatch(setStudentName(name)),
   setStudentEmail: email => dispatch(setStudentEmail(email)),

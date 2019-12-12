@@ -2,7 +2,7 @@ import React from "react";
 import {
   Form,
   Input,
-  Message
+  // Message
 } from "semantic-ui-react";
 
 
@@ -10,7 +10,7 @@ const TypeShortAnswer = ({ val, onChange, error, prompt, isRequired}) => {
   console.log(prompt)
   return (
     <>
-      {error !== undefined && <Message>{error}</Message>}
+      {/* {error !== undefined && <Message>{error}</Message>} */}
       <Form.Group widths="equal" className="row">
         <Form.Field
           label={prompt}
