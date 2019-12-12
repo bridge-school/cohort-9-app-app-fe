@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Button, Container, Divider } from 'semantic-ui-react'
+import { Button, Divider, Header, Grid } from 'semantic-ui-react'
 import Question from "./Question";
 import { 
   addNewQuestion, 
@@ -10,7 +10,6 @@ import {
   toggleQuestionRequired, 
   setQuestionOptions, 
 } from "../../redux/actions/adminFormActions";
-import {Title} from "./QuestionsStyled";
 
 const Questions = (props) => {
   // destructure props create a constant with questionsData
@@ -51,9 +50,8 @@ const Questions = (props) => {
   };
   
   return(
-    <Container>
-      <Divider hidden />
-      <Title>Application Questions</Title>
+    <>
+      <Header as="h2">Application Questions</Header>
       {questionsData.map((question, i) => {
         return (
           <Question
@@ -68,11 +66,13 @@ const Questions = (props) => {
           />
         );
       })}
-      <Divider hidden />
-      <Container textAlign='center'>
-        <Button basic color='green' size='big' onClick={addNewQuestion}>Add new question</Button>
-      </Container>
-    </Container>
+      <Grid centered columns={2}>
+          <Grid.Column>
+            <Button basic fluid color='teal' size='huge' onClick={addNewQuestion}>Add new question</Button>
+          </Grid.Column>
+        </Grid>
+
+    </>
   );
 };
 

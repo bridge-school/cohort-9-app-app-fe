@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { Header, Message, Form } from "semantic-ui-react";
-import { ApplicationContainer } from "./AdminFormStyled";
+import { Header, Message, Form, Button, Grid } from "semantic-ui-react";
 import { fetchAllApps } from "../redux/actions/allCohortAppsActions";
+import styled from "styled-components";
 
 import {
   setCohortName,
@@ -20,6 +20,7 @@ import SubmitButton from "../components/SubmitButton";
 import DatePickerContainer from "../components/DatePickerContainer";
 import Questions from "../components/Questions/Questions";
 import { filterDuplicateCohorts } from "../helperFunctions/helpers.js";
+
 
 const AdminForm = props => {
   const pageTitle = "Create Application Form";
@@ -94,8 +95,8 @@ const AdminForm = props => {
   }
 
   return (
-    <ApplicationContainer>
-      <Header as="h1">{pageTitle}</Header>
+    <div>
+      <Header as="h1" size='huge'>{pageTitle}</Header>
       <Form onSubmit={handleSubmit}>
         <CohortNameInput
           value={props.cohortName}
@@ -111,7 +112,11 @@ const AdminForm = props => {
 
         <Questions />
 
-        <SubmitButton>Create Application Group</SubmitButton>
+        <Grid centered columns={2}>
+          <Grid.Column>
+            <Button fluid color="teal" size='huge'>CREATE APPLICATION GROUP</Button>
+          </Grid.Column>
+        </Grid>
       </Form>
 
       {isDuplicate && (
@@ -120,7 +125,7 @@ const AdminForm = props => {
           <p>{`This Cohort Name already exists for ${props.cohortType}`}</p>
         </Message>
       )}
-    </ApplicationContainer>
+    </div>
   );
 };
 
