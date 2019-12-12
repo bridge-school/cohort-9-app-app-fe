@@ -1,4 +1,4 @@
-const API_BASE_URL =
+export const API_BASE_URL =
   process.env.NODE_ENV === "development"
     ? ""
     : `https://cohort-9-app-app-backend.herokuapp.com`;
