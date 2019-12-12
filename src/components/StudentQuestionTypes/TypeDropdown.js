@@ -1,42 +1,32 @@
 import React from "react";
 import {
-  Button,
-  Checkbox,
-  Select,
   Form,
-  Input,
-  TextArea,
-  Label
+  Message,
+  Select
 } from "semantic-ui-react";
-import styled from "styled-components";
 
-const TypeDropdown = ({ val, onChange, options, error }) => {
+const TypeDropdown = ({ val, onChange, options, error, prompt, isRequired }) => {
+  const selectOptions = options.map((option, index) => Object.fromEntries([["key", index], ["value",option], ["text",option]]));
+  
+  console.log(selectOptions)
   return (
     <>
-      {error !== "" && <ErrorMessage>{error}</ErrorMessage>}
-      <Form.Group widths="equal" className="row">
-        <select
+      {error !== "" && error !== undefined && <Message>{error}</Message>}
+       <Form.Field>
+        <label>{prompt}</label>
+        <Select
+          placeholder="select"
+          required={isRequired}
           defaultValue={options[0]}
           onChange={onChange}
           value={val}
-          className="sixteen wide column"
+          options={selectOptions}
         >
-          {options.map((option, index) => {
-            return (
-              <option key={index} value={option}>
-                {option}
-              </option>
-            );
-          })}
-        </select>
-      </Form.Group>
+        </Select>
+      </Form.Field> 
     </>
   );
 };
 
-const ErrorMessage = styled.p`
-  color: red;
-  margin-bottom: 10px;
-`;
 
 export default TypeDropdown;

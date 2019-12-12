@@ -13,15 +13,15 @@ const Dashboard =({apps, getAllApps,getAllOpenApps, isAdmin})=> {
       }, [getAllApps, getAllOpenApps, isAdmin]);
       return (
         <>
-          <Grid columns={2}>
+          <Grid columns={2} verticalAlign='middle'>
             <Grid.Row>
               <Grid.Column>
-                <Header as='h1'>{pageTitle}</Header>
+                <Header size='huge' as='h1'>{pageTitle}</Header>
               </Grid.Column>
             
               <Grid.Column textAlign='right'>
                 {isAdmin && 
-                  <Button size='large' color='teal' as={Link} to="/admin/cohorts/application">Create Application Group</Button>
+                  <Button size='large' color='teal' as={Link} to="/admin/cohorts/application">CREATE APPLICATION GROUP</Button>
                 }
               </Grid.Column>
             </Grid.Row>

@@ -11,7 +11,7 @@ const AppListItem = ({id, cohortName, cohortType, isAdmin}) => {
             <li key={id}>
                 { isAdmin !== true ? (
                     <Link to={url}>
-                        <Segment clearing padded data_test="appListItem_Segment">
+                        <Segment secondary clearing padded data_test="appListItem_Segment">
                             <Header as='h2' floated='left'>{cohortName}</Header>
                             <Button data_test="appListItem_Button" 
                                     floated='right' 
@@ -22,7 +22,7 @@ const AppListItem = ({id, cohortName, cohortType, isAdmin}) => {
                     </Link>
                     )
                 : (
-                    <Segment clearing padded data_test="appListItem_Segment">
+                    <Segment secondary clearing padded data_test="appListItem_Segment">
                         <Header as='h2' floated='left'>{cohortName}</Header>
                         <Button data_test="appListItem_Button" 
                                 floated='right' 

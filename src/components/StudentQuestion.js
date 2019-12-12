@@ -13,11 +13,8 @@ const StudentQuestion = (props) => {
 
   const value = props.values[index];
   const error = props.errors[index];
-
   let { prompt } = props.questionData;
-  if (isRequired) {
-    prompt += " *";
-  }
+ 
 
   const handleOnChange = (e) => {
     props.setQuestionValue(index, e.target.value);
@@ -36,12 +33,16 @@ const StudentQuestion = (props) => {
           val={value}
           onChange={handleOnChange}
           error={error}
+          prompt={prompt}
+          isRequired={isRequired}
         />;
       case "paragraph":
         return <TypeParagraph 
           val={value} 
           onChange={handleOnChange}
           error={error}
+          prompt={prompt}
+          isRequired={isRequired}
         />;
       case "dropdown":
         return <TypeDropdown 
@@ -49,6 +50,8 @@ const StudentQuestion = (props) => {
           val={value} 
           onChange={handleOnChange}
           error={error}
+          prompt={prompt}
+          isRequired={isRequired}
         />;
       case "checkboxes":
         return <TypeCheckbox
@@ -56,6 +59,8 @@ const StudentQuestion = (props) => {
             val={value}
             onChange={handleOnCheckboxChange}
             error={error}
+            prompt={prompt}
+            isRequired={isRequired}
           />;
       default:
         console.error(`Unrecognized question type: ${type}`);
@@ -65,7 +70,6 @@ const StudentQuestion = (props) => {
 
   return (
     <div>
-      <p>{prompt}</p>
       {renderQuestionByType()}
     </div>
   );

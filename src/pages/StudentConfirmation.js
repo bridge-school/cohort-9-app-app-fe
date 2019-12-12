@@ -3,8 +3,17 @@ import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import moment from "moment";
 import {Header} from 'semantic-ui-react'
-import {Container} from "./StudentConfirmationStyled.js"
 import { getCohortApplicationById} from "../redux/actions/getCohortApplicationByIdActions";
+import styled from "styled-components";
+
+const Container = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+`;
 
 // check if apps exists, else redirect
 const Confirmation = ({app, getApplicationById}) => {    

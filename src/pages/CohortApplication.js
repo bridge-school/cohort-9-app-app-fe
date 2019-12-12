@@ -1,13 +1,11 @@
 import React from "react";
-import styled from "styled-components";
-
+import {Header} from "semantic-ui-react"
 import AdminForm from "../components/AdminForm";
-import PageTitle from "../components/PageTitle";
 
 const CohortApplication = () => {
   return(
     <ApplicationContainer>
-      <PageTitle>Create Cohort Application Form</PageTitle>
+      <Header as="h1">Create Cohort Application Form</Header>
       <AdminForm />
     </ApplicationContainer>
   );
