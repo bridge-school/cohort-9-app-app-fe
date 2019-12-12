@@ -12,9 +12,13 @@ import {
   postStudentSubmission
 } from "../redux/actions/studentSubmissionActions";
 import {getCohortApplicationById}  from "../redux/actions/getCohortApplicationByIdActions";
-
+import styled from 'styled-components';
 // this should receive id from clicked button on student's dashboard
 // and get the assosiated id for displaying below
+
+const Container = styled.div`
+  margin: 1rem 0;
+`
 const StudentForm = (props) => {
   const [submitted, setSubmitted] = useState(false);
   const formID = useParams().id
@@ -42,7 +46,7 @@ const StudentForm = (props) => {
     e.preventDefault();
     const questions = props.questionsReceived;
     const values = props.questionsValues;
-  
+
     // error validation before sending
     let anyError = false;
     questions.forEach((q, index) => {
@@ -63,11 +67,8 @@ const StudentForm = (props) => {
       }
     });
     const formData = {
-      // email
       email: props.studentEmail,
-      // name
       name: props.studentName,
-      // question responses
       responses: questionsWithResponses,
     }
     // submitData
@@ -93,56 +94,61 @@ const StudentForm = (props) => {
   }
 
   return (
-    <Form onSubmit={submitStudentData}>
-      <Form.Group widths="equal">
-        <Form.Field
-          onChange={handleNameChange}
-          required
-          control={Input}
-          label="Full name"
-          placeholder="Full name"
-          value={props.studentName}
-        />
-      </Form.Group>
-      <Form.Group widths="equal">
-        <Form.Input
-          onChange={handleEmailChange}
-          label="Email"
-          placeholder="Email"
-          type="email"
-          required
-          value={props.studentEmail}
-        />
-      </Form.Group>
-
-      {props.questionsReceived.map((question, index) => {
-        // we add index information to the question object
-        // so that we can use it inside each StudentQuestion
-        question.index = index;
-        return (
-          <StudentQuestion
-            key={question.timestampForKey}
-            questionData={question}
+    <>
+      <Header as="h2">{props.cohortApplicationReceived.cohortName}</Header>
+      <Form onSubmit={submitStudentData}>
+        <Form.Group widths="equal">
+          <Form.Field
+            onChange={handleNameChange}
+            required
+            control={Input}
+            label="Full name"
+            placeholder="Full name"
+            value={props.studentName}
           />
-        );
-      })}
+        </Form.Group>
+        <Form.Group widths="equal">
+          <Form.Input
+            onChange={handleEmailChange}
+            label="Email"
+            placeholder="Email"
+            type="email"
+            required
+            value={props.studentEmail}
+          />
+        </Form.Group>
 
-      <Grid centered columns={2}>
-        <Grid.Column>
-          <Button fluid color="teal" size='huge'>Apply for Bridge</Button>
-        </Grid.Column>
-      </Grid>
+        {props.questionsReceived.map((question, index) => {
+          // we add index information to the question object
+          // so that we can use it inside each StudentQuestion
+          question.index = index;
+          return (
+            <Container>
+              <StudentQuestion
+                key={question.timestampForKey}
+                questionData={question}
+              />
+            </Container>
+          );
+        })}
 
-      {submitted === true && formPostError !== null ?
+        <Grid centered columns={2} padded>
+          <Grid.Column>
+            <Button fluid color="teal" size='huge'>Apply for Bridge</Button>
+          </Grid.Column>
+        </Grid>
+
+        {submitted === true && formPostError !== null ?
           <Message negative>
             <Header as="h3">
               There was an error with your submission: {formPostError}
             </Header>
             <p>Please try again.</p>
           </Message>
-         : null
-      }
-    </Form>
+          : null
+        }
+      </Form>
+    </>
   );
 }
 

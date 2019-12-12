@@ -9,7 +9,7 @@ const StudentApplication = () => {
   }, []);
   return (
     <>
-      <Header as="h1">{pageTitle}</Header>
+      <Header as="h1" size="huge">{pageTitle}</Header>
       <StudentForm />
     </>
   );

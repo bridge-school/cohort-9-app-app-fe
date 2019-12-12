@@ -67,11 +67,10 @@ const Questions = (props) => {
         );
       })}
       <Grid centered columns={2}>
-          <Grid.Column>
-            <Button basic fluid color='teal' size='huge' onClick={addNewQuestion}>Add new question</Button>
-          </Grid.Column>
-        </Grid>
-
+        <Grid.Column>
+          <Button basic fluid color='teal' size='huge' onClick={addNewQuestion}>Add new question</Button>
+        </Grid.Column>
+      </Grid>
     </>
   );
 };

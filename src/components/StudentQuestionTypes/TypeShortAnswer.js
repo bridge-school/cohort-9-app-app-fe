@@ -1,35 +1,28 @@
 import React from "react";
 import {
-  Button,
-  Checkbox,
-  Select,
   Form,
   Input,
-  TextArea,
-  Label
+  Message
 } from "semantic-ui-react";
-import styled from "styled-components";
 
-const TypeShortAnswer = ({ val, onChange, error }) => {
+
+const TypeShortAnswer = ({ val, onChange, error, prompt, isRequired}) => {
+  console.log(prompt)
   return (
     <>
-      {error !== "" && <ErrorMessage>{error}</ErrorMessage>}
+      {error !== undefined && <Message>{error}</Message>}
       <Form.Group widths="equal" className="row">
         <Form.Field
+          label={prompt}
           control={Input}
           maxLength="1000"
           value={val}
           onChange={onChange}
-          // error={error !== ""}
+          required={isRequired}
         />
       </Form.Group>
     </>
   );
 };
-
-const ErrorMessage = styled.p`
-  color: red;
-  margin-bottom: 10px;
-`;
 
 export default TypeShortAnswer;

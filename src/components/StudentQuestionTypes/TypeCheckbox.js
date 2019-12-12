@@ -1,65 +1,54 @@
 import React from "react";
 import {
   Button,
-  Checkbox,
-  Select,
   Form,
-  Input,
-  TextArea,
-  Label
+  Message
 } from "semantic-ui-react";
-import styled from "styled-components";
-
-const TypeCheckbox = ({ val, options, onChange, error }) => {
+import styled from 'styled-components'
+const TypeCheckbox = ({ val, options, onChange, error, prompt, isRequired }) => {
+  const Checkbox = styled.input`
+    position: absolute !important;
+    height: 1px; 
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px); 
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
+  `
   return (
     <>
-      {error !== "" && <ErrorMessage>{error}</ErrorMessage>}
-      <Form.Group widths="equal">
-        <OptionsContainer>
-          {options.map((option, index) => {
-            const handleOnClick = e => {
-              e.preventDefault();
-              onChange(option);
-            };
+      {error !== "" && error !== undefined && <Message negative>{error}</Message>}
+      <Form.Field required={isRequired}>
+          <label>{prompt}</label>
+          <Form.Group widths="equal">
+            {options.map((option, index) => {
+              
+              return (
+                <>
+                  <Button  
+                    fluid
+                    basic 
+                    as="label" 
+                    isSelected={option===val} 
+                    tertiary 
+                    size="large" 
+                    padded htmlFor={`${index}_${option}`}>
+                    {option}
+                  </Button>
+                  <Checkbox type='checkbox'
+                    id={`${index}_${option}`}
+                    name={option}
+                    value={option}
+                    onChange={onChange}
+                  />
+                </>
+              );
+            })}
+          </Form.Group>
 
-            return (
-              <OptionButton
-                key={index}
-                onClick={handleOnClick}
-                isSelected={val === option}
-              >
-                {option}
-              </OptionButton>
-            );
-          })}
-        </OptionsContainer>
-      </Form.Group>
+      </Form.Field>
     </>
   );
 };
-
-const OptionsContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-const ErrorMessage = styled.p`
-  color: red;
-  margin-bottom: 10px;
-`;
-
-const OptionButton = styled.button`
-  max-width: 25%;
-  padding: 5px 10px;
-  background: white;
-  outline: none;
-  border-radius: 5px;
-  color: #ccc;
-  font-weight: 600;
-  border: 2px solid #ccc;
-  cursor: pointer;
-
-  ${props => props.isSelected ? `background: grey;` : `` }
-`;
 
 export default TypeCheckbox;

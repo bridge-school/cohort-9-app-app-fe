@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import CommonLayout from "./components/CommonLayout/CommonLayout";
+import CommonLayout from "./components/CommonLayout";
 import "./App.css";
 
 import Home from "./pages/Home";
