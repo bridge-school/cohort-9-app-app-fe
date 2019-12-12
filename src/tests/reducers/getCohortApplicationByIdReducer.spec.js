@@ -32,7 +32,7 @@ describe("Reducer", () => {
         {
           options: ["watermelon", "orange", "kiwi", "apple"],
           prompt: "What is your favourite fruit?",
-          type: "checkboxes",
+          type: "checkbox",
           isRequired: true
         }
       ]

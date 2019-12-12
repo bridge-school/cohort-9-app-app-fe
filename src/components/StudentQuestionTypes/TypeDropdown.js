@@ -7,12 +7,16 @@ import {
 
 const TypeDropdown = ({ val, onChange, options, error, prompt, isRequired }) => {
   const selectOptions = options.map((option, index) => Object.fromEntries([["key", index], ["value",option], ["text",option]]));
+
+  // const handleDropdownChange = () => {
+  //   onChange;
+  // }
   
   console.log(selectOptions)
   return (
     <>
       {error !== "" && error !== undefined && <Message>{error}</Message>}
-       <Form.Field>
+      <Form.Field>
         <label>{prompt}</label>
         <Select
           placeholder="select"

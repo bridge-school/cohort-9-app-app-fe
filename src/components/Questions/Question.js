@@ -27,12 +27,11 @@ const Question = ({
           <label htmlFor={`q${index}__name`}>{`Question #${qNumber}`}</label>
           <input 
             id={`q${index}__name`}
-            onChange={(e, {value}) => {
-              onPromptChange(index, value);
+            onChange={(e) => {
+              onPromptChange(index, e.target.value);
             }}
             value={question.prompt}
-           
-            ></input>
+          ></input>
         </Form.Field>
         <Form.Select 
           label={`Question #${qNumber} Type`} 
@@ -51,7 +50,7 @@ const Question = ({
             Is Required <br></br>
           </label>
           <Checkbox 
-            content={<Icon link color="teal" fitted name='check square outline' />}
+            content={<Icon color="teal" fitted name='check square outline' />}
             color="teal"
             size="huge"
             id={`q${index}__req`}
@@ -69,14 +68,15 @@ const Question = ({
             onDelete(index);
           }}
           width={1}
-        ><Icon link color="teal" fitted name='trash' /></Button>
+        ><Icon color="teal" fitted name='trash' /></Button>
     </Form.Group>
     <Form.Group>
 
       {(question.type === "checkbox" || question.type === "dropdown") &&
           <Form.Input
             id={`q${index}__options`}
-            label={{ children: `Question #${qNumber} ${question.type} options`, htmlFor: `q${index}__options` }}
+            label={`q${index}__options`}
+            // label={{ children: `Question #${qNumber} ${question.type} options`, htmlFor: `q${index}__options` }}
             onChange={(e, {value}) => {
               onOptionsChange(index, value);
             }}
